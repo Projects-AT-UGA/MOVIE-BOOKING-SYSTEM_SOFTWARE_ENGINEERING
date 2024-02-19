@@ -1,0 +1,69 @@
+/* Login.css */
+.app {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background: linear-gradient(
+        rgba(255, 255, 255, 0.7),
+        rgba(255, 255, 255, 0.3)
+      ),
+      url("https://img.freepik.com/free-vector/seamless-pattern-with-cinema-elements_225004-1154.jpg?w=1380&t=st=1708372952~exp=1708373552~hmac=a1859f4f10aba1f17f8697f146296b7b8f3bbd0ebd6f99f37e722e1bc990d60e");
+    background-size: cover;
+    background-position: center;
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    padding: 0px 60px;
+    border-radius: 10px;
+  }
+  
+  h1 {
+    color: rgb(15, 14, 15);
+    text-align: center;
+  }
+  
+  button:hover {
+    background-color: gray;
+  }
+  
+  button {
+    width: 100%;
+    height: 50px;
+    padding: 10px;
+    border: none;
+    background-color: rgb(36, 36, 36);
+    color: white;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 18px;
+    cursor: pointer;
+    margin-top: 15px;
+    margin-bottom: 30px;
+  }
+  
+  .links {
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+  
+  .links a {
+    text-decoration: none;
+    color: rgb(36, 36, 36);
+    font-weight: bold;
+    font-size: 14px;
+    margin: 0 10px;
+  }
+  
+  .links a:hover {
+    text-decoration: underline;
+    
+  }
+  .links a:active{
+    color:grey;
+  }
+  
