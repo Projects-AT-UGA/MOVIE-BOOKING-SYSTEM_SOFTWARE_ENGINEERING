@@ -25,7 +25,8 @@
 
 .movie-card img {
   width: 100%;
-  height: auto; /* Allow the image to adjust its height */
+  
+  object-fit: contain; /* Allow the image to adjust its height */
   max-height: 200px; /* Set a maximum height for consistency */
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
