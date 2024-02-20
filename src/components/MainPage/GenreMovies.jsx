@@ -10,8 +10,8 @@ export const GenreMovies = ({movies,genre}) => {
       <div className="movies-container">
         {actionMovies.map(movie => (
           <div key={movie.id} className="movie-card">
-            <img src={movie.image} alt={movie.name} />
-            <h2>{movie.name}</h2>
+            <img src={movie.Poster_Link} alt={movie.Series_Title} />
+            <h2>{movie.Series_Title}</h2>
           </div>
         ))}
       </div>
