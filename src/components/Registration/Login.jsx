@@ -41,7 +41,7 @@ const Login = () => {
     {
       id:4,
       name: "Phone no",
-      type: "String",
+      type: "text",
       placeholder: "Phone number",
       errorMessage:"Please enter valid phone number",
       pattern:'/^\(\d{3}\) \d{3}-\d{4}$/',
@@ -67,6 +67,15 @@ const Login = () => {
       errorMessage: "Passwords don't match!",
       label: "Confirm Password",
       pattern: values.password,
+      required: true,
+    },
+    {
+      id: 7,
+      name: "Address",
+      type: "text",
+      placeholder: "Address",
+      errorMessage: "please enter a correct address",
+      label: "Address",
       required: true,
     },
   ];
