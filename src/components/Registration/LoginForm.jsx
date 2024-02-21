@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import "./LoginForm.css";
 import FormInput from "./FormInput";
-
+import { NavLink } from "react-router-dom";
 const LoginForm = () => {
   const [values, setValues] = useState({
     username: "",
@@ -54,7 +54,8 @@ const LoginForm = () => {
         ))}
         <button type="submit">Login</button>
         <div className="links">
-          <a href="#" className="create">Create Account</a>
+          <NavLink to="/register">create account</NavLink>
+          
           <span>|</span>
           <a href="#">Forgot Password?</a>
         </div>

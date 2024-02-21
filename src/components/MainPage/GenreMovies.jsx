@@ -19,11 +19,10 @@ export const GenreMovies = ({ movies, genre, searchQuery }) => {
       <h1>{genre} Movies</h1>
       <div className="movies-container">
         {filteredMovies.map((movie, index) => (
-            <NavLink key={index} to={`/movie/${movie.Series_Title}`} className="movie-card" activeClassName="active">
+          <NavLink key={index} to={`/movie/${movie.Series_Title}`} className="movie-card" activeclassname="active">
             <img src={movie.Poster_Link} alt={movie.Series_Title} />
             <h2>{movie.Series_Title}</h2>
         </NavLink>
-          
         ))}
       </div>
     </div>
