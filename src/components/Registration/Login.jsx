@@ -100,7 +100,7 @@ const Login = () => {
             onChange={onChange}
           />
         ))}
-        <button>Submit</button>
+        <button className="submit">Submit</button>
       </form>
     </div>
   );

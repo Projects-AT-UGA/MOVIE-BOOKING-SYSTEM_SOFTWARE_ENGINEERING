@@ -1,3 +1,17 @@
 .search-bar{
     display: flex;
+    align-items:center;
+    justify-content: center;
+
+}
+.search{
+    display: flex;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    margin-top: 0px;
+    border: none;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    border-radius: 12px;
+    height: 22px;
+    width:170rem;
 }

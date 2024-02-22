@@ -52,7 +52,7 @@ const LoginForm = () => {
             onChange={onChange}
           />
         ))}
-        <button type="submit">Login</button>
+        <button className="login-button "type="submit">Login</button>
         <div className="links">
           <NavLink to="/register">create account</NavLink>
           

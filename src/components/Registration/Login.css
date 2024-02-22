@@ -25,10 +25,10 @@
   label{
     color:black;
   }
-  button:hover{
+  .submit:hover{
     background-color: gray;
   }
-  button{
+  .submit{
       width: 100%;
       height: 50px;
       padding: 10px;
