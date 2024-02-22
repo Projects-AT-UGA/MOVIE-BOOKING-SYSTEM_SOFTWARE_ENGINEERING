@@ -7,17 +7,19 @@ import { TimeSelection } from './components/BookingPage/TimeSelection';
 import {Home} from './components/MainPage/Home'
 import MovieDetails from './components/MainPage/MovieDetails';
 import { useState } from 'react';
+import { SeatSelection } from './components/BookingPage/SeatSelection';
 function App() {
   const [movies,setMovies]=useState(moviedata());
   return (
     <div>
       <Routes>
-        <Route path="/" element={<Home movies={movies}></Home>}></Route>
+        <Route exact path="/" element={<Home movies={movies}></Home>}></Route>
         {/* <Route path="/register" element={<UserRegistrationForm />}></Route> */}
-        <Route path="/register" element={<Login></Login>}></Route>
-        <Route path="/login" element={<LoginForm></LoginForm>}></Route>
-        <Route path='/selecttime' element={<TimeSelection></TimeSelection>}></Route>
+        <Route exact path="/register" element={<Login></Login>}></Route>
+        <Route exact path="/login" element={<LoginForm></LoginForm>}></Route>
+        <Route exact path='/selecttime' element={<TimeSelection></TimeSelection>}></Route>
         <Route exact path="/movie/:title" element={<MovieDetails movies={movies}></MovieDetails>} />
+        <Route exact path="/seatselection" element={<SeatSelection></SeatSelection>}></Route>
       </Routes>
        
             

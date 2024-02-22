@@ -6,20 +6,21 @@ import { Navbar } from './Navbar';
 export const Home = ({movies}) => {
 
   const [searchQuery, setSearchQuery] = useState('');
-
+  const [genre,setSelectedGenre]=useState("")
+  
   const handleSearch = (query) => {
     setSearchQuery(query);
   };
 
   return (
     <div>
-      <Navbar handleSearch={handleSearch} searchQuery={searchQuery}></Navbar>
+      <Navbar handleSearch={handleSearch} searchQuery={searchQuery} genre={genre} setSelectedGenre={setSelectedGenre}></Navbar>
       
       <div className="genre-movies-container">
-      <GenreMovies movies={movies} genre="" searchQuery={searchQuery} />
-        <GenreMovies movies={movies} genre="Drama" searchQuery={searchQuery} />
-        <GenreMovies movies={movies} genre="Crime" searchQuery={searchQuery} />
-        <GenreMovies movies={movies} genre="Action" searchQuery={searchQuery} />
+      <GenreMovies movies={movies} genre={genre} searchQuery={searchQuery} />
+        {/* <GenreMovies movies={movies} genre="Drama" searchQuery={searchQuery} /> */}
+        {/* <GenreMovies movies={movies} genre="Crime" searchQuery={searchQuery} /> */}
+        {/* <GenreMovies movies={movies} genre="Action" searchQuery={searchQuery} /> */}
         {/* Add more GenreMovies components for other genres */}
         {/* Example:
         <GenreMovies movies={movies} genre="Comedy" searchQuery={searchQuery} />
