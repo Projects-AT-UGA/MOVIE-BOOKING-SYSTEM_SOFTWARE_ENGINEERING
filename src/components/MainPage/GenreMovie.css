@@ -1,62 +1,68 @@
-.movies-container {
-  position: relative;
-  display: flex;
-  flex-wrap: nowrap;
-  overflow-x: auto;
-  padding: 20px 0;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
+/* Movie booking home title styling */
+.movie-booking-home-title {
+  text-align: center;
+  margin-bottom: 20px;
 }
 
-.movie-card {
-  flex: 0 0 auto;
-  margin-right: 20px;
+/* Movie container styling */
+.movie-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+/* Movie box styling */
+.movie-box {
+  width: 300px;
+  padding: 20px;
+  margin: 20px;
+  background-color: #f9f9f9;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-  background-color: #f9f9f9;
-  max-width: 300px;
-  width: 100%; /* Ensure movie cards take full width */
+  transition: transform 0.3s ease;
 }
 
-.movie-card:hover {
-  transform: translateY(-5px);
+.movie-box:hover {
+  transform: translateY(-4px);
 }
 
-.movie-card img {
+/* Movie image styling */
+.movie-image {
   width: 100%;
-  
-  object-fit: contain; /* Allow the image to adjust its height */
-  max-height: 200px; /* Set a maximum height for consistency */
-  border-top-left-radius: 8px;
-  border-top-right-radius: 8px;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 10px;
 }
 
-.movie-card h2 {
-  margin: 10px;
-  font-size: 1.2rem;
-  color: #333;
+/* Movie title styling */
+.movie-title {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
 }
 
-.movie-card p {
-  margin: 10px;
-  color: #666;
+/* Movie description styling */
+.movie-description {
+  margin-bottom: 10px;
 }
 
-/* Scrollbar styling */
-.movies-container::-webkit-scrollbar {
-  width: 8px;
+/* Trailer link styling */
+.trailer-link {
+  color: #007bff;
+  text-decoration: none;
 }
 
-.movies-container::-webkit-scrollbar-track {
-  background: transparent;
+/* Trailer link hover styling */
+.trailer-link:hover {
+  text-decoration: underline;
 }
 
-.movies-container::-webkit-scrollbar-thumb {
-  background-color: rgba(0, 0, 0, 0.2);
-  border-radius: 4px;
+/* Movie rating styling */
+.movie-rating {
+  font-style: italic;
+  margin-bottom: 5px;
 }
 
-.movies-container::-webkit-scrollbar-thumb:hover {
-  background-color: rgba(0, 0, 0, 0.4);
+/* Movie genre styling */
+.movie-genre {
+  font-weight: bold;
 }

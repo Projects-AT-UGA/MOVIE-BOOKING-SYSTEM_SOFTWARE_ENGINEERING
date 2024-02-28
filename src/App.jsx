@@ -6,10 +6,22 @@ import LoginForm from './components/Registration/LoginForm';
 import { TimeSelection } from './components/BookingPage/TimeSelection';
 import {Home} from './components/MainPage/Home'
 import MovieDetails from './components/MainPage/MovieDetails';
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import { SeatSelection } from './components/BookingPage/SeatSelection';
+import axios from 'axios';
 function App() {
-  const [movies,setMovies]=useState(moviedata());
+  const [movies,setMovies]=useState([]);
+
+    useEffect(() => {
+        axios.get('http://localhost:8000/api/movies/')
+            .then(response => {
+                setMovies(response.data);
+                console.log(response.data)
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    }, []);
   return (
     <div>
       <Routes>
