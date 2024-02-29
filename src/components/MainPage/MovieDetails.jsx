@@ -16,7 +16,9 @@ const MovieDetails = ({ movies }) => {
   const videoId = movie.trailer_video.split('v=')[1];
 
   const [isTrailerOpen, setIsTrailerOpen] = useState(false);
-
+  const handleBookTickets=()=>{
+    
+  }
   const handlePlayTrailer = () => {
     setIsTrailerOpen(true);
   };
@@ -42,7 +44,7 @@ const MovieDetails = ({ movies }) => {
           <p>Certificate: {movie.certificate}</p>
           <p>Ratings: {movie.ratings}</p>
           <p>Synopsis: {movie.synopsis}</p>
-          <button className="book-tickets">Book Tickets</button>
+          <button className="book-tickets" onClick={handleBookTickets}>Book Tickets</button>
           &nbsp;  &nbsp;  &nbsp;
           <button className="play-trailer" onClick={handlePlayTrailer}>Play Trailer</button>
         </div>

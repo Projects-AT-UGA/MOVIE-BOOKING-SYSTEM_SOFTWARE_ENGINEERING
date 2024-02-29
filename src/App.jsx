@@ -8,6 +8,7 @@ import {Home} from './components/MainPage/Home'
 import MovieDetails from './components/MainPage/MovieDetails';
 import { useState,useEffect } from 'react';
 import { SeatSelection } from './components/BookingPage/SeatSelection';
+import {MovieTime} from './components/MainPage/MovieTime'
 import axios from 'axios';
 function App() {
   const [movies,setMovies]=useState([]);
@@ -32,6 +33,7 @@ function App() {
         <Route exact path='/selecttime' element={<TimeSelection></TimeSelection>}></Route>
         <Route exact path="/movie/:title" element={<MovieDetails movies={movies}></MovieDetails>} />
         <Route exact path="/seatselection" element={<SeatSelection></SeatSelection>}></Route>
+        <Route exact path="/movietime/:title" element={<MovieTime movies={movies}></MovieTime>}></Route>
       </Routes>
        
             

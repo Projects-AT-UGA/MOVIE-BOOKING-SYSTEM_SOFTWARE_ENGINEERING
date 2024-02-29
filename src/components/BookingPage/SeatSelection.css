@@ -1,27 +1,29 @@
+
+
 body {
     font-family: Arial, sans-serif;
     text-align: center;
     margin: 20px;
-}
-
-.screen {
+  }
+  
+  .screen {
     font-size: 18px;
     font-weight: bold;
     margin-bottom: 10px;
-}
-
-.seat-container {
+  }
+  
+  .seat-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-}
-
-.row {
+  }
+  
+  .row {
     display: flex;
     align-items: center;
-}
-
-.seat {
+  }
+  
+  .seat {
     width: 30px;
     height: 30px;
     margin: 5px;
@@ -30,33 +32,32 @@ body {
     align-items: center;
     justify-content: center;
     cursor: pointer;
-}
-
-.available {
+  }
+  
+  .available {
     background-color: #ccc; 
-}
-
-.selected {
+  }
+  
+  .selected {
     background-color: #00f; 
-}
-
-.booked {
+  }
+  
+  .booked {
     background-color: #f00; 
     cursor: not-allowed;
-}
-
-.showcase {
+  }
+  
+  .showcase {
     list-style-type: none;
     padding: 0;
     display: flex;
     justify-content: center;
-}
-
-.showcase li {
+  }
+  
+  .showcase li {
     margin: 0 10px;
-}
-
-.proceed-button {
+  }
+  .proceed-button {
     margin-top: 20px;
     padding: 10px 20px;
     background-color: #007bff;
@@ -64,8 +65,28 @@ body {
     border: none;
     border-radius: 5px;
     cursor: pointer;
-}
-
-.proceed-button:hover {
+  }
+  
+  .proceed-button:hover {
     background-color: #0056b3;
-}
+  }
+  
+  .gap {
+    width: 5rem; 
+  }
+  
+  .proceed-btn {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .proceed-btn:hover {
+    background-color: #0056b3;
+  }
+  
