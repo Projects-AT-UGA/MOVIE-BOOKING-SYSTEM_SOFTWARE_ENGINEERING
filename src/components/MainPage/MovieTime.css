@@ -1,0 +1,71 @@
+/* MovieDetails.css */
+
+.movie-time {
+    padding: 20px;
+    background-color: rgb(50, 100, 200); /* Blue color using RGB values */
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 95%; /* Limit width to 95% */
+    height: 100vh; /* Utilize entire height of the viewport */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .movie-info {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+  }
+  
+  .movie-image {
+    width: 300px; /* Increase image size */
+    height: auto;
+    margin-left: 20px; /* Adjust margin */
+    border-radius: 5px;
+  }
+  
+  .movie-details {
+    width: 50%; /* Adjust width for input fields */
+    padding: 0 20px; /* Add padding */
+  }
+  
+  .movie-name {
+    margin-top: 0;
+    font-size: 24px;
+    color: #fff; /* Change text color to white */
+  }
+  
+  .select-label {
+    margin-top: 10px;
+    font-size: 18px;
+    color: #fff; /* Change text color to white */
+  }
+  
+  .select-box {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 10px; /* Increase border radius */
+  }
+  
+  .proceed-button {
+    padding: 10px 20px;
+    margin-top: 20px;
+    font-size: 16px;
+    background-color: #f44336; /* Red color using RGB values */
+    color: #fff;
+    border: none;
+    border-radius: 10px; /* Increase border radius */
+    cursor: pointer;
+  }
+  
+  .proceed-button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  

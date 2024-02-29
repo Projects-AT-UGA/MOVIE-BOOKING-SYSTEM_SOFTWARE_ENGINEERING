@@ -1,17 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import './SeatSelection.css'; 
 
-
 export function SeatSelection() {
     const [selectedSeats, setSelectedSeats] = useState([]);
-    const [ticketPrice] = useState(15); 
-    const [totalPrice,setTotalPrice]=useState(0)
-    useEffect(() => {
-        const savedSeats = JSON.parse(localStorage.getItem('selectedSeats'));
-        if (savedSeats && savedSeats.length > 0) {
-            setSelectedSeats(savedSeats);
-        }
-    }, []); 
+    const [ticketPrice] = useState(15);
+    const [totalPrice, setTotalPrice] = useState(0);
 
     const getAvailableSeats = (rows, columns) => {
         const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -70,18 +63,10 @@ export function SeatSelection() {
         return seatContainer;
     };
 
-    const saveSelectedSeats = () => {
-        localStorage.setItem('selectedSeats', JSON.stringify(selectedSeats));
-    };
-  
     useEffect(() => {
-        saveSelectedSeats();
         setTotalPrice(selectedSeats.length * ticketPrice);
-         
-          console.log(totalPrice)
     }, [selectedSeats]);
 
-    
     const handleProceedToPayment = () => {
         console.log("Proceed to checkout");
     };
@@ -115,5 +100,3 @@ export function SeatSelection() {
         </div>
     );
 }
-
-
