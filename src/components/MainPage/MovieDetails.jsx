@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams ,useNavigate} from 'react-router-dom';
 import './MovieDetails.css';
 
 const MovieDetails = ({ movies }) => {
+  const [isTrailerOpen, setIsTrailerOpen] = useState(false);
+  const navigate = useNavigate();
   const { title } = useParams(); // Access route parameters
-
+  
   // Find the movie by its title
   const movie = movies && movies.find(movie => movie.title === title);
 
@@ -15,10 +17,8 @@ const MovieDetails = ({ movies }) => {
   // Extract video ID from YouTube URL
   const videoId = movie.trailer_video.split('v=')[1];
 
-  const [isTrailerOpen, setIsTrailerOpen] = useState(false);
-  const handleBookTickets=()=>{
-    
-  }
+  
+  
   const handlePlayTrailer = () => {
     setIsTrailerOpen(true);
   };
@@ -44,7 +44,7 @@ const MovieDetails = ({ movies }) => {
           <p>Certificate: {movie.certificate}</p>
           <p>Ratings: {movie.ratings}</p>
           <p>Synopsis: {movie.synopsis}</p>
-          <button className="book-tickets" onClick={handleBookTickets}>Book Tickets</button>
+          <button className="book-tickets" onClick={()=>navigate("/movietime/"+title)}>Book Tickets</button>
           &nbsp;  &nbsp;  &nbsp;
           <button className="play-trailer" onClick={handlePlayTrailer}>Play Trailer</button>
         </div>

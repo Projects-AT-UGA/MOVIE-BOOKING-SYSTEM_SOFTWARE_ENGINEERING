@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom'; // Import NavLink instead of Link
+import { NavLink,Link } from 'react-router-dom'; // Import NavLink instead of Link
 import './GenreMovie.css';
 
 
