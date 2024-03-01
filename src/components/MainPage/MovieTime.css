@@ -2,7 +2,7 @@
 
 .movie-time {
     padding: 20px;
-    background-color: rgb(50, 100, 200); /* Blue color using RGB values */
+    /* background-color: rgb(50, 100, 200); Blue color using RGB values */
     border-radius: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     width: 95%; /* Limit width to 95% */
@@ -21,10 +21,11 @@
   }
   
   .movie-image {
-    width: 300px; /* Increase image size */
+    width: 500px; /* Increase image size */
     height: auto;
     margin-left: 20px; /* Adjust margin */
     border-radius: 5px;
+    margin-right: 10rem;
   }
   
   .movie-details {
@@ -37,6 +38,10 @@
     font-size: 24px;
     color: #fff; /* Change text color to white */
   }
+  .movie-title{
+    font-size: 2rem;
+    font-weight: 800;
+  }
   
   .select-label {
     margin-top: 10px;
@@ -45,6 +50,7 @@
   }
   
   .select-box {
+    
     width: 100%;
     padding: 10px;
     margin-top: 5px;
@@ -52,20 +58,33 @@
     border: 1px solid #ccc;
     border-radius: 10px; /* Increase border radius */
   }
-  
+  .time-select{
+    padding: 1rem;
+    font-size: 1.2rem;
+  }
+  .screen-select{
+    padding: 1rem;
+    font-size: 1.2rem;
+  }
+  .date-select{
+    padding: 1rem;
+    font-size: 1.2rem;
+  }
   .proceed-button {
+    margin: 1rem;
     padding: 10px 20px;
     margin-top: 20px;
     font-size: 16px;
-    background-color: #f44336; /* Red color using RGB values */
+    background-color: green; /* Red color using RGB values */
     color: #fff;
     border: none;
     border-radius: 10px; /* Increase border radius */
     cursor: pointer;
+    padding:1rem;
   }
   
   .proceed-button:disabled {
-    background-color: #ccc;
+    background-color: grey;
     cursor: not-allowed;
   }
   

@@ -57,10 +57,10 @@ export function SeatSelection() {
                     onChange={(e) => {
                         setSeatDetails({ ...seatDetails, [seat]: e.target.value });
                     }}
-                >
-                    <option value="adult">Adult</option>
-                    <option value="child">Child</option>
-                    <option value="senior">Senior Citizen</option>
+                    className='op'>
+                    <option value="adult" >Adult</option>
+                    <option value="child" >Child</option>
+                    <option value="senior" >Senior Citizen</option>
                 </select>
             </div>
         ));
@@ -85,7 +85,7 @@ export function SeatSelection() {
             <h2>Seat Selection</h2>
             <div className="screen">Screen This Way</div>
             <div className="seat-container">
-                {getAvailableSeats(10, 20).map(seatLabel => (
+                {getAvailableSeats(10, 13).map(seatLabel => (
                     <div
                         key={seatLabel}
                         className={`seat ${selectedSeats.includes(seatLabel) ? 'selected' : ''} ${isSeatBooked(seatLabel) ? 'booked' : ''}`}
@@ -94,6 +94,7 @@ export function SeatSelection() {
                                 toggleSeatSelection(seatLabel);
                             }
                         }}
+                        id="seating-book"
                     >
                         {seatLabel}
                         
@@ -114,13 +115,12 @@ export function SeatSelection() {
                     <small>Booked</small>
                 </li>
             </ul>
-            <div className="text">
-                You have selected <div id="count">{selectedSeats.length}</div> seat(s) for a total price of $
-                <div id="total">{totalPrice}</div>
-            </div>
+            <div className="text1">
+                You have selected {selectedSeats.length} seat(s) <br/>for a total price of ${totalPrice}</div>
+            
             {selectedSeats.length > 0 && (
-                <div>
-                    <h3>Selected Tickets</h3>
+                <div className='text2'>
+                    <h2 className='text2-h2'>Selected Tickets</h2>
                     {renderSelectedTickets()}
                 </div>
             )}

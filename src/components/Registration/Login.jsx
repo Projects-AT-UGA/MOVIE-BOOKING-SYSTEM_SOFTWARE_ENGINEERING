@@ -1,112 +1,247 @@
-import React, { useState } from "react";
-import "./Login.css";
-import FormInput from "./FormInput";
 
-const Login = () => {
-  const [values, setValues] = useState({
-    username: "",
-    email: "",
-    birthday: "",
-    "Phone no": "",
-    password: "",
-    confirmPassword: "",
-    Address: "",
+import React, { useState, useEffect } from 'react';
+import './Login.css';
+import './FormInput.css';
+import FormInput from './FormInput';
+
+const App = () => {
+  const [formData, setFormData] = useState({
+    username: '',
+    email: '',
+    DOB: '',
+    password: '',
+    confirmPassword: '',
+    address: '',
+    country: '',
+    phone: '',
+    cardType: '',
+    cardNumber: '',
+    expirationDate: '',
+    billingAddress: '',
+    zipcode: '',
+    promoCode: '',
+    subscribe: false,
+    needCardDetails: false,
   });
 
-  const inputs = [
-    {
-      id: 1,
-      name: "username",
-      type: "text",
-      placeholder: "Username",
-      errorMessage:
-        "Username should be 3-16 characters and shouldn't include any special character!",
-      label: "Username",
-      pattern: "^[A-Za-z0-9]{3,16}$",
-      required: true,
-    },
-    {
-      id: 2,
-      name: "email",
-      type: "email",
-      placeholder: "Email",
-      errorMessage: "It should be a valid email address!",
-      label: "Email",
-      required: true,
-    },
-    {
-      id: 3,
-      name: "birthday",
-      type: "date",
-      placeholder: "Birthday",
-      label: "Birthday",
-    },
-    {
-      id: 4,
-      name: "Phone no",
-      type: "text",
-      placeholder: "Phone number",
-      errorMessage: "Please enter valid phone number",
-      pattern: "/^\\(\\d{3}\\) \\d{3}-\\d{4}$/",
-      label: "Phone number",
-      required: true,
-    },
-    {
-      id: 5,
-      name: "password",
-      type: "password",
-      placeholder: "Password",
-      errorMessage:
-        "Password should be 8-20 characters and include at least 1 letter, 1 number and 1 special character!",
-      label: "Password",
-      pattern: `^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$`,
-      required: true,
-    },
-    {
-      id: 6,
-      name: "confirmPassword",
-      type: "password",
-      placeholder: "Confirm Password",
-      errorMessage: "Passwords don't match!",
-      label: "Confirm Password",
-      pattern: values.password,
-      required: true,
-    },
-    {
-      id: 7,
-      name: "Address",
-      type: "text",
-      placeholder: "Address",
-      errorMessage: "please enter a correct address",
-      label: "Address",
-      required: true,
-    },
-  ];
+  const [countries, setCountries] = useState([]);
+  const [selectedCountryCode, setSelectedCountryCode] = useState('');
+  const [passwordError, setPasswordError] = useState('');
+
+  useEffect(() => {
+    
+    fetch('https://restcountries.com/v2/all')
+      .then(response => response.json())
+      .then(data => {
+        const countryList = data.map(country => ({
+          name: country.name,
+          code: country.alpha2Code,
+          phoneCode: country.callingCodes[0],
+        }));
+        setCountries(countryList);
+      })
+      .catch(error => console.error('Error fetching countries:', error));
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (formData.password !== formData.confirmPassword) {
+      setPasswordError('Passwords do not match');
+      return;
+    }
+
+    const passwordRegex = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    if (!passwordRegex.test(formData.password)) {
+      setPasswordError('Password must contain at least 8 characters including one letter, one number, and one special character.');
+      return;
+    }
+
+    setPasswordError('');
+
+   
+    window.location.href = '/home'; 
   };
 
-  const onChange = (e) => {
-    setValues({ ...values, [e.target.name]: e.target.value });
+  const handleChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    const newValue = type === 'checkbox' ? checked : value;
+    setFormData({
+      ...formData,
+      [name]: newValue,
+    });
+  };
+
+  const handleCountryChange = (e) => {
+    const selectedCountry = countries.find(country => country.name === e.target.value);
+    if (selectedCountry) {
+      setSelectedCountryCode(selectedCountry.phoneCode);
+    }
+    handleChange(e);
   };
 
   return (
-    <div className="app">
-      <form className="login-form" onSubmit={handleSubmit}>
-        <h1>Register</h1>
-        {inputs.map((input) => (
+    <div className="registration-container">
+      <div className="container-login">
+        <h2 className="center registration-heading">Registration Page</h2>
+        <form id="registrationForm" onSubmit={handleSubmit}>
           <FormInput
-            key={input.id}
-            {...input}
-            value={values[input.name]}
-            onChange={onChange}
+            name="username"
+            type="text"
+            placeholder="Username"
+            label="Username *"
+            value={formData.username}
+            onChange={handleChange}
+            star
           />
-        ))}
-        <button className="submit">Submit</button>
-      </form>
+  
+          <FormInput
+            name="email"
+            type="email"
+            placeholder="Email"
+            label="Email *"
+            value={formData.email}
+            onChange={handleChange}
+            star
+          />
+  
+          <FormInput
+            name="DOB"
+            type="date"
+            label="DOB *"
+            value={formData.DOB}
+            onChange={handleChange}
+            star
+          />
+  
+          <FormInput
+            name="phone"
+            type="tel"
+            placeholder="Phone number"
+            label="Phone number *"
+            value={formData.phone}
+            onChange={handleChange}
+            star
+          />          
+          
+          <div className="password-error-container">{passwordError && <span className="password-error-message">{passwordError}</span>}</div>
+            <FormInput
+                name="password"
+                type="password"
+                placeholder="Password"
+                label="Password *"
+                value={formData.password}
+                onChange={handleChange}
+                star
+            />
+            {passwordError && <div className="empty-space" />}
+            <FormInput
+                name="confirmPassword"
+                type="password"
+                placeholder="Confirm Password"
+                label="Confirm Password *"
+                value={formData.confirmPassword}
+                onChange={handleChange}
+                star
+            />
+
+          <FormInput
+            name="address"
+            type="text"
+            placeholder="Address"
+            label="Address *"
+            value={formData.address}
+            onChange={handleChange}
+            star
+          />
+
+          <div className="formInput">
+            <label htmlFor="country">Country:</label>
+            <select
+              name="country"
+              id="country"
+              value={formData.country}
+              onChange={handleCountryChange}
+              required
+            >
+              <option value="" disabled>Select Country</option>
+              {countries.map(country => (
+                <option key={country.name} value={country.name}>{country.name}</option>
+              ))}
+            </select>
+          </div>
+
+          <div className="checkbox-wrapper">
+            <input
+              type="checkbox"
+              name="subscribe"
+              checked={formData.subscribe}
+              onChange={handleChange}
+            />
+            <label>Subscribe for Promotions</label>
+          </div>
+
+          <div className="checkbox-wrapper">
+            <input
+              type="checkbox"
+              name="needCardDetails"
+              checked={formData.needCardDetails}
+              onChange={handleChange}
+            />
+            <label>Would you like to enter card details?</label>
+          </div>
+
+          {formData.needCardDetails && (
+            <>
+              <div className="formInput" style={{ marginTop: '10px' }}>
+                <label style={{ marginBottom: '20px', fontSize: '16px' }}>Card Information:</label>
+              </div>
+              <FormInput
+                name="cardType"
+                type="select"
+                label="Card Type"
+                value={formData.cardType}
+                onChange={handleChange}
+                options={['Visa', 'MasterCard', 'American Express', 'Discover']}
+            />
+              <FormInput
+                name="cardNumber"
+                type="text"
+                placeholder="Card Number"
+                label="Card Number"
+                value={formData.cardNumber}
+                onChange={handleChange}
+              />
+              <FormInput
+                name="expirationDate"
+                type="date"
+                placeholder="Expiration Date"
+                label="Expiration Date"
+                value={formData.expirationDate}
+                onChange={handleChange}
+              />
+              <FormInput
+                name="billingAddress"
+                type="text"
+                placeholder="Billing Address"
+                label="Billing Address"
+                value={formData.billingAddress}
+                onChange={handleChange}
+              />
+              <FormInput
+                name="zipcode"
+                type="text"
+                placeholder="Zipcode"
+                label="Zipcode"
+                value={formData.zipcode}
+                onChange={handleChange}
+              />
+            </>
+          )}
+          <button className="register-button" type="submit" onClick={()=>{alert("registered successfully")}}>Register</button>
+        </form>
+      </div>
     </div>
   );
 };
 
-export default Login;
+export default App;

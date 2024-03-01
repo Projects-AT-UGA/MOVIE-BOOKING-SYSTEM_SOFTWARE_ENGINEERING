@@ -27,11 +27,12 @@
   }
   
   /* Movie image styling */
-  .movie-image {
+  .movie-image3 {
     width: 100%;
     height: auto;
     border-radius: 8px;
     margin-bottom: 10px;
+    object-fit: cover;
   }
   
   /* Movie title styling */

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useParams ,useNavigate} from 'react-router-dom';
 import './MovieDetails.css';
-
+import {Navbar} from './Navbar'
 const MovieDetails = ({ movies }) => {
   const [isTrailerOpen, setIsTrailerOpen] = useState(false);
   const navigate = useNavigate();
@@ -29,6 +29,7 @@ const MovieDetails = ({ movies }) => {
 
   return (
     <div>
+      <Navbar></Navbar>
       <h1>Movie Details</h1>
 
       <div className='movie-info'>
@@ -47,14 +48,16 @@ const MovieDetails = ({ movies }) => {
           <button className="book-tickets" onClick={()=>navigate("/movietime/"+title)}>Book Tickets</button>
           &nbsp;  &nbsp;  &nbsp;
           <button className="play-trailer" onClick={handlePlayTrailer}>Play Trailer</button>
+          &nbsp;  &nbsp;  &nbsp;
+          <button className="close-trailer" onClick={handleCloseTrailer}>Close Trailer</button>
         </div>
       </div>
 
-      {movie.playing_now ? <p>Now Playing</p> : null}
+      
 
       {isTrailerOpen && (
         <div className="trailer-overlay">
-          <button className="close-trailer" onClick={handleCloseTrailer}>Close Trailer</button>
+          
           <div className="trailer-container">
             <iframe
               title={`Trailer for ${movie.title}`}

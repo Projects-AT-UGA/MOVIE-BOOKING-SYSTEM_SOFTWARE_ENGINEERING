@@ -1,6 +1,6 @@
 .movie-info{
 display: flex;
-
+font-size: 1.3rem;
 justify-content: space-around;
 }
 .movie-details
@@ -11,14 +11,16 @@ justify-content: space-around;
     background-color: rgb(45, 9, 249);
     border-radius: 6px;
     border: 0px solid ;
-    padding: 0.5rem;
+    padding: 1rem;
+    font-size: 1rem;
     color:#fff;
 }
 .play-trailer{
-    background-color:red;
+    background-color:green;
     border-radius: 6px;
     border: 0px solid ;
-    padding: 0.5rem;
+    padding: 1rem;
+     font-size: 1rem;
     color:#fff;
 }
 .movie-image{
@@ -26,19 +28,27 @@ width: 400px;
 height: 400px;
 object-fit: contain;
 }
-  
+  .close-trailer{
+    background-color:red;
+    border-radius: 6px;
+    border: 0px solid ;
+    padding: 1rem;
+     font-size: 1rem;
+    color:#fff;
+  }
   /* Movie trailer container styling */
   .trailer-container {
     position: relative;
     padding-top: 56.25%; /* 16:9 aspect ratio */
     margin-bottom: 20px;
-    width: 800px;
+    width: 1600px;
     height:200px;
     margin-left: 100px;
   }
   
   /* Movie trailer iframe styling */
   .trailer-container iframe {
+    margin-top: 5rem;
     position: absolute;
     top: 0;
     left: 0;

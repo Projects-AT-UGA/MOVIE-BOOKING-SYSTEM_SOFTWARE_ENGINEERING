@@ -1,31 +1,46 @@
-.formInput {
+
+.registration-container .formInput {
     display: flex;
     flex-direction: column;
-    width: 280px;
-}
-
-.inputField {
+    width: 300px;
+  }
+  
+  .registration-container input,
+  .registration-container select {
     padding: 15px;
     margin: 10px 0px;
     border-radius: 5px;
     border: 1px solid gray;
+    width: 90%; 
+  }
+  
+ 
+  .registration-container select[name="country"] {
+    width: calc(107.5% - 22px); 
+  }
+
+  
+  .registration-container label {
     font-size: 12px;
-}
-
-.label {
     color: black;
-    font-weight: 500;
-}
-
-.errorMessage {
+    font-weight: 700;
+    width: 200px; 
+    text-align: left; 
+    margin-right: 20px; 
+  }
+  
+  .registration-container span {
+    font-size: 12px;
+    padding: 3px;
     color: red;
     display: none;
-}
-
-.inputField.invalid {
+  }
+  
+  .registration-container input:invalid[focused="true"] {
     border: 1px solid red;
-}
-
-.inputField.invalid ~ .errorMessage {
+  }
+  
+  .registration-container input:invalid[focused="true"] ~ span {
     display: block;
-}
+  }
+  

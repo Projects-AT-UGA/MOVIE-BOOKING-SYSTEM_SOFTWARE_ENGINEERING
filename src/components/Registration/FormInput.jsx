@@ -1,27 +1,40 @@
-import { useState } from "react";
-import "./formInput.css";
+// FormInput.jsx
+import React from 'react';
+import './FormInput.css';
 
-const FormInput = (props) => {
-  const [focused, setFocused] = useState(false);
-  const { label, errorMessage, onChange, id, ...inputProps } = props;
-
-  const handleFocus = (e) => {
-    setFocused(true);
-  };
+const FormInput = ({ name, type, placeholder, label, value, onChange, star, options }) => {
+  if (type === 'select') {
+    return (
+      <div className="formInput">
+        <label htmlFor={name}>{label}</label>
+        <select
+          name={name}
+          id={name}
+          value={value}
+          onChange={onChange}
+          required
+        >
+          <option value="" disabled>Select {label}</option>
+          {options.map(option => (
+            <option key={option} value={option}>{option}</option>
+          ))}
+        </select>
+      </div>
+    );
+  }
 
   return (
     <div className="formInput">
-      <label className="label">{label}</label>
+      <label htmlFor={name}>{label} {star && <span>*</span>}</label>
       <input
-        {...inputProps}
+        type={type}
+        id={name}
+        name={name}
+        placeholder={placeholder}
+        value={value}
         onChange={onChange}
-        onBlur={handleFocus}
-        onFocus={() =>
-          inputProps.name === "confirmPassword" && setFocused(true)
-        }
-        className={`inputField ${focused && "invalid"}`}
+        required
       />
-      <span className="errorMessage">{errorMessage}</span>
     </div>
   );
 };

@@ -3,7 +3,6 @@ import './App.css';
 import {Routes,Route} from 'react-router-dom'
 import Login from './components/Registration/Login';
 import LoginForm from './components/Registration/LoginForm';
-import { TimeSelection } from './components/BookingPage/TimeSelection';
 import {Home} from './components/MainPage/Home'
 import MovieDetails from './components/MainPage/MovieDetails';
 import { useState,useEffect } from 'react';
@@ -34,7 +33,7 @@ function App() {
         {/* <Route path="/register" element={<UserRegistrationForm />}></Route> */}
         <Route exact path="/register" element={<Login></Login>}></Route>
         <Route exact path="/login" element={<LoginForm></LoginForm>}></Route>
-        <Route exact path='/selecttime' element={<TimeSelection></TimeSelection>}></Route>
+        {/* <Route exact path='/selecttime' element={<TimeSelection></TimeSelection>}></Route> */}
         <Route exact path="/movie/:title" element={<MovieDetails movies={movies}></MovieDetails>} />
         <Route exact path="/seatselection" element={<SeatSelection></SeatSelection>}></Route>
         <Route exact path="/movietime/:title" element={<MovieTime movies={movies}></MovieTime>}></Route>

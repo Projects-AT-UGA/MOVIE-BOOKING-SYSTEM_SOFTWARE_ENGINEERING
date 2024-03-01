@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import './MovieTime.css';
-
 export const MovieTime = ({ movies }) => {
   const { title } = useParams(); // Access route parameters
   const navigate = useNavigate();
@@ -41,7 +40,8 @@ export const MovieTime = ({ movies }) => {
 
   return (
     <div className="movie-time">
-      <h1 className="movie-title">Movie Details</h1>
+      
+      <div className="movie-title">Available Show Times</div>
       <div className='movie-info'>
         <img className="movie-image" src={movie.trailer_picture} alt={movie.title} />
         <div className='movie-details'>
