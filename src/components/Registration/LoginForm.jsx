@@ -1,8 +1,8 @@
-// LoginForm.jsx
 import React, { useState } from "react";
 import "./LoginForm.css";
 import FormInput from "./FormInput";
 import { NavLink } from "react-router-dom";
+
 const LoginForm = () => {
   const [values, setValues] = useState({
     username: "",
@@ -42,7 +42,7 @@ const LoginForm = () => {
 
   return (
     <div className="app">
-      <form onSubmit={handleSubmit}>
+      <form className="login-form" onSubmit={handleSubmit}>
         <h1>Login</h1>
         {inputs.map((input) => (
           <FormInput
@@ -52,14 +52,18 @@ const LoginForm = () => {
             onChange={onChange}
           />
         ))}
-        <button className="login-button "type="submit">Login</button>
+        <button className="login-button" type="submit">
+          Login
+        </button>
         <div className="links">
-          <NavLink to="/register">create account</NavLink>
-          
-          <span>|</span>
-          <a href="#">Forgot Password?</a>
+          <NavLink to="/register" className="create-account-link">
+            create account
+          </NavLink>
+          <span className="divider">|</span>
+          <a href="#" className="forgot-password-link">
+            Forgot Password?
+          </a>
         </div>
-        
       </form>
     </div>
   );

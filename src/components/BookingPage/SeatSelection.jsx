@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import {useNavigate} from 'react-router-dom'
 import './SeatSelection.css'; 
+import FormInput from '../Registration/FormInput';
 
 export function SeatSelection() {
     const [selectedSeats, setSelectedSeats] = useState([]);
@@ -7,7 +9,7 @@ export function SeatSelection() {
     const [totalPrice, setTotalPrice] = useState(0);
     const [seatDetails, setSeatDetails] = useState({});
     const [paymentOption, setPaymentOption] = useState('');
-
+    const navigate=useNavigate();
     const getAvailableSeats = (rows, columns) => {
         const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
         const seatLabels = [];
@@ -49,7 +51,7 @@ export function SeatSelection() {
     const renderSelectedTickets = () => {
         return selectedSeats.map(seat => (
             <div key={seat}>
-                Selected Seat: {seat} - Type: {seatDetails[seat]}
+                Selected Seat: {seat} -  
                 <select
                     value={seatDetails[seat] || ''}
                     onChange={(e) => {
@@ -126,7 +128,8 @@ export function SeatSelection() {
                 <h3>Select Payment Option:</h3>
                 {renderDropdown()}
             </div>
-            <button className="proceed-btn" onClick={handleProceedToPayment}>Proceed to Payment</button>
+            <button className="proceed-btn" onClick={()=>{navigate("/ordersummary")}}>Proceed to Payment</button>
+            
         </div>
     );
 }

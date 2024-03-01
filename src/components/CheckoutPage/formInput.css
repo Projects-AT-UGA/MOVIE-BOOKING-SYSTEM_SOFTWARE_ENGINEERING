@@ -1,31 +1,36 @@
+/* formInput.css */
+
 .formInput {
     display: flex;
     flex-direction: column;
     width: 280px;
 }
 
-.inputField {
+.formInput input {
     padding: 15px;
     margin: 10px 0px;
     border-radius: 5px;
     border: 1px solid gray;
-    font-size: 12px;
 }
 
-.label {
+.formInput label {
+    font-size: 0.9rem;
     color: black;
-    font-weight: 500;
+    /* letter-spacing: 3px; */
+    font-weight: 800;
 }
 
-.errorMessage {
+.formInput span {
+    font-size: 12px;
+    padding: 3px;
     color: red;
     display: none;
 }
 
-.inputField.invalid {
+.formInput input.invalid {
     border: 1px solid red;
 }
 
-.inputField.invalid ~ .errorMessage {
+.formInput input.invalid + span {
     display: block;
 }

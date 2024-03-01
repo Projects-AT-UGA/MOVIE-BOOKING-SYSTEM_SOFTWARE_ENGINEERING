@@ -1,13 +1,16 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import "./Login.css";
 import FormInput from "./FormInput";
+
 const Login = () => {
   const [values, setValues] = useState({
     username: "",
     email: "",
     birthday: "",
+    "Phone no": "",
     password: "",
     confirmPassword: "",
+    Address: "",
   });
 
   const inputs = [
@@ -39,14 +42,14 @@ const Login = () => {
       label: "Birthday",
     },
     {
-      id:4,
+      id: 4,
       name: "Phone no",
       type: "text",
       placeholder: "Phone number",
-      errorMessage:"Please enter valid phone number",
-      pattern:'/^\(\d{3}\) \d{3}-\d{4}$/',
+      errorMessage: "Please enter valid phone number",
+      pattern: "/^\\(\\d{3}\\) \\d{3}-\\d{4}$/",
       label: "Phone number",
-      required:true,
+      required: true,
     },
     {
       id: 5,
@@ -90,7 +93,7 @@ const Login = () => {
 
   return (
     <div className="app">
-      <form onSubmit={handleSubmit}>
+      <form className="login-form" onSubmit={handleSubmit}>
         <h1>Register</h1>
         {inputs.map((input) => (
           <FormInput

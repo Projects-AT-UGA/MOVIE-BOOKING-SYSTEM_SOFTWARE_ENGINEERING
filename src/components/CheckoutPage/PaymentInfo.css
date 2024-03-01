@@ -1,0 +1,73 @@
+.payment-info-container {
+  display: flex;
+  align-items: center;
+  justify-content:center;
+  height: 100vh;
+  
+
+}
+
+.payment-form {
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 0px 60px;
+  border-radius: 10px;
+  width: 400px; /* Adjust width as needed */
+}
+
+.payment-heading {
+  color: rgb(15, 14, 15);
+  text-align: center;
+}
+
+
+
+.input-cardNum,
+.input-name,
+.input-expDate,
+.input-cvv,
+.input-zipCode {
+  width: 100%;
+  height: 30px;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+.input-cardNum:focus,
+.input-name:focus,
+.input-expDate:focus,
+.input-cvv:focus,
+.input-zipCode:focus {
+  outline: none;
+  border-color: dodgerblue;
+}
+
+.submit-button:hover,
+.cancel-button:hover {
+  background-color: gray;
+}
+
+.submit-button,
+.cancel-button {
+  width: 100%;
+  height: 50px;
+  padding: 5px;
+  border: none;
+  background-color: rgb(36, 36, 36);
+  color: white;
+  border-radius: 5px;
+  font-weight: bold;
+  font-size: 18px;
+  cursor: pointer;
+  margin-top: 10px;
+  margin-bottom: 0px;
+}
+.cancel-button{
+  margin-bottom: 20px;
+}

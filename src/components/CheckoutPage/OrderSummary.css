@@ -1,0 +1,101 @@
+/* OrderSummary.css */
+
+.app1{
+    display: flex;
+    align-items: center;
+    justify-content:space-around;
+  /* background-color: red; */
+    height: 100vh;
+    background: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.3)), url("https://img.freepik.com/free-vector/seamless-pattern-with-cinema-elements_225004-1154.jpg?w=1380&t=st=1708372952~exp=1708373552~hmac=a1859f4f10aba1f17f8697f146296b7b8f3bbd0ebd6f99f37e722e1bc990d60e");
+    background-size: cover;
+    background-position: center;
+}
+
+.container1 {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 600px;
+}
+
+.header {
+    text-align: center;
+}
+
+.ticket {
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 15px;
+}
+
+.ticket-info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.ticket-name,
+.ticket-price,
+.ticket-quantity {
+    flex-basis: 33.33%;
+}
+
+.quantity-controls {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.quantity-btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    font-size: 1rem;
+    cursor: pointer;
+    margin: 0 5px;
+}
+
+.delete-btn {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.total-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.total-label {
+    font-weight: bold;
+}
+
+.actions {
+    display: flex;
+    justify-content: space-between;
+}
+
+.update-btn {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    margin-bottom: 1rem;
+}
+
+.update-btn:hover,
+.confirm-btn:hover {
+    background-color: #218838;
+}

@@ -10,6 +10,9 @@ import { useState,useEffect } from 'react';
 import { SeatSelection } from './components/BookingPage/SeatSelection';
 import {MovieTime} from './components/MainPage/MovieTime'
 import {EditProfile} from './components/Registration/EditProfile'
+import  {Confirmation} from './components/ConfirmationPage/Confirmation'
+import PaymentInfo from './components/CheckoutPage/PaymentInfo'
+import {OrderSummary} from './components/CheckoutPage/OrderSummary'
 import axios from 'axios';
 function App() {
   const [movies,setMovies]=useState([]);
@@ -36,6 +39,11 @@ function App() {
         <Route exact path="/seatselection" element={<SeatSelection></SeatSelection>}></Route>
         <Route exact path="/movietime/:title" element={<MovieTime movies={movies}></MovieTime>}></Route>
         <Route exact path="/editprofile" element={<EditProfile></EditProfile>}></Route>
+
+        <Route exact path="/confirmation" element={<Confirmation></Confirmation>}></Route>
+        <Route exact path="/paymentinfo" element={<PaymentInfo></PaymentInfo>}></Route>
+        <Route exact path="/ordersummary" element={<OrderSummary></OrderSummary>}></Route>
+        
       </Routes>
        
             
