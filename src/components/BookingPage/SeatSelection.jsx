@@ -66,22 +66,22 @@ export function SeatSelection() {
         ));
     };
 
-    const renderDropdown = () => {
-        return (
-            <select
-                value={paymentOption}
-                onChange={(e) => setPaymentOption(e.target.value)}
-            >
-                <option value="">Select Payment Option</option>
-                <option value="credit">Credit Card</option>
-                <option value="debit">Debit Card</option>
-                <option value="paypal">PayPal</option>
-            </select>
-        );
-    };
+    // const renderDropdown = () => {
+    //     return (
+    //         <select
+    //             value={paymentOption}
+    //             onChange={(e) => setPaymentOption(e.target.value)}
+    //         >
+    //             <option value="">Select Payment Option</option>
+    //             <option value="credit">Credit Card</option>
+    //             <option value="debit">Debit Card</option>
+    //             <option value="paypal">PayPal</option>
+    //         </select>
+    //     );
+    // };
 
     return (
-        <div className="container">
+        <div className="container2">
             <h2>Seat Selection</h2>
             <div className="screen">Screen This Way</div>
             <div className="seat-container">
@@ -124,10 +124,7 @@ export function SeatSelection() {
                     {renderSelectedTickets()}
                 </div>
             )}
-            <div className="payment-dropdown">
-                <h3>Select Payment Option:</h3>
-                {renderDropdown()}
-            </div>
+           
             <button className="proceed-btn" onClick={()=>{navigate("/ordersummary")}}>Proceed to Payment</button>
             
         </div>

@@ -12,6 +12,7 @@ export const OrderSummary = () => {
     const [fees] = useState(3.00);
     const [total, setTotal] = useState(0);
     const [showPayment, setShowPayment] = useState(false);
+    const [useExistingCard, setUseExistingCard] = useState(false);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -35,6 +36,11 @@ export const OrderSummary = () => {
         setShowPayment(!showPayment);
     };
 
+    const handleSubmitOrder = () => {
+        navigate("/confirmation")
+        console.log("Submit Order with existing credit card");
+    };
+
     return (
         <div className="app1">
             <div className="container1">
@@ -54,18 +60,21 @@ export const OrderSummary = () => {
                     <span className="total-value">${total}</span>
                 </div>
                 
-                    <button className="update-btn" onClick={() => { navigate("/seatselection") }}>Update Order</button>
+                <button className="update-btn" onClick={() => { navigate("/seatselection") }}>Update Order</button>
                     
               
                 <div className="radio-buttons">
                     <label>
-                        <input type="radio" name="payment" onClick={handleTogglePayment} />Add new card 
+                        <input type="radio" name="payment" onClick={() => { setShowPayment(true); setUseExistingCard(false); }} />Add new card 
                     </label> &nbsp;&nbsp;&nbsp;&nbsp;
                     <label>
-                        <input type="radio" name="payment" onClick={handleTogglePayment} />Use Exisiting Credit card
+                        <input type="radio" name="payment" onClick={() => { setShowPayment(false); setUseExistingCard(true); }} />Use Existing Credit card
                     </label>
                 </div>
                 
+                {!showPayment && useExistingCard && (
+                    <button className="submit-order-btn" onClick={handleSubmitOrder}>Submit Order</button>
+                )}
             </div>
             {showPayment && <PaymentInfo />}
         </div>

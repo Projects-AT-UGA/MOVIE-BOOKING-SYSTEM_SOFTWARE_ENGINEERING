@@ -17,6 +17,10 @@
     border-radius: 10px;
     width: 80%;
     max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    justify-content: center;
 }
 
 .header {
@@ -85,7 +89,7 @@
     justify-content: space-between;
 }
 
-.update-btn {
+.update-btn ,.submit-order-btn{
     background-color: #28a745;
     color: white;
     border: none;
@@ -98,4 +102,7 @@
 .update-btn:hover,
 .confirm-btn:hover {
     background-color: #218838;
+}
+.submit-order-btn{
+    margin-top: 1rem;
 }

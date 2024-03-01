@@ -1,8 +1,8 @@
 import React from "react";
 import "./Confirmation.css";
-
+import { useNavigate } from 'react-router-dom';
 export const Confirmation = () => {
-
+    const navigate = useNavigate();
 
     return (
         <div className="container">
@@ -14,7 +14,7 @@ export const Confirmation = () => {
 
             <p>Check your email for the tickets and other information.</p>
 
-            <button className="home">Home</button>
+            <button className="home" onClick={()=>{navigate("/")}}>Home</button>
         </div>
     )
 };

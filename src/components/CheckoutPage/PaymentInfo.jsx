@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import "./PaymentInfo.css";
 import FormInput from "./FormInput";
-
+import {useNavigate} from 'react-router-dom'
 const PaymentInfo = () => {
+    const navigate=useNavigate();
     const [values, setValues] = useState({
         cardNum: "",
         name: "",
@@ -83,9 +84,9 @@ const PaymentInfo = () => {
                         className={`input-${input.name}`} // Unique class name based on input name
                     />
                 ))}
-                <button className="submit-button">Submit Order</button>
+                <button className="submit-button" onClick={()=>{navigate("/confirmation")}}>Submit Order</button>
                 <br></br>
-                <button className="cancel-button">Cancel Order</button>
+                <button className="cancel-button" onClick={()=>{navigate("/")}}>Cancel Order</button>
             </form>
         </div>
     );

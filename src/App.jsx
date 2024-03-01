@@ -10,7 +10,7 @@ import { useState,useEffect } from 'react';
 import { SeatSelection } from './components/BookingPage/SeatSelection';
 import {MovieTime} from './components/MainPage/MovieTime'
 import {EditProfile} from './components/Registration/EditProfile'
-import  {Confirmation} from './components/ConfirmationPage/Confirmation'
+import  {Confirmation} from './components/CheckoutPage/Confirmation'
 import PaymentInfo from './components/CheckoutPage/PaymentInfo'
 import {OrderSummary} from './components/CheckoutPage/OrderSummary'
 import axios from 'axios';

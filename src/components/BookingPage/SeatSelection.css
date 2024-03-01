@@ -1,11 +1,13 @@
 
-
-body {
-    font-family: Arial, sans-serif;
-    text-align: center;
-    margin: 20px;
-  }
+.container2{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* background-color: red; */
+  justify-content: center;
   
+}
+
   .screen {
     font-size: 18px;
     font-weight: bold;
