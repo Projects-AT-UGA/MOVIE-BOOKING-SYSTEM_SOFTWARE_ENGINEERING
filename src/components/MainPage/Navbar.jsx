@@ -16,6 +16,7 @@ export const Navbar = ({ handleSearch, searchQuery, genre, setSelectedGenre }) =
         value={searchQuery}
         onChange={(e) => handleSearch(e.target.value)}
       />
+      <NavLink to="/editprofile"><button>edit profile</button></NavLink>
        <NavLink to="/login"><button>Login</button></NavLink>
     </div>
   );
