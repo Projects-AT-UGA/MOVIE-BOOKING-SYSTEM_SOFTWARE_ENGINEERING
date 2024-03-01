@@ -1,0 +1,31 @@
+.navbar1-container{
+    display: flex;
+}
+#navbar1-b1{
+border-radius:1.5rem;
+padding:1rem;
+margin: 1rem;
+border:1px solid grey;
+}
+#navbar1-b2{
+    border-radius:1.5rem;
+    padding:1rem;
+    margin: 1rem;
+    border:1px solid grey;
+}
+
+#navbar1-b3{
+    border-radius:1.5rem;
+    padding:1rem;
+    margin: 1rem;
+    border:1px solid grey;
+}
+#navbar1-b4{
+    border-radius:1.5rem;
+    padding:1rem;
+    margin: 1rem;
+    border:1px solid grey;
+}
+.selected1{
+    background-color: pink;
+}

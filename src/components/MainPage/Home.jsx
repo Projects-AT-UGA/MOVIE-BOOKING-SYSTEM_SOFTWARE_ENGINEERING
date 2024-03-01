@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './Home.css';
 import { GenreMovies } from './GenreMovies';
 import { Navbar } from './Navbar';
+import { Navbar1 } from './Navbar1';
 import {ComingSoon} from './ComingSoon'
 export const Home = ({movies}) => {
 
@@ -14,8 +15,8 @@ export const Home = ({movies}) => {
 
   return (
     <div>
-      <Navbar handleSearch={handleSearch} searchQuery={searchQuery} genre={genre} setSelectedGenre={setSelectedGenre}></Navbar>
-      
+      <Navbar handleSearch={handleSearch} searchQuery={searchQuery} ></Navbar>
+      <Navbar1 genre={genre} setSelectedGenre={setSelectedGenre}></Navbar1>
       <div className="genre-movies-container">
       <GenreMovies movies={movies} genre={genre} searchQuery={searchQuery} />
       <ComingSoon movies={movies} genre={genre} searchQuery={searchQuery}></ComingSoon>
