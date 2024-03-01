@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './Home.css';
 import { GenreMovies } from './GenreMovies';
 import { Navbar } from './Navbar';
-
+import {ComingSoon} from './ComingSoon'
 export const Home = ({movies}) => {
 
   const [searchQuery, setSearchQuery] = useState('');
@@ -18,6 +18,7 @@ export const Home = ({movies}) => {
       
       <div className="genre-movies-container">
       <GenreMovies movies={movies} genre={genre} searchQuery={searchQuery} />
+      <ComingSoon movies={movies} genre={genre} searchQuery={searchQuery}></ComingSoon>
         {/* <GenreMovies movies={movies} genre="Drama" searchQuery={searchQuery} /> */}
         {/* <GenreMovies movies={movies} genre="Crime" searchQuery={searchQuery} /> */}
         {/* <GenreMovies movies={movies} genre="Action" searchQuery={searchQuery} /> */}
@@ -26,6 +27,7 @@ export const Home = ({movies}) => {
         <GenreMovies movies={movies} genre="Comedy" searchQuery={searchQuery} />
         <GenreMovies movies={movies} genre="Thriller" searchQuery={searchQuery} />
         */}
+        
       </div>
     </div>
   );

@@ -7,6 +7,8 @@ class CustomUser(AbstractUser):
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
     promotions = models.BooleanField(default=False)
+
+
 class MovieCategory(models.Model):
     CATEGORY = (('G','General audience'),('M','Mature audience'),('R','Restricted audience'),('X','No one under 18'))
     category = models.CharField(primary_key=True, max_length=50,choices = CATEGORY,default='U')
@@ -37,6 +39,7 @@ class Movie(models.Model):
     producer = models.CharField(max_length=100, blank=True, default='')
     duration = models.CharField(max_length=6, blank=True, null=True, default='03H00M')
 
+    visibility=models.CharField(max_length=100,blank=True,default="Now Playing")
 
     def __str__(self):
         return self.title
