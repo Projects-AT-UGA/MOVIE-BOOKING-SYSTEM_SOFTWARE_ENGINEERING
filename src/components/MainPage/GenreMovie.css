@@ -1,18 +1,18 @@
 /* Movie booking home title styling */
-.movie-booking-home-title {
+.movie-booking-home-title1 {
   text-align: center;
   margin-bottom: 20px;
 }
 
 /* Movie container styling */
-.movie-container {
+.movie-container1 {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
 }
 
 /* Movie box styling */
-.movie-box {
+.movie-box1 {
   width: 300px;
   padding: 20px;
   margin: 20px;
@@ -22,12 +22,12 @@
   transition: transform 0.3s ease;
 }
 
-.movie-box:hover {
-  transform: translateY(-4px);
+.movie-box1:hover {
+  transform: translateY(-20px);
 }
 
 /* Movie image styling */
-.movie-image {
+.movie-image1 {
   width: 100%;
   height: auto;
   border-radius: 8px;
@@ -35,34 +35,42 @@
 }
 
 /* Movie title styling */
-.movie-title {
+.movie-title1 {
   font-size: 1.5rem;
   margin-bottom: 10px;
+  
+
+}
+
+.movie-title1:active{
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  
 }
 
 /* Movie description styling */
-.movie-description {
+.movie-description1 {
   margin-bottom: 10px;
 }
 
 /* Trailer link styling */
-.trailer-link {
+.trailer-link1 {
   color: #007bff;
   text-decoration: none;
 }
 
 /* Trailer link hover styling */
-.trailer-link:hover {
+.trailer-link1:hover {
   text-decoration: underline;
 }
 
 /* Movie rating styling */
-.movie-rating {
+.movie-rating1 {
   font-style: italic;
   margin-bottom: 5px;
 }
 
 /* Movie genre styling */
-.movie-genre {
+.movie-genre1 {
   font-weight: bold;
 }

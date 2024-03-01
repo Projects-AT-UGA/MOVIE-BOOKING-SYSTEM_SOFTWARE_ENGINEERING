@@ -14,7 +14,7 @@ export const Home = ({movies}) => {
   };
 
   return (
-    <div>
+    <div className='home-container'>
       <Navbar handleSearch={handleSearch} searchQuery={searchQuery} ></Navbar>
       <Navbar1 genre={genre} setSelectedGenre={setSelectedGenre}></Navbar1>
       <div className="genre-movies-container">

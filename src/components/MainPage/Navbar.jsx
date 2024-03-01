@@ -12,8 +12,10 @@ export const Navbar = ({ handleSearch, searchQuery }) => {
         value={searchQuery}
         onChange={(e) => handleSearch(e.target.value)}
       />
-      <NavLink to="/editprofile"><button>edit profile</button></NavLink>
-       <NavLink to="/login"><button>Login</button></NavLink>
+      <NavLink to="/editprofile"><button className='navbar-b1'><span class="material-symbols-outlined">
+manage_accounts
+</span></button></NavLink>
+       <NavLink to="/login"><button className='navbar-b2'>Login</button></NavLink>
     </div>
   );
 };
