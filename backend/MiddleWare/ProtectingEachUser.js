@@ -6,7 +6,7 @@ const protectEachUser=async(req,res,next)=>{
     try{   
         const {authorization}=req.headers
         const {user}=jwt.verify(authorization.split(" ")[1],process.env.AUTH_KEY)
-        console.log(user)
+        
         const userverified=await User.findOne({
         where:{
             id:user.id,

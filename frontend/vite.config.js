@@ -7,7 +7,8 @@ export default defineConfig({
   server:{
     proxy:{
       "/api/movies/":"http://localhost:8000/",
-      "/users/":"http://localhost:8000/"
+      "/users/":"http://localhost:8000/",
+      "/user":"http://localhost:8000/"
     }
   }
 })

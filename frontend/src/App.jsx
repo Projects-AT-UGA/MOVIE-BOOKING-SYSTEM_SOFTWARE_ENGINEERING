@@ -29,12 +29,13 @@ function App() {
         {/* <Route path="/register" element={<UserRegistrationForm />}></Route> */}
         <Route exact path="/register" element={ !state.login.email ? <Login></Login> : <Navigate to="/"></Navigate>}></Route>
         <Route exact path="/otp" element={<OTPPage></OTPPage>}></Route>
+        <Route exact path="/editprofile" element={state.login.email ? <EditProfile></EditProfile>: <Navigate to="/"></Navigate>}></Route>
         <Route exact path="/login" element={ !state.login.email ?<LoginForm></LoginForm> : <Navigate to="/"></Navigate>}></Route>
         {/* <Route exact path='/selecttime' element={<TimeSelection></TimeSelection>}></Route> */}
         <Route exact path="/movie/:title" element={<MovieDetails movies={movies}></MovieDetails>} />
         <Route exact path="/seatselection" element={<SeatSelection></SeatSelection>}></Route>
         <Route exact path="/movietime/:title" element={<MovieTime movies={movies}></MovieTime>}></Route>
-        <Route exact path="/editprofile" element={<EditProfile></EditProfile>}></Route>
+        
         <Route exact path="/confirmation" element={<Confirmation></Confirmation>}></Route>
         <Route exact path="/paymentinfo" element={<PaymentInfo></PaymentInfo>}></Route>
         <Route exact path="/ordersummary" element={<OrderSummary></OrderSummary>}></Route>
