@@ -37,22 +37,21 @@ const postEditUser = async (req, res) => {
         if (updatedFields.phoneNumber && !validator.isMobilePhone(updatedFields.phoneNumber, 'any', { strictMode: false })) {
             return res.status(400).json({ message: "Invalid phone number format" });
         }
-
-        
-
-       
         // Update user data
         const user = await User.findOne({ where: { id: id } });
         if (!user) {
             return res.status(404).json({ message: "User not found" });
         }
-
         const temp=await user.update(updatedFields);
-        
         res.status(200).json({ message: "User updated successfully" });
     } catch (error) {
-        console.error("Error editing user:", error);
+        // console.error("Error editing user:", error);
         res.status(500).json({ message: "Internal server error" });
     }
 };
+
+
+
+
+
 module.exports={getEditUser,postEditUser}

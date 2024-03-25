@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import './EditProfile.css';
 import useUser from '../../User/useUser';
 import useEditUser from '../../User/useEditUser';
+
+import Navbar3 from './Navbar3'
 export const EditProfile = () => {
   // Update initial state based on the provided JSON data
   const [data,setData]=useState({});
@@ -58,6 +60,7 @@ export const EditProfile = () => {
 
   return (
     <div className="edit-profile-container1">
+      <Navbar3></Navbar3>
       <h1 className="edit1-title">Edit Profile</h1>
       <form className="edit1-profile-form">
         <div className="edit1-form-group">

@@ -8,7 +8,8 @@ export default defineConfig({
     proxy:{
       "/api/movies/":"http://localhost:8000/",
       "/users/":"http://localhost:8000/",
-      "/user":"http://localhost:8000/"
+      "/user":"http://localhost:8000/",
+      "/admin":"http://localhost:8000/"
     }
   }
 })

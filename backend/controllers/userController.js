@@ -27,7 +27,7 @@ const sendotp=async (req, res)=> {
  
   try {
     const { email } = req.body;
-  
+    console.log(email)
     if (!email || !validator.isEmail(email)) {
       return res.status(400).json({ message: "Invalid email format" });
     }
@@ -38,9 +38,7 @@ const sendotp=async (req, res)=> {
     }
   });
   
-  if (existingUser) {
-    return res.status(400).json({ message: "Username or email already exists" });
-  }
+  
     // Generate OTP
     const otp = Math.floor(100000 + Math.random() * 900000); // Generate a 6-digit OTP
 
@@ -191,10 +189,8 @@ const signup= async (req, res) => {
         subscribeForPromotions: subscribeForPromotions
       });
 
-      const updatedOtp = await Otp.update(
-        { otp: "" }, 
-        { where: { email: email } } 
-      );
+      
+      await existingOtp.destroy();
       const token=createToken(newUser.id,newUser.email)
       // Respond with the newly created user
       res.status(200).json({email:email,token:token});
@@ -204,5 +200,78 @@ const signup= async (req, res) => {
     }
 }
 
+const checkotp=async(req,res)=>{
+  try {
+    const { email, otp } = req.body;
 
-  module.exports={signup,sendotp,login}
+    // Validation
+    if (!email || !otp ) {
+        return res.status(400).json({ message: "Please provide email, OTP" });
+    }
+
+    // Check if the OTP is valid
+    const existingOtp = await Otp.findOne({
+        where: {
+            email: email,
+            otp: otp
+        }
+    });
+    if(existingOtp){
+      res.status(200).json({ message: "otp verified" });
+    }
+    else{
+      res.status(400).json({ message: "otp is wrong" });
+    }
+    
+} catch (error) {
+    console.error("Error updating password:", error);
+    res.status(500).json({ message: "Internal server error" });
+}
+}
+
+
+const editpassword = async (req, res) => {
+  try {
+      const { email, otp, password } = req.body;
+
+      // Validation
+      if (!email || !otp || !password) {
+          return res.status(400).json({ message: "Please provide email, OTP, and new password" });
+      }
+
+      // Check if the OTP is valid
+      const existingOtp = await Otp.findOne({
+          where: {
+              email: email,
+              otp: otp
+          }
+      });
+
+      if (!existingOtp) {
+          return res.status(400).json({ message: "Invalid OTP" });
+      }
+
+      // Find user by email
+      const user = await User.findOne({ where: { email } });
+      if (!user) {
+          return res.status(404).json({ message: "User not found" });
+      }
+
+      // Hash the new password
+      const hashedPassword = await bcrypt.hash(password, 10);
+
+      // Update user password
+      await user.update({ password: hashedPassword });
+
+      // Clear the OTP after successful password update
+      await existingOtp.destroy();
+
+      res.status(200).json({ message: "Password updated successfully" });
+  } catch (error) {
+      console.error("Error updating password:", error);
+      res.status(500).json({ message: "Internal server error" });
+  }
+};
+
+
+  module.exports={signup,sendotp,login,editpassword,checkotp}

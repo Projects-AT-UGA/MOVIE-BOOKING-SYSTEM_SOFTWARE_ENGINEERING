@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./LoginForm.css";
 import FormInput from "./FormInput";
-import { NavLink } from "react-router-dom";
+import { NavLink,Link } from "react-router-dom";
 import useLogin from "../../User/useLogin";
 
 const LoginForm = () => {
@@ -64,9 +64,9 @@ const LoginForm = () => {
             create account
           </NavLink>
           <span className="divider">|</span>
-          <a href="#" className="forgot-password-link">
+          <Link to="/forgotpassword" className="forgot-password-link">
             Forgot Password?
-          </a>
+          </Link>
         </div>
       </form>
     </div>

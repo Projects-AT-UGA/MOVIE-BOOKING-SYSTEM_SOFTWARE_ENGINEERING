@@ -37,6 +37,7 @@ const User = sequelize.define('User', {
     type: DataTypes.BOOLEAN,
     defaultValue: false // Default value is false
   }
+  
 });
 
 // // Sync the model with the database
