@@ -3,8 +3,12 @@ import React, { useState, useEffect } from 'react';
 import './Login.css';
 import './FormInput.css';
 import FormInput from './FormInput';
+import useSignup from '../../User/useSignup';
+import validator from 'validator'; // Import the validator package
+
 
 const App = () => {
+  
   const [formData, setFormData] = useState({
     username: '',
     email: '',
@@ -27,7 +31,8 @@ const App = () => {
   const [countries, setCountries] = useState([]);
   const [selectedCountryCode, setSelectedCountryCode] = useState('');
   const [passwordError, setPasswordError] = useState('');
-
+  const [mainError, setMainError] = useState('');
+  const {error,isloading,sendOtp}=useSignup();
   useEffect(() => {
     
     fetch('https://restcountries.com/v2/all')
@@ -43,28 +48,59 @@ const App = () => {
       .catch(error => console.error('Error fetching countries:', error));
   }, []);
 
+ 
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (formData.password !== formData.confirmPassword) {
-      setPasswordError('Passwords do not match');
+
+    setMainError(''); // Clear previous main error message
+
+    const { username, email, DOB, country, phone, password, confirmPassword } = formData;
+
+    if (password !== confirmPassword) {
+      setMainError('Passwords do not match');
       return;
     }
 
     const passwordRegex = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-    if (!passwordRegex.test(formData.password)) {
-      setPasswordError('Password must contain at least 8 characters including one letter, one number, and one special character.');
+    if (!passwordRegex.test(password)) {
+      setMainError('Password must contain at least 8 characters including one letter, one number, and one special character.');
       return;
     }
 
-    setPasswordError('');
+    if (!validator.matches(country, /^[A-Za-z\s]+$/)) {
+      setMainError('Invalid country format');
+      return;
+    }
 
-   
-    window.location.href = '/home'; 
+    if (!validator.isAlphanumeric(username)) {
+      setMainError('Username must be alphanumeric');
+      return;
+    }
+
+    if (!validator.isEmail(email)) {
+      setMainError('Invalid email format');
+      return;
+    }
+
+    if (!validator.isDate(new Date(DOB))) {
+      setMainError('Invalid date of birth format');
+      return;
+    }
+
+    if (!validator.isMobilePhone(phone, 'any', { strictMode: false })) {
+      setMainError('Invalid phone number format');
+      return;
+    }
+
+    sendOtp(formData);
   };
+
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     const newValue = type === 'checkbox' ? checked : value;
+   
     setFormData({
       ...formData,
       [name]: newValue,
@@ -83,7 +119,7 @@ const App = () => {
     <div className="registration-container">
       <div className="container-login">
         <h2 className="center registration-heading">Registration Page</h2>
-        <form id="registrationForm" onSubmit={handleSubmit}>
+        <form id="registrationForm" >
           <FormInput
             name="username"
             type="text"
@@ -189,7 +225,7 @@ const App = () => {
             />
             <label>Would you like to enter card details?</label>
           </div>
-
+                <div>{mainError}</div>
           {formData.needCardDetails && (
             <>
               <div className="formInput" style={{ marginTop: '10px' }}>
@@ -237,7 +273,8 @@ const App = () => {
               />
             </>
           )}
-          <button className="register-button" type="submit" onClick={()=>{alert("registered successfully")}}>Register</button>
+          <div>{error}</div>
+          <button className="register-button" type="submit" onClick={handleSubmit} disabled={isloading} >Register</button>
         </form>
       </div>
     </div>

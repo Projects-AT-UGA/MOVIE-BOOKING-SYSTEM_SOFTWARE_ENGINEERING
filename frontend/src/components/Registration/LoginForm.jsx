@@ -2,12 +2,14 @@ import React, { useState } from "react";
 import "./LoginForm.css";
 import FormInput from "./FormInput";
 import { NavLink } from "react-router-dom";
+import useLogin from "../../User/useLogin";
 
 const LoginForm = () => {
   const [values, setValues] = useState({
     username: "",
     password: "",
   });
+ const {error,isloading,login}=useLogin();
 
   const inputs = [
     {
@@ -33,7 +35,8 @@ const LoginForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     // Add your login logic here
-    console.log("Login logic goes here");
+
+    login(values.username,values.password)
   };
 
   const onChange = (e) => {
@@ -42,7 +45,7 @@ const LoginForm = () => {
 
   return (
     <div className="app">
-      <form className="login-form" onSubmit={handleSubmit}>
+      <form className="login-form">
         <h1>Login</h1>
         {inputs.map((input) => (
           <FormInput
@@ -52,7 +55,8 @@ const LoginForm = () => {
             onChange={onChange}
           />
         ))}
-        <button className="login-button" type="submit">
+        {error ? <div>{error}</div> : <></>}
+        <button className="login-button" type="submit"  onClick={handleSubmit} disabled={isloading}>
           Login
         </button>
         <div className="links">

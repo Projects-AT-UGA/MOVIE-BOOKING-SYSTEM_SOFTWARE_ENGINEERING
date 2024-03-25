@@ -4,19 +4,43 @@ const Otp=require("../models/otpModel")
 const nodemailer = require('nodemailer');
 const sequelize = require('sequelize');
 const validator = require('validator');
-const sendotp=async (req, res)=> {
-  const { email } = req.body;
- // Check if the username or email already exists
- const existingUser = await User.findOne({
-  where: {
-    email: email 
-  }
-});
+const jwt=require("jsonwebtoken")
+require("dotenv").config()
+const createToken = (id, email) => {
+  // Define payload containing data to be encoded in the token
+  const payload = {
+    user: {
+      id: id,
+      email: email
+    }
+  };
 
-if (existingUser) {
-  return res.status(400).json({ message: "Username or email already exists" });
-}
+  // Generate JWT token with payload, secret key, and options (optional)
+  const token = jwt.sign(payload, process.env.AUTH_KEY, {
+    expiresIn: '1d' // Example: Token expires in 1 hour
+  });
+
+  return token;
+};
+
+const sendotp=async (req, res)=> {
+ 
   try {
+    const { email } = req.body;
+  
+    if (!email || !validator.isEmail(email)) {
+      return res.status(400).json({ message: "Invalid email format" });
+    }
+   // Check if the username or email already exists
+   const existingUser = await User.findOne({
+    where: {
+      email: email 
+    }
+  });
+  
+  if (existingUser) {
+    return res.status(400).json({ message: "Username or email already exists" });
+  }
     // Generate OTP
     const otp = Math.floor(100000 + Math.random() * 900000); // Generate a 6-digit OTP
 
@@ -69,16 +93,41 @@ if (existingUser) {
 }
 
 
-
+const login=async(req,res)=>{
+  
+  try{
+    const {email,password}=req.body;
+    if (!email || !validator.isEmail(email)) {
+      return res.status(400).json({ message: "Invalid email format" });
+     }
+    const existingUser = await User.findOne({
+      where: {
+        email: email 
+      }
+    });
+    const passwordmatch=await bcrypt.compare(password,existingUser.password)
+    if(passwordmatch){
+      const token=createToken(existingUser.id,existingUser.email)
+      res.status(200).json({email:email,token:token});
+    }
+    else{
+      res.status(400).json({ message: "Please enter right password" });
+    }
+  }
+  catch(error){
+    res.status(500).json({ message: "Internal server error" });
+  }
+}
 
 const signup= async (req, res) => {
-    const { country, username, email, dob, phoneNumber, password, address, subscribeForPromotions,otp } = req.body;
+  
     
 
     try {
+      const { country, username, email, dob, phoneNumber, password, address, subscribeForPromotions,otp } = req.body;
         // Validate fields using validator package
-        if (!validator.isAlpha(country)) {
-            return res.status(400).json({ message: "Invalid country format" });
+        if (!validator.matches(country, /^[A-Za-z\s]+$/)) {
+          return res.status(400).json({ message: "Invalid country format" });
         }
 
         if (!validator.isAlphanumeric(username)) {
@@ -88,8 +137,8 @@ const signup= async (req, res) => {
         if (!validator.isEmail(email)) {
             return res.status(400).json({ message: "Invalid email format" });
         }
-
-        if (!validator.isDate(dob)) {
+        
+        if (!validator.isDate(new Date(dob))) {
             return res.status(400).json({ message: "Invalid date of birth format" });
         }
 
@@ -101,11 +150,6 @@ const signup= async (req, res) => {
             return res.status(400).json({ message: "Password is not strong enough" });
         }
 
-        // Validate other fields using express-validator
-        const errors = validationResult(req);
-        if (!errors.isEmpty()) {
-            return res.status(400).json({ errors: errors.array() });
-        }
      
       // Check if the username or email already exists
       const existingOtp = await Otp.findOne({
@@ -146,17 +190,19 @@ const signup= async (req, res) => {
         address: address,
         subscribeForPromotions: subscribeForPromotions
       });
+
       const updatedOtp = await Otp.update(
         { otp: "" }, 
         { where: { email: email } } 
       );
+      const token=createToken(newUser.id,newUser.email)
       // Respond with the newly created user
-      res.status(201).json(newUser);
+      res.status(200).json({email:email,token:token});
     } catch (error) {
-      console.error("Error signing up user:", error);
+      
       res.status(500).json({ message: "Internal server error" });
     }
 }
 
 
-  module.exports={signup,sendotp}
+  module.exports={signup,sendotp,login}
