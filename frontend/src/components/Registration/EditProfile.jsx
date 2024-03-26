@@ -62,7 +62,10 @@ export const EditProfile = () => {
     <div className="edit-profile-container1">
       <Navbar3></Navbar3>
       <h1 className="edit1-title">Edit Profile</h1>
+      
       <form className="edit1-profile-form">
+      <div>email: {state.login.email}</div>
+      <br/>
         <div className="edit1-form-group">
           <label htmlFor="edit1-username">Username:</label>
           <input
