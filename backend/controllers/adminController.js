@@ -2,7 +2,7 @@ const User = require('../models/userModel'); // Import the User model
 const sequelize=require("sequelize")
 const bcrypt = require('bcrypt');
 const validator = require('validator');
-
+const Promotions=require("../models/promotionsModel")
 
 // Get all users
 const getusers = async (req, res) => {
@@ -17,7 +17,7 @@ const getusers = async (req, res) => {
 // Create a new user
 const postusers = async (req, res) => {
     try {
-      const { country, username, email, dob, phoneNumber, password, address, subscribeForPromotions } = req.body;
+      const { country, username, email, dob, phoneNumber, password, address, subscribeForPromotions,issuspended } = req.body;
         
       // Validate fields using validator package
       if (!validator.matches(country, /^[A-Za-z\s]+$/)) {
@@ -72,7 +72,8 @@ const postusers = async (req, res) => {
         phoneNumber: phoneNumber,
         password: hashedPassword,
         address: address,
-        subscribeForPromotions: subscribeForPromotions
+        subscribeForPromotions: subscribeForPromotions,
+        issuspended:issuspended
       });
   
      

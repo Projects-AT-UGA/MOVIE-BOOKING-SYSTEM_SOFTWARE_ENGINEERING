@@ -37,8 +37,6 @@ const sendotp=async (req, res)=> {
       email: email 
     }
   });
-  
-  
     // Generate OTP
     const otp = Math.floor(100000 + Math.random() * 900000); // Generate a 6-digit OTP
 
@@ -103,6 +101,9 @@ const login=async(req,res)=>{
         email: email 
       }
     });
+    if(existingUser.issuspended){
+      return res.status(400).json({ message: "you account has been banned" });
+    }
     const passwordmatch=await bcrypt.compare(password,existingUser.password)
     if(passwordmatch){
       const token=createToken(existingUser.id,existingUser.email)
@@ -118,9 +119,6 @@ const login=async(req,res)=>{
 }
 
 const signup= async (req, res) => {
-  
-    
-
     try {
       const { country, username, email, dob, phoneNumber, password, address, subscribeForPromotions,otp } = req.body;
         // Validate fields using validator package
@@ -186,7 +184,8 @@ const signup= async (req, res) => {
         phoneNumber: phoneNumber,
         password: hashedPassword,
         address: address,
-        subscribeForPromotions: subscribeForPromotions
+        subscribeForPromotions: subscribeForPromotions,
+        issuspended:false,
       });
 
       

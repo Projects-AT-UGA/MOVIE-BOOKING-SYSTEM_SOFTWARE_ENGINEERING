@@ -14,7 +14,8 @@ const AdminUser = () => {
     phoneNumber: '',
     password: '',
     address: '',
-    subscribeForPromotions: false
+    subscribeForPromotions: false,
+    issuspended:false,
   });
   
   const [formData1, setFormData1] = useState({
@@ -26,7 +27,8 @@ const AdminUser = () => {
     phoneNumber: '',
     password: '',
     address: '',
-    subscribeForPromotions: false
+    subscribeForPromotions: false,
+    issuspended:false,
   });
   // Fetch all users
   const fetchUsers = async () => {
@@ -167,6 +169,14 @@ const AdminUser = () => {
               />
               Subscribe for Promotions
             </label>
+            <label>
+              <input
+                type="checkbox"
+                checked={formData.issuspended}
+                onChange={(e) => setFormData({ ...formData, issuspended: e.target.checked })}
+              />
+              suspended
+            </label>
             <button onClick={updateUser}>Update User</button>
           </div>
           
@@ -227,6 +237,15 @@ const AdminUser = () => {
         onChange={(e) => setFormData1({ ...formData1, subscribeForPromotions: e.target.checked })}
       />
       Subscribe for Promotions
+    </label>
+    <label>
+        <input
+                type="checkbox"
+                checked={formData1.issuspended}
+                onChange={(e) => setFormData({ ...formData1, issuspended: e.target.checked })}
+              />
+              suspended
+    
     </label>
     <button onClick={createUser}>Create User</button>
   </div>

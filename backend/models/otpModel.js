@@ -25,7 +25,8 @@ async function syncModel() {
 }
 // Define the relationship between User and Otp
 
-// User.hasOne(Otp, { foreignKey: 'id' });
+// User.hasOne(Otp, { foreignKey: 'userId' });
+// Otp.belongsTo(User);
 
 // // Ensure database synchronization
 // (async () => {

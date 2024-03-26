@@ -36,8 +36,11 @@ const User = sequelize.define('User', {
   subscribeForPromotions: {
     type: DataTypes.BOOLEAN,
     defaultValue: false // Default value is false
+  },
+  issuspended:{
+    type:DataTypes.BOOLEAN,
+    defaultValue:false
   }
-  
 });
 
 // // Sync the model with the database
