@@ -1,6 +1,8 @@
 const User=require("../models/userModel")
 const bcrypt=require("bcrypt")
 const validator=require("validator")
+
+
 const getEditUser=async(req,res)=>{
     try{
         const {country,username,dob,phoneNumber,address,subscribeForPromotions}=req.user;
@@ -49,6 +51,7 @@ const postEditUser = async (req, res) => {
         res.status(500).json({ message: "Internal server error" });
     }
 };
+
 
 
 

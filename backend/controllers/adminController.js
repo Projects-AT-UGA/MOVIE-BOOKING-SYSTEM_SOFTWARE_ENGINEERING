@@ -3,7 +3,7 @@ const sequelize=require("sequelize")
 const bcrypt = require('bcrypt');
 const validator = require('validator');
 const Promotions=require("../models/promotionsModel")
-
+const Movie = require('../models/movieModel'); 
 // Get all users
 const getusers = async (req, res) => {
   try {
@@ -124,4 +124,85 @@ const updateusers = async (req, res) => {
   }
 };
 
-module.exports = { getusers, postusers, deleteusers, updateusers };
+
+
+
+
+
+// Get all movies
+const getmovies = async (req, res) => {
+  try {
+    const movies = await Movie.findAll();
+    res.status(200).json(movies);
+  } catch (error) {
+    res.status(500).json({ error: "Error getting movies" });
+  }
+};
+
+// Create a new movie
+const postmovies = async (req, res) => {
+    try {
+      const { title, ratings, cast, synopsis, rating, playing_now, trailer_picture, release_date, genre, trailer_video, director, producer, duration, visibility, certificate } = req.body;
+        
+      // Validate fields (if needed)
+  
+      // Create a new movie
+      const newMovie = await Movie.create({
+        title: title,
+        ratings: ratings,
+        cast: cast,
+        synopsis: synopsis,
+        rating: rating,
+        playing_now: playing_now,
+        trailer_picture: trailer_picture,
+        release_date: release_date,
+        genre: genre,
+        trailer_video: trailer_video,
+        director: director,
+        producer: producer,
+        duration: duration,
+        visibility: visibility,
+        certificate: certificate
+      });
+  
+      // Respond with the newly created movie
+      res.status(200).json(newMovie);
+    } catch (error) {
+      res.status(500).json({ message: "Internal server error" });
+    }
+};
+
+// Delete a movie by ID
+const deletemovies = async (req, res) => {
+  const movieId = req.params.id;
+  try {
+    const movie = await Movie.findByPk(movieId);
+    if (!movie) {
+      return res.status(404).json({ message: "Movie not found" });
+    }
+    await movie.destroy();
+    res.status(200).json({ message: "Movie deleted successfully" });
+  } catch (error) {
+    res.status(500).json({ message: "Error deleting movie" });
+  }
+};
+
+// Update a movie by ID
+const updatemovies = async (req, res) => {
+  const movieId = req.params.id;
+  const updatedData = req.body;
+  try {
+    let movie = await Movie.findByPk(movieId);
+    if (!movie) {
+      return res.status(404).json({ message: "Movie not found" });
+    }
+    movie = await movie.update(updatedData);
+    res.status(200).json(movie);
+  } catch (error) {
+    res.status(400).json({ message: "Error updating movie" });
+  }
+};
+
+
+
+module.exports = { getusers, postusers, deleteusers, updateusers,getmovies, postmovies, deletemovies, updatemovies };

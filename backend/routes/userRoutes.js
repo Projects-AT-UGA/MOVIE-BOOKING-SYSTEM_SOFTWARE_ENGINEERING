@@ -11,6 +11,7 @@ userRouter.post('/signup',signup);
 userRouter.post('/login',login);
 userRouter.post('/forgotpassword',editpassword);
 userRouter.post("/checkotp",checkotp)
+
 module.exports = userRouter;
 
 

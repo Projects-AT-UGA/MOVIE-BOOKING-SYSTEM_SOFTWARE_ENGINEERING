@@ -15,11 +15,16 @@ import {OrderSummary} from './components/CheckoutPage/OrderSummary'
 import OTPPage from './components/Registration/Otp'
 import axios from 'axios';
 import useUser from './User/useUser';
-import AdminHome from './components/AdminView/AdminHome';
-import AdminUser from './components/AdminView/AdminUser';
+
 import ForgotPassword from './components/Registration/ForgotPassword';
 import NewPassword from './components/Registration/NewPassword';
 import SetNewPassword from './components/Registration/SetNewPassword';
+
+import AdminHome from './components/AdminView/AdminHome';
+import AdminUser from './components/AdminView/AdminUser';
+
+import AdminMovies from './components/AdminView/AdminMovies'
+
 function App() {
   const [movies,setMovies]=useState([]);
   const {state}=useUser()
@@ -54,6 +59,7 @@ function App() {
         
         <Route exact path="/frontendadmin" element={<AdminHome></AdminHome>}></Route>
         <Route exact path="/frontendadmin/user" element={<AdminUser></AdminUser>}></Route>
+        <Route exact path="/frontendadmin/movies" element={<AdminMovies></AdminMovies>}></Route>
       </Routes>
     </div>
   );

@@ -4,6 +4,7 @@ const movieRoutes = require('./routes/movieRoutes');
 const userRouter=require("./routes/userRoutes");
 const editRouter=require("./routes/userEditRouter")
 const adminRouter=require("./routes/adminRoutes")
+const cardRouter=require("./routes/cardRoutes")
 const protectEachUser=require("./MiddleWare/ProtectingEachUser")
 require("dotenv").config()
 const cors=require("cors")
@@ -18,6 +19,9 @@ app.use('/users',userRouter);
 
 app.use("/user",protectEachUser)
 app.use('/user',editRouter);
+// app.use("/card",protectEachUser)
+// app.use("/card",cardRouter);
+
 app.use('/api', movieRoutes);
 
 

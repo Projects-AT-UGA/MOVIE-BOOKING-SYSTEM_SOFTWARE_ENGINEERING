@@ -6,7 +6,8 @@ const AdminHome = () => {
     <div>
         <AdminNavbar></AdminNavbar>
         <Link to="/frontendadmin/user">USER</Link>
-       
+        <br/>
+        <Link to="/frontendadmin/movies">Movies</Link>
     </div>
   )
 }
