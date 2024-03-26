@@ -26,6 +26,7 @@
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(25, 25, 25, 0.1);
   transition: transform 0.3s ease;
+  color:#fff;
 }
 
 .movie-box1:hover {
@@ -74,6 +75,7 @@
 .movie-rating1 {
   font-style: italic;
   margin-bottom: 5px;
+
 }
 
 /* Movie genre styling */

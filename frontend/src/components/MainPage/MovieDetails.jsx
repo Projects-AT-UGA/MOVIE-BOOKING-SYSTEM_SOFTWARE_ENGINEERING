@@ -1,24 +1,23 @@
 import React, { useState } from 'react';
-import { useParams ,useNavigate} from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import './MovieDetails.css';
-import {Navbar} from './Navbar'
+import Navbar from './Navbar';
+
 const MovieDetails = ({ movies }) => {
   const [isTrailerOpen, setIsTrailerOpen] = useState(false);
   const navigate = useNavigate();
   const { title } = useParams(); // Access route parameters
-  
+
   // Find the movie by its title
-  const movie = movies && movies.find(movie => movie.title === title);
+  const movie = movies && movies.find((movie) => movie.title === title);
 
   if (!movie) {
-    return <div>Movie not found</div>; // Display message if movie with given title is not found
+    return <div className="movie-not-found">Movie not found</div>; // Display message if movie with given title is not found
   }
 
   // Extract video ID from YouTube URL
   const videoId = movie.trailer_video.split('v=')[1];
 
-  
-  
   const handlePlayTrailer = () => {
     setIsTrailerOpen(true);
   };
@@ -28,13 +27,15 @@ const MovieDetails = ({ movies }) => {
   };
 
   return (
-    <div>
-      <Navbar></Navbar>
-      <h1>Movie Details</h1>
+    <div className="movie-details-container">
+      <Navbar />
+      <h1 style={{ color: "white" }}>Movie Details</h1>
 
-      <div className='movie-info'>
-        <img  className="movie-image" src={movie.trailer_picture} alt={movie.title} />
-        <div className='movie-details'>
+      <div className="movie-info">
+        <div className="movie-image-box">
+          <img className="movie-image" src={movie.trailer_picture} alt={movie.title} />
+        </div>
+        <div className="movie-details">
           <h2>{movie.title}</h2>
           <p>Director: {movie.director}</p>
           <p>Producer: {movie.producer}</p>
@@ -45,19 +46,13 @@ const MovieDetails = ({ movies }) => {
           <p>Certificate: {movie.certificate}</p>
           <p>Ratings: {movie.ratings}</p>
           <p>Synopsis: {movie.synopsis}</p>
-          <button className="book-tickets" onClick={()=>navigate("/movietime/"+title)}>Book Tickets</button>
-          &nbsp;  &nbsp;  &nbsp;
+          <button className="book-tickets" onClick={() => navigate("/movietime/" + title)}>Book Tickets</button>
           <button className="play-trailer" onClick={handlePlayTrailer}>Play Trailer</button>
-          &nbsp;  &nbsp;  &nbsp;
-          <button className="close-trailer" onClick={handleCloseTrailer}>Close Trailer</button>
         </div>
       </div>
 
-      
-
       {isTrailerOpen && (
         <div className="trailer-overlay">
-          
           <div className="trailer-container">
             <iframe
               title={`Trailer for ${movie.title}`}
@@ -65,11 +60,12 @@ const MovieDetails = ({ movies }) => {
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
+              className="trailer-video"
             ></iframe>
+            <button className="close-trailer" onClick={handleCloseTrailer}>Close Trailer</button>
           </div>
         </div>
       )}
-
     </div>
   );
 };
