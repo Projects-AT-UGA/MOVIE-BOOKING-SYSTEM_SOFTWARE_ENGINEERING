@@ -2,6 +2,11 @@
 .movie-booking-home-title1 {
   text-align: center;
   margin-bottom: 20px;
+  
+}
+.movie-booking-home-title{
+  color:white;
+  font-size: 30px;
 }
 
 /* Movie container styling */
@@ -16,9 +21,10 @@
   width: 300px;
   padding: 20px;
   margin: 20px;
-  background-color: #f9f9f9;
+  border:2px solid rgb(62, 57, 57);
+  background-color: #0b0000;
   border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px rgba(25, 25, 25, 0.1);
   transition: transform 0.3s ease;
 }
 
