@@ -3,8 +3,8 @@ import AdminNavbar from './AdminNavbar';
 
 const AdminUser = () => {
   const [users, setUsers] = useState([]);
-  const [updateerror, setUpdateError] = useState([]);
-  const [createerror, setCreateError] = useState([]);
+  const [updateerror, setUpdateError] = useState(null);
+  const [createerror, setCreateError] = useState(null);
   const [formData, setFormData] = useState({
     id: null,
     country: '',
@@ -44,6 +44,7 @@ const AdminUser = () => {
   // Create a new user
   const createUser = async () => {
     try {
+      setCreateError(null);
       const response = await fetch('/admin/', {
         method: 'POST',
         headers: {
@@ -52,10 +53,17 @@ const AdminUser = () => {
         body: JSON.stringify(formData1)
       });
       const data = await response.json();
-      console.log('New user created:', data);
+      console.log(':', data);
+      if(response.ok){
+        setCreateError("New user created");
+      }
+      else{
+        setCreateError(data.message);
+      }
       fetchUsers(); // Refresh the user list after creating a new user
     } catch (error) {
       console.error('Error creating user:', error);
+      setCreateError(error);
     }
   };
 
@@ -76,6 +84,7 @@ const AdminUser = () => {
   // Update a user by ID
   const updateUser = async () => {
     try {
+      setUpdateError(null)
       const response = await fetch(`/admin/${formData.id}`, {
         method: 'PATCH',
         headers: {
@@ -84,9 +93,16 @@ const AdminUser = () => {
         body: JSON.stringify(formData)
       });
       const data = await response.json();
-      console.log('User updated:', data);
+      if(response.ok){
+        setUpdateError("User updated")
+      }
+      else{
+        setUpdateError(data.message)
+      }
+      console.log(':', data);
       fetchUsers(); // Refresh the user list after updating a user
     } catch (error) {
+      setUpdateError(error)
       console.error('Error updating user:', error);
     }
   };
@@ -247,6 +263,7 @@ const AdminUser = () => {
               suspended
     
     </label>
+    {createerror ? <div>{createerror}</div> : <></>}
     <button onClick={createUser}>Create User</button>
   </div>
 </div>

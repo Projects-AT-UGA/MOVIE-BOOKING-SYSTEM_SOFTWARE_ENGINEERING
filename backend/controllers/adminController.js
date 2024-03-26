@@ -4,6 +4,7 @@ const bcrypt = require('bcrypt');
 const validator = require('validator');
 const Promotions=require("../models/promotionsModel")
 const Movie = require('../models/movieModel'); 
+
 // Get all users
 const getusers = async (req, res) => {
   try {
@@ -203,6 +204,71 @@ const updatemovies = async (req, res) => {
   }
 };
 
+// Import the Promotions model
 
 
-module.exports = { getusers, postusers, deleteusers, updateusers,getmovies, postmovies, deletemovies, updatemovies };
+// Get all promotions
+const getpromotions = async (req, res) => {
+  try {
+    const promotions = await Promotions.findAll();
+    res.status(200).json(promotions);
+  } catch (error) {
+    res.status(500).json({ error: "Error getting promotions" });
+  }
+};
+
+// Create a new promotion
+const postpromotions = async (req, res) => {
+    try {
+      const { code, discountPercentage, isActive } = req.body;
+      console.log(req.body)
+      // Create a new promotion
+      const newPromotion = await Promotions.create({
+        code: code,
+        discountPercentage: discountPercentage,
+        isActive: isActive
+      });
+  
+      // Respond with the newly created promotion
+      res.status(200).json(newPromotion);
+    } catch (error) {
+      res.status(500).json({ message: "Internal server error" });
+    }
+};
+
+// Delete a promotion by ID
+const deletepromotions = async (req, res) => {
+  const promotionId = req.params.id;
+  try {
+    const promotion = await Promotions.findByPk(promotionId);
+    if (!promotion) {
+      return res.status(404).json({ message: "Promotion not found" });
+    }
+    await promotion.destroy();
+    res.status(200).json({ message: "Promotion deleted successfully" });
+  } catch (error) {
+    res.status(500).json({ message: "Error deleting promotion" });
+  }
+};
+
+// Update a promotion by ID
+const updatepromotions = async (req, res) => {
+  
+  try {
+    const promotionId = req.params.id;
+  const updatedData = req.body;
+    let promotion = await Promotions.findByPk(promotionId);
+    if (!promotion) {
+      return res.status(404).json({ message: "Promotion not found" });
+    }
+    promotion = await promotion.update(updatedData);
+    res.status(200).json(promotion);
+  } catch (error) {
+    res.status(400).json({ message: "Error updating promotion" });
+  }
+};
+
+
+
+
+module.exports = { getusers, postusers, deleteusers, updateusers,getmovies, postmovies, deletemovies, updatemovies ,getpromotions, postpromotions, deletepromotions, updatepromotions };

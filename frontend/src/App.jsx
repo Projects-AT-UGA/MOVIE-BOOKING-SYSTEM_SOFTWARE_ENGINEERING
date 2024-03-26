@@ -24,7 +24,7 @@ import AdminHome from './components/AdminView/AdminHome';
 import AdminUser from './components/AdminView/AdminUser';
 
 import AdminMovies from './components/AdminView/AdminMovies'
-
+import AdminPromotions from './components/AdminView/AdminPromotions'
 function App() {
   const [movies,setMovies]=useState([]);
   const {state}=useUser()
@@ -60,6 +60,8 @@ function App() {
         <Route exact path="/frontendadmin" element={<AdminHome></AdminHome>}></Route>
         <Route exact path="/frontendadmin/user" element={<AdminUser></AdminUser>}></Route>
         <Route exact path="/frontendadmin/movies" element={<AdminMovies></AdminMovies>}></Route>
+        
+        <Route exact path="/frontendadmin/promotions" element={<AdminPromotions></AdminPromotions>}></Route>
       </Routes>
     </div>
   );

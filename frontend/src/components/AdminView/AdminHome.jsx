@@ -8,6 +8,9 @@ const AdminHome = () => {
         <Link to="/frontendadmin/user">USER</Link>
         <br/>
         <Link to="/frontendadmin/movies">Movies</Link>
+        <br/>
+        <Link to="/frontendadmin/promotions">Promotions</Link>
+        
     </div>
   )
 }

@@ -3,8 +3,8 @@ import AdminNavbar from './AdminNavbar';
 
 const AdminMovies = () => {
   const [movies, setMovies] = useState([]);
-  const [updateError, setUpdateError] = useState([]);
-  const [createError, setCreateError] = useState([]);
+  const [updateError, setUpdateError] = useState(null);
+  const [createError, setCreateError] = useState(null);
   const [formData, setFormData] = useState({
     id: null,
     title: '',
@@ -65,8 +65,15 @@ const AdminMovies = () => {
       });
       const data = await response.json();
       console.log('New movie created:', data);
+      if(response.ok){
+        setCreateError("New movie created")
+      }
+      else{
+        setCreateError(data.message)
+      }
       fetchMovies(); // Refresh the movie list after creating a new movie
     } catch (error) {
+      setCreateError(error)
       console.error('Error creating movie:', error);
     }
   };
@@ -79,8 +86,10 @@ const AdminMovies = () => {
       });
       const data = await response.json();
       console.log('Movie deleted:', data.message);
+      
       fetchMovies(); // Refresh the movie list after deleting a movie
     } catch (error) {
+      
       console.error('Error deleting movie:', error);
     }
   };
@@ -96,9 +105,16 @@ const AdminMovies = () => {
         body: JSON.stringify(formData)
       });
       const data = await response.json();
+      if(response.ok){
+        setUpdateError("Movie updated")
+      }
+      else{
+        setUpdateError(data.message)
+      }
       console.log('Movie updated:', data);
       fetchMovies(); // Refresh the movie list after updating a movie
     } catch (error) {
+      setUpdateError(error)
       console.error('Error updating movie:', error);
     }
   };
@@ -216,6 +232,7 @@ const AdminMovies = () => {
       value={formData.certificate}
       onChange={(e) => setFormData({ ...formData, certificate: e.target.value })}
     />
+    {updateError ? <div>{updateError}</div> : <></>}
     <button onClick={updateMovie}>Update Movie</button>
   </div>
 </div>
@@ -307,6 +324,7 @@ const AdminMovies = () => {
       value={formData1.certificate}
       onChange={(e) => setFormData1({ ...formData1, certificate: e.target.value })}
     />
+    {createError ? <div>{createError}</div> : <></>}
     <button onClick={createMovie}>Create Movie</button>
   </div>
 </div>
