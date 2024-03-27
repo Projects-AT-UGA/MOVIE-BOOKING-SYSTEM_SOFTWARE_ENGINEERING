@@ -6,6 +6,36 @@ const useSignIn = () => {
     const {state,dispatch}=useUser()
     const [error,setError]=useState(null)
     const [isloading,setIsLoading]=useState(false)
+    const [isLoadingAdd, setIsLoadingAdd] = useState(false);
+    const [adderror,setAddError]=useState(null)
+    const addCard = async (formData1,token) => {
+        setIsLoadingAdd(true);
+        setAddError(null)
+        try {
+          const { id, ...formDataWithoutId } = formData1;
+          if (state) {
+            const response = await fetch('/card', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+                authorization: `Bearer ${token}`
+              },
+              body: JSON.stringify(formDataWithoutId)
+            });
+            const temp=await response.json()
+            if (!response.ok) {
+                setAddError(temp.message);
+                return;
+            }
+            
+          }
+        } catch (error) {
+            setAddError("failed to add");
+        } finally {
+          setIsLoadingAdd(false);
+          console.log(adderror)
+        }
+      };
     const signUp=async(otp)=>{
         setError(null)
         setIsLoading(true)
@@ -32,9 +62,21 @@ const useSignIn = () => {
         const temp=await response.json();
         
         if(response.ok){
-            navigate("/")
+            
+            
+           
+            addCard({cardNumber : state.signup.cardNumber,
+                cardHolderName : state.signup.cardHolderName,
+                expirationDate : state.signup.expirationDate,
+                cvv : state.signup.cvv,
+                cardType : state.signup.cardType,
+                billingAddress : state.signup.billingAddress,
+                isDefault : state.signup.isDefault},temp.token)
             dispatch({type:"LOGIN",payload:{signup:{},login:temp}})
+            
+            
             localStorage.setItem("user",JSON.stringify(temp))
+            navigate("/")
         }
         else{
             setError(temp.message)

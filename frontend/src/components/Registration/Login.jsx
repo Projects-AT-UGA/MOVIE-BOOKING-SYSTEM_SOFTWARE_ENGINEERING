@@ -18,11 +18,15 @@ const App = () => {
     address: '',
     country: '',
     phone: '',
-    cardType: '',
+
     cardNumber: '',
+    cardHolderName:'',
     expirationDate: '',
-    billingAddress: '',
-    zipcode: '',
+    cvv:'',
+    cardType: '',
+    billingAddress:'',
+    isDefault:'',
+ 
     promoCode: '',
     subscribe: false,
     needCardDetails: false,
@@ -225,12 +229,13 @@ const App = () => {
             />
             <label>Would you like to enter card details?</label>
           </div>
-                <div>{mainError}</div>
+          <div>{mainError}</div>
           {formData.needCardDetails && (
             <>
               <div className="formInput" style={{ marginTop: '10px' }}>
                 <label style={{ marginBottom: '20px', fontSize: '16px' }}>Card Information:</label>
               </div>
+              
               <FormInput
                 name="cardType"
                 type="select"
@@ -238,13 +243,21 @@ const App = () => {
                 value={formData.cardType}
                 onChange={handleChange}
                 options={['Visa', 'MasterCard', 'American Express', 'Discover']}
-            />
+              />
               <FormInput
                 name="cardNumber"
                 type="text"
                 placeholder="Card Number"
                 label="Card Number"
                 value={formData.cardNumber}
+                onChange={handleChange}
+              />
+              <FormInput
+                name="cardHolderName"
+                type="text"
+                placeholder="Card Holder Name"
+                label="Card Holder Name"
+                value={formData.cardHolderName}
                 onChange={handleChange}
               />
               <FormInput
@@ -256,6 +269,14 @@ const App = () => {
                 onChange={handleChange}
               />
               <FormInput
+                name="cvv"
+                type="text"
+                placeholder="CVV"
+                label="CVV"
+                value={formData.cvv}
+                onChange={handleChange}
+              />
+              <FormInput
                 name="billingAddress"
                 type="text"
                 placeholder="Billing Address"
@@ -263,14 +284,16 @@ const App = () => {
                 value={formData.billingAddress}
                 onChange={handleChange}
               />
-              <FormInput
-                name="zipcode"
-                type="text"
-                placeholder="Zipcode"
-                label="Zipcode"
-                value={formData.zipcode}
-                onChange={handleChange}
-              />
+              
+              <div className="checkbox-wrapper">
+                  <input
+                    type="checkbox"
+                    name="isDefault"
+                    checked={formData.isDefault}
+                    onChange={handleChange}
+                  />
+                  <label>Set as default card</label>
+            </div>
             </>
           )}
           <div>{error}</div>
