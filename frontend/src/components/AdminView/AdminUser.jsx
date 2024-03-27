@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import AdminNavbar from './AdminNavbar';
+import useAdmin from './Admin/useAdmin';
 
 const AdminUser = () => {
   const [users, setUsers] = useState([]);
   const [updateerror, setUpdateError] = useState(null);
   const [createerror, setCreateError] = useState(null);
+  const {state}=useAdmin()
+
+  
   const [formData, setFormData] = useState({
     id: null,
     country: '',
@@ -32,10 +36,23 @@ const AdminUser = () => {
   });
   // Fetch all users
   const fetchUsers = async () => {
+    
     try {
-      const response = await fetch('/admin/');
-      const data = await response.json();
-      setUsers(data);
+      if(state){
+        const response = await fetch('/admin/',{
+          headers:{
+            authorization:`Bearer ${state.adminuser.token}`
+          }
+        });
+        const data = await response.json();
+        if(response.ok){
+          setUsers(data);
+        }
+       else{
+        console.error('Error fetching users:', data,state.adminuser.token);
+       }
+      }
+      
     } catch (error) {
       console.error('Error fetching users:', error);
     }
@@ -45,10 +62,12 @@ const AdminUser = () => {
   const createUser = async () => {
     try {
       setCreateError(null);
+      if(state){
       const response = await fetch('/admin/', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          authorization:`Bearer ${state.adminuser.token}`
         },
         body: JSON.stringify(formData1)
       });
@@ -61,6 +80,8 @@ const AdminUser = () => {
         setCreateError(data.message);
       }
       fetchUsers(); // Refresh the user list after creating a new user
+    }
+      
     } catch (error) {
       console.error('Error creating user:', error);
       setCreateError(error);
@@ -70,12 +91,17 @@ const AdminUser = () => {
   // Delete a user by ID
   const deleteUser = async (userId) => {
     try {
+      if(state){
       const response = await fetch(`/admin/${userId}`, {
-        method: 'DELETE'
+        method: 'DELETE',
+        headers:{
+          authorization:`Bearer ${state.adminuser.token}`
+        }
       });
       const data = await response.json();
       console.log('User deleted:', data.message);
       fetchUsers(); // Refresh the user list after deleting a user
+    }
     } catch (error) {
       console.error('Error deleting user:', error);
     }
@@ -84,11 +110,13 @@ const AdminUser = () => {
   // Update a user by ID
   const updateUser = async () => {
     try {
+      if(state){
       setUpdateError(null)
       const response = await fetch(`/admin/${formData.id}`, {
         method: 'PATCH',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          authorization:`Bearer ${state.adminuser.token}`
         },
         body: JSON.stringify(formData)
       });
@@ -101,6 +129,7 @@ const AdminUser = () => {
       }
       console.log(':', data);
       fetchUsers(); // Refresh the user list after updating a user
+    }
     } catch (error) {
       setUpdateError(error)
       console.error('Error updating user:', error);
@@ -123,14 +152,17 @@ const AdminUser = () => {
       <div style={{ display: 'flex' }}>
         <div className='userLeft' style={{ width: '30%', marginRight: '10px' }}>
           {/* Display users */}
-          <ul>
-            {users.map((user) => (
-              <li key={user.id} onClick={() => handleUserSelect(user)}>
-                {user.username} - {user.email}
-                <button onClick={() => deleteUser(user.id)}>Delete</button>
-              </li>
-            ))}
-          </ul>
+          
+           <ul>
+           { users.map((user) => (
+            <li key={user.id} onClick={() => handleUserSelect(user)}>
+              {user.username} - {user.email}
+              <button onClick={() => deleteUser(user.id)}>Delete</button>
+            </li>
+          ))} 
+        </ul>
+        
+         
         </div>
         <div className='userMiddle'  style={{ width: '30%', marginRight: '10px' }}>
           {/* Edit form */}

@@ -10,7 +10,8 @@ export default defineConfig({
       "/users/":"http://localhost:8000/",
       "/user":"http://localhost:8000/",
       "/admin":"http://localhost:8000/",
-      "/admin/movies":"http://localhost:8000/"
+      "/admin/movies":"http://localhost:8000/",
+      "/superuser/login":"http://localhost:8000/"
     }
   }
 })

@@ -25,9 +25,12 @@ import AdminUser from './components/AdminView/AdminUser';
 
 import AdminMovies from './components/AdminView/AdminMovies'
 import AdminPromotions from './components/AdminView/AdminPromotions'
+import AdminLogin from './components/AdminView/AdminLogin'
+import useAdmin from './components/AdminView/Admin/useAdmin';
 function App() {
   const [movies,setMovies]=useState([]);
   const {state}=useUser()
+  const {state:adminuser}=useAdmin()
   useEffect(() => {
     axios.get('/api/movies/').then(response => {setMovies(response.data);}).catch(error => {console.error('Error:', error);});
   }, []);
@@ -56,12 +59,13 @@ function App() {
 
 
 
+        <Route exact path="/frontendadmin/login" element={!adminuser ? <AdminLogin></AdminLogin> : <Navigate  to="/frontendadmin"></Navigate>}></Route>
+        <Route exact path="/frontendadmin" element={adminuser ?<AdminHome></AdminHome> : <Navigate to="/frontendadmin/login"></Navigate>}></Route>
+        <Route exact path="/frontendadmin/user" element={adminuser ? <AdminUser></AdminUser> : <Navigate to="/frontendadmin/login"></Navigate>}></Route>
+        <Route exact path="/frontendadmin/movies" element={adminuser ? <AdminMovies></AdminMovies> : <Navigate to="/frontendadmin/login"></Navigate>}></Route>
         
-        <Route exact path="/frontendadmin" element={<AdminHome></AdminHome>}></Route>
-        <Route exact path="/frontendadmin/user" element={<AdminUser></AdminUser>}></Route>
-        <Route exact path="/frontendadmin/movies" element={<AdminMovies></AdminMovies>}></Route>
+        <Route exact path="/frontendadmin/promotions" element={adminuser ? <AdminPromotions></AdminPromotions>:  <Navigate to="/frontendadmin/login"></Navigate>}></Route>
         
-        <Route exact path="/frontendadmin/promotions" element={<AdminPromotions></AdminPromotions>}></Route>
       </Routes>
     </div>
   );

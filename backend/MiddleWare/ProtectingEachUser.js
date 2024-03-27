@@ -13,6 +13,10 @@ const protectEachUser=async(req,res,next)=>{
             email:user.email
         }
         })
+        if(!userverified){
+            res.status(400).json({msg:"user does not exist"})
+            return;
+        }
         if(userverified.dataValues){
             req.user=userverified.dataValues;
         }
@@ -21,7 +25,5 @@ const protectEachUser=async(req,res,next)=>{
     catch(error){
         res.status(400).json({message:"please attach a token"})
     }
-    
-    
 }
 module.exports=protectEachUser

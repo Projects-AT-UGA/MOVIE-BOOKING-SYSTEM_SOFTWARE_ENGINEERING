@@ -2,9 +2,11 @@
 
 import React, { useState, useEffect } from 'react';
 import AdminNavbar from './AdminNavbar';
+import useAdmin from './Admin/useAdmin';
 
 const AdminPromotions = () => {
   const [promotions, setPromotions] = useState([]);
+  const {state}=useAdmin()
   const [formData, setFormData] = useState({
     id: null,
     code: '',
@@ -21,7 +23,11 @@ const AdminPromotions = () => {
   
   const fetchPromotions = async () => {
     try {
-      const response = await fetch('/admin/promotions');
+      const response = await fetch('/admin/promotions',{
+        headers:{
+          authorization:`Bearer ${state.adminuser.token}`
+        }
+      });
       const data = await response.json();
       setPromotions(data);
     } catch (error) {
@@ -35,7 +41,8 @@ const AdminPromotions = () => {
       const response = await fetch('/admin/promotions', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          authorization:`Bearer ${state.adminuser.token}`
         },
         body: JSON.stringify(formData1)
       });
@@ -54,7 +61,10 @@ const AdminPromotions = () => {
   const deletePromotion = async (promotionId) => {
     try {
       const response = await fetch(`/admin/promotions/${promotionId}`, {
-        method: 'DELETE'
+        method: 'DELETE',
+        headers:{
+          authorization:`Bearer ${state.adminuser.token}`
+        }
       });
       if (response.ok) {
         setPromotions(promotions.filter(promotion => promotion.id !== promotionId));
@@ -72,7 +82,8 @@ const AdminPromotions = () => {
       const response = await fetch(`/admin/promotions/${formData.id}`, {
         method: 'PATCH',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          authorization:`Bearer ${state.adminuser.token}`
         },
         body: JSON.stringify(formData)
       });

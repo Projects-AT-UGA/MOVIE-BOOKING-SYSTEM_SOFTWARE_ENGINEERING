@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import AdminNavbar from './AdminNavbar';
+import useAdmin from './Admin/useAdmin';
 
 const AdminMovies = () => {
   const [movies, setMovies] = useState([]);
   const [updateError, setUpdateError] = useState(null);
   const [createError, setCreateError] = useState(null);
+  const {state}=useAdmin()
   const [formData, setFormData] = useState({
     id: null,
     title: '',
@@ -45,9 +47,15 @@ const AdminMovies = () => {
   // Fetch all movies
   const fetchMovies = async () => {
     try {
-      const response = await fetch('/admin/movies');
+      if(state){
+      const response = await fetch('/admin/movies',{
+        headers:{
+          authorization:`Bearer ${state.adminuser.token}`
+        }
+      });
       const data = await response.json();
       setMovies(data);
+      }
     } catch (error) {
       console.error('Error fetching movies:', error);
     }
@@ -56,10 +64,12 @@ const AdminMovies = () => {
   // Create a new movie
   const createMovie = async () => {
     try {
+      if(state){
       const response = await fetch('/admin/movies', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          authorization:`Bearer ${state.adminuser.token}`
         },
         body: JSON.stringify(formData)
       });
@@ -72,6 +82,7 @@ const AdminMovies = () => {
         setCreateError(data.message)
       }
       fetchMovies(); // Refresh the movie list after creating a new movie
+    }
     } catch (error) {
       setCreateError(error)
       console.error('Error creating movie:', error);
@@ -81,13 +92,18 @@ const AdminMovies = () => {
   // Delete a movie by ID
   const deleteMovie = async (movieId) => {
     try {
+      if(state){
       const response = await fetch(`/admin/movies/${movieId}`, {
-        method: 'DELETE'
+        method: 'DELETE',
+        headers:{
+          authorization:`Bearer ${state.adminuser.token}`
+        }
       });
       const data = await response.json();
       console.log('Movie deleted:', data.message);
       
       fetchMovies(); // Refresh the movie list after deleting a movie
+    }
     } catch (error) {
       
       console.error('Error deleting movie:', error);
@@ -97,10 +113,12 @@ const AdminMovies = () => {
   // Update a movie by ID
   const updateMovie = async () => {
     try {
+      if(state){
       const response = await fetch(`/admin/movies/${formData.id}`, {
         method: 'PATCH',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          authorization:`Bearer ${state.adminuser.token}`
         },
         body: JSON.stringify(formData)
       });
@@ -113,6 +131,7 @@ const AdminMovies = () => {
       }
       console.log('Movie updated:', data);
       fetchMovies(); // Refresh the movie list after updating a movie
+    }
     } catch (error) {
       setUpdateError(error)
       console.error('Error updating movie:', error);

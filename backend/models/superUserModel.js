@@ -11,6 +11,16 @@ const SuperUser = sequelize.define('SuperUser',{
         type: DataTypes.STRING,
         allowNull: false
     }
-})
+});
+
+// Sync the SuperUser model with the database
+// (async () => {
+//     try {
+//         await SuperUser.sync();
+//         console.log('SuperUser model synced successfully');
+//     } catch (error) {
+//         console.error('Error syncing SuperUser model:', error);
+//     }
+// })();
 
 module.exports = SuperUser;
