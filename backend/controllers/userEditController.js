@@ -52,9 +52,45 @@ const postEditUser = async (req, res) => {
     }
 };
 
+const EditUserPassword = async (req, res) => {
+    try {
+        // Extract id, email, and password from req.body
+        const { id } = req.user;
+        const { email,password, newpassword } = req.body;
+        if(!email || !password || !newpassword){
+            return res.status(404).json({ message: "please enter password,new password" });
+        }
+        // Find the user in the database
+        const user = await User.findOne({ where: { id: id,email:email } });
+        if (!user) {
+            return res.status(404).json({ message: "User not found" });
+        }
+        
+        // Verify the current password
+        const passwordMatch = await bcrypt.compare(password, user.password);
+        if (!passwordMatch) {
+            return res.status(400).json({ message: "Current password is incorrect" });
+        }
+        
+        // Hash the new password
+        const hashedNewPassword = await bcrypt.hash(newpassword, 10);
+        
+        // Update user data with the new hashed password
+        user.password = hashedNewPassword;
+        await user.save();
+        
+        res.status(200).json({ message: "Password updated successfully" });
+    } catch (error) {
+        console.error("Error updating password:", error);
+        res.status(500).json({ message: "Internal server error" });
+    }
+};
+
+
+
+module.exports = { getEditUser, postEditUser, EditUserPassword };
 
 
 
 
 
-module.exports={getEditUser,postEditUser}
