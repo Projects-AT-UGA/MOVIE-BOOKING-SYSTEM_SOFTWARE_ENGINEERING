@@ -1,0 +1,40 @@
+/* Admin.css */
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #010000;
+   
+    margin: 0;
+    padding: 0;
+  }
+  
+  .admin-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+  }
+  
+  .admin-links {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+  }
+  
+  .admin-link {
+    text-decoration: none;
+    color: #fff;
+    font-size: 24px;
+    margin: 10px 20px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    background-color: #e50914; /* Netflix red */
+    transition: background-color 0.3s ease;
+  }
+  
+  .admin-link:hover {
+    background-color: #ff0000; /* Darker red on hover */
+  }
+  

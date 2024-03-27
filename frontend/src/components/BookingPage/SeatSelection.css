@@ -1,113 +1,113 @@
+body {
+  background-color: black; 
+}
 
-.container2{
+.container2 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* background-color: red; */
   justify-content: center;
-  
+  background-color: black;
+  color: white;
+  padding: 20px;
+  margin-top: 50px;
 }
-#seating-book{
-  padding: 1rem;
+
+.container2 h2 {
+  color: white; 
 }
-  .screen {
-    font-size: 18px;
-    font-weight: bold;
-    margin-bottom: 10px;
-  }
-  
-  .seat-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-  
-  .row {
-    display: flex;
-    align-items: center;
-  }
-  
-  .seat {
-    width: 30px;
-    height: 30px;
-    margin: 5px;
-    background-color: #ccc;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-  }
-  
-  .available {
-    background-color: #ccc; 
-  }
-  
-  .selected {
-    background-color: #00f; 
-  }
-  
-  .booked {
-    background-color: #f00; 
-    cursor: not-allowed;
-  }
-  
-  .showcase {
-    list-style-type: none;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-  }
-  
-  .showcase li {
-    margin: 0 10px;
-  }
-  .proceed-button {
-    margin-top: 20px;
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .proceed-button:hover {
-    background-color: #0056b3;
-  }
-  
-  .gap {
-    width: 10rem; 
-  }
-  
-  .proceed-btn {
-    margin-top: 20px;
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-  }
-  
-  .proceed-btn:hover {
-    background-color: #0056b3;
-  }
-  .text1{
-    font-size: 1.5rem;
-  }
-  .text2{
-    font-size: 1.5rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
-  .text2-h2{
-    font-size: 2rem;
-  }
-  .op{
-    margin: 1rem;
-    font-size: 1rem;
-    padding:0.5rem;
-  }
+
+
+
+.container2 select {
+  color: white; 
+  background-color: black;
+  font-size: 1.2rem;
+  padding: 0.7rem 1rem;
+  margin-top: 10px;
+  width: 200px;
+}
+
+.screen {
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.seat-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  color: black; /* Text color changed to black */
+  margin-top: 20px;
+}
+
+.seat {
+  width: 30px;
+  height: 30px;
+  margin: 5px;
+  background-color:#ccc;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.available {
+  background-color: #ccc; 
+}
+
+.selected {
+  background-color: rgb(10, 100, 178); 
+}
+
+.booked {
+  background-color: #E50914; 
+  cursor: not-allowed;
+}
+
+.showcase {
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.showcase li {
+  margin: 0 10px;
+  color: white;
+}
+
+.text1 {
+  font-size: 1.5rem;
+  color: white;
+  margin-top: 20px;
+}
+
+.text2 {
+  font-size: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.text2-h2 {
+  font-size: 2rem;
+}
+
+.proceed-btn {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: red;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.proceed-btn:hover {
+  background-color: darkred;
+}

@@ -1,18 +1,19 @@
-import React from 'react'
-import AdminNavbar from './AdminNavbar'
-import { Link } from 'react-router-dom'
+import React from 'react';
+import AdminNavbar from './AdminNavbar';
+import { Link } from 'react-router-dom';
+import './AdminHome.css'; // Import the Admin CSS file
+
 const AdminHome = () => {
   return (
-    <div>
-        <AdminNavbar></AdminNavbar>
-        <Link to="/frontendadmin/user">USER</Link>
-        <br/>
-        <Link to="/frontendadmin/movies">Movies</Link>
-        <br/>
-        <Link to="/frontendadmin/promotions">Promotions</Link>
-        
+    <div className="admin-container">
+      <AdminNavbar />
+      <div className="admin-links">
+        <Link to="/frontendadmin/user" className="admin-link">USER</Link>
+        <Link to="/frontendadmin/movies" className="admin-link">Movies</Link>
+        <Link to="/frontendadmin/promotions" className="admin-link">Promotions</Link>
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default AdminHome
+export default AdminHome;

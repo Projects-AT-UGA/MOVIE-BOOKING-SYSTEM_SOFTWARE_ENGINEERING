@@ -1,4 +1,4 @@
-.container {
+.confirmation {
     display: grid;
     grid-template-rows: auto auto auto;
     text-align: center;
@@ -6,7 +6,9 @@
     width: 34%;
     position: absolute;
     left: 33%;
-    border: solid;
+    margin-top:200px;
+    border:white solid;
+    color:#ccc;
 }
 
 .left {
@@ -25,7 +27,7 @@
       height: 50px;
       padding: 10px;
       border: none;
-      background-color: rgb(36, 36, 36);
+      background-color: #E50914;
       color: white;
       border-radius: 5px;
       font-weight: bold;

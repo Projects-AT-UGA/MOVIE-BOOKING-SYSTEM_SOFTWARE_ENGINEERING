@@ -82,11 +82,11 @@ export function SeatSelection() {
 
     return (
         <div className="container2">
-            <h2>Seat Selection</h2>
+            <h2 className="seats">Seat Selection</h2>
             <div className="screen">Screen This Way</div>
             <div className="seat-container">
                 {getAvailableSeats(10, 13).map(seatLabel => (
-                    <div
+                    <div 
                         key={seatLabel}
                         className={`seat ${selectedSeats.includes(seatLabel) ? 'selected' : ''} ${isSeatBooked(seatLabel) ? 'booked' : ''}`}
                         onClick={() => {
