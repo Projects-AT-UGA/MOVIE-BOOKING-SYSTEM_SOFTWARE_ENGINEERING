@@ -30,3 +30,5 @@ export const Navbar = ({ handleSearch, searchQuery }) => {
     </div>
   );
 };
+
+export default Navbar;

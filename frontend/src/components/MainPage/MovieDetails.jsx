@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import './MovieDetails.css';
-import {Navbar} from './Navbar';
+import { Navbar } from './Navbar';
 
 const MovieDetails = ({ movies }) => {
   const [isTrailerOpen, setIsTrailerOpen] = useState(false);
@@ -26,13 +26,26 @@ const MovieDetails = ({ movies }) => {
     setIsTrailerOpen(false);
   };
 
+  // Function to generate star icons based on the rating value
+  const renderStars = (rating) => {
+    const stars = [];
+    for (let i = 1; i <= 5; i++) {
+      stars.push(
+        <span key={i} className={i <= rating ? 'star-filled' : 'star-empty'}>
+          &#9733; {/* Unicode for star icon */}
+        </span>
+      );
+    }
+    return stars;
+  };
+
   return (
     <div className="movie-details-container">
       <Navbar />
-      <h1 style={{ color: "white" }}>Movie Details</h1>
+      <h1 style={{ color: 'white' }}>Movie Details</h1>
 
       <div className="movie-info">
-        <div className="movie-image-box">
+        <div id="movie-image-box-details">
           <img className="movie-image" src={movie.trailer_picture} alt={movie.title} />
         </div>
         <div className="movie-details">
@@ -44,9 +57,12 @@ const MovieDetails = ({ movies }) => {
           <p>Duration: {movie.duration}</p>
           <p>Release Date: {movie.release_date}</p>
           <p>Certificate: {movie.certificate}</p>
-          <p>Ratings: {movie.ratings}</p>
+          <div className="ratings-container">
+            <p>Ratings:</p>
+            <div className="star-rating">{renderStars(movie.ratings)}</div>
+          </div>
           <p>Synopsis: {movie.synopsis}</p>
-          <button className="book-tickets" onClick={() => navigate("/movietime/" + title)}>Book Tickets</button>
+          <button className="book-tickets" onClick={() => navigate('/movietime/' + title)}>Book Tickets</button>
           <button className="play-trailer" onClick={handlePlayTrailer}>Play Trailer</button>
         </div>
       </div>

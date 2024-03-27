@@ -1,6 +1,7 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
-import useAdmin from './Admin/useAdmin'
+import { Link } from 'react-router-dom';
+import useAdmin from './Admin/useAdmin';
+import './AdminNavbar.css';
 const AdminNavbar = () => {
   const {dispatch}=useAdmin()
   const logout=()=>{
@@ -9,8 +10,8 @@ const AdminNavbar = () => {
   return (
     <div style={{display:"flex",justifyContent:"space-between"}}>
       
-      <Link to="/frontendadmin">Admin</Link>
-      <div onClick={logout}>Logout</div>
+      <Link id="Admin" to="/frontendadmin">Admin</Link>
+      <div id="logout" onClick={logout} style={{cursor:"pointer"}}>Logout</div>
     </div>
   )
 }

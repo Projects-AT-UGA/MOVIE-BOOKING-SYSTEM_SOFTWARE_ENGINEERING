@@ -13,7 +13,6 @@ const SuperUser = sequelize.define('SuperUser',{
     }
 });
 
-// Sync the SuperUser model with the database
 // (async () => {
 //     try {
 //         await SuperUser.sync();
