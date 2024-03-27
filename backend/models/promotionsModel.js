@@ -19,7 +19,7 @@ const Promotions = sequelize.define('Promotions', {
   }
 });
 
-// // Sync the model with the database
+// Sync the model with the database
 // async function syncModel() {
 //   try {
 //     await Promotions.sync({ alter: true });
