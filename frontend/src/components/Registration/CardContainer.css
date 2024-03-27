@@ -1,0 +1,83 @@
+.card-container h1,h2{
+   color:white;
+   }
+
+   #default{
+    color:#fff;
+   }
+   
+.card-container{
+    margin: auto;
+    margin-top: 2rem;
+}
+.card-item{
+    color:white;
+}
+
+.card-item button{
+    margin: 10px 5px;
+  
+    background-color:rgb(219, 20, 20);
+}
+   .edit1-password-form label{
+     color:white;
+    }
+    #card-form{
+        background-color: rgb(57, 54, 54);
+    }
+    #card-form input::placeholder
+    {
+        color:white;
+    }
+    #card-form input{
+     background-color:rgb(59, 56, 56);
+    }
+    #update-card{
+        background-color: rgb(57, 54, 54);
+    }
+    #update-card input::placeholder
+    {
+        color:white;
+    }
+    #update-card input{
+        background-color:rgb(59, 56, 56);
+    }
+    #default-2{
+        color:white;
+    }
+    
+    #card-form button,#update-card button{
+        background-color:#ff0000;
+        color:white;
+        margin-left:10px;
+        border-radius: 10px;
+       
+        padding:6px;
+    }
+    #card-form input,#update-card > input{
+        margin:1rem;
+        border-radius: 5px;
+    }
+    #card-form > input{
+       color:white;
+    }
+    #update-card > input{
+        color:white;
+    }
+   .edit1-password-container h2{
+     text-align: center;
+   }
+   
+   .edit1-password-container .edit1-submit-btn {
+     width: 100%;
+     padding: 10px;
+     background-color: #ff0000; /* Red button background */
+     color: #fff; /* White text color */
+     border: none;
+     border-radius: 5px;
+     cursor: pointer;
+   }
+   
+   .edit1-password-container .edit1-submit-btn:hover {
+     background-color: #cc0000; /* Darker red on hover */
+   }

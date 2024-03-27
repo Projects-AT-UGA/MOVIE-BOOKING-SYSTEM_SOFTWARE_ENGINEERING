@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import AdminNavbar from './AdminNavbar';
 import useAdmin from './Admin/useAdmin';
-
+import './AdminMovies.css';
 const AdminMovies = () => {
   const [movies, setMovies] = useState([]);
   const [updateError, setUpdateError] = useState(null);

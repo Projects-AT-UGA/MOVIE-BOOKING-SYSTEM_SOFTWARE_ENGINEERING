@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import AdminNavbar from './AdminNavbar';
 import useAdmin from './Admin/useAdmin';
-
+import './AdminUser.css';
 const AdminUser = () => {
   const [users, setUsers] = useState([]);
   const [updateerror, setUpdateError] = useState(null);
@@ -209,21 +209,23 @@ const AdminUser = () => {
               value={formData.address}
               onChange={(e) => setFormData({ ...formData, address: e.target.value })}
             />
-            <label>
+            <label id="promotion-label">
+             
+              Subscribe for Promotions
               <input
                 type="checkbox"
                 checked={formData.subscribeForPromotions}
                 onChange={(e) => setFormData({ ...formData, subscribeForPromotions: e.target.checked })}
               />
-              Subscribe for Promotions
             </label>
-            <label>
+            <label id="suspended-label">
+             
+              suspended
               <input
                 type="checkbox"
                 checked={formData.issuspended}
                 onChange={(e) => setFormData({ ...formData, issuspended: e.target.checked })}
               />
-              suspended
             </label>
             <button onClick={updateUser}>Update User</button>
           </div>
@@ -235,7 +237,7 @@ const AdminUser = () => {
 
         <div className='userRight' style={{ width: '30%' }}>
   {/* Create user form */}
-  <div>
+  <div id="input-forms">
     <input
       type="text"
       placeholder="Country"
@@ -278,21 +280,26 @@ const AdminUser = () => {
       value={formData1.address}
       onChange={(e) => setFormData1({ ...formData1, address: e.target.value })}
     />
-    <label>
+    
+      
+      <label id="promotion-label">
+      Subscribe for Promotions
       <input
         type="checkbox"
         checked={formData1.subscribeForPromotions}
         onChange={(e) => setFormData1({ ...formData1, subscribeForPromotions: e.target.checked })}
       />
-      Subscribe for Promotions
     </label>
-    <label>
-        <input
+   
+       
+               <label id="suspended-label">
+
+              suspended
+              <input
                 type="checkbox"
                 checked={formData1.issuspended}
                 onChange={(e) => setFormData({ ...formData1, issuspended: e.target.checked })}
               />
-              suspended
     
     </label>
     {createerror ? <div>{createerror}</div> : <></>}

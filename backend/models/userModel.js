@@ -46,17 +46,17 @@ User.hasMany(CardDetail, { foreignKey: 'userId' });
 CardDetail.belongsTo(User, { foreignKey: 'userId', constraints: false }); // Each card detail belongs to one user
 
 // Sync the model with the database
-// async function syncModel() {
-//   try {
-//     await sequelize.sync({ alter: true });
-//     console.log("User model synchronized successfully.");
-//   } catch (error) {
-//     console.error("Error synchronizing user model:", error);
-//   }
-// }
+async function syncModel() {
+  try {
+    await sequelize.sync({ alter: true });
+    console.log("User model synchronized successfully.");
+  } catch (error) {
+    console.error("Error synchronizing user model:", error);
+  }
+}
 
-// // Call the syncModel function to synchronize the model with the database
-// syncModel();
+
+syncModel();
 
 // Export the User model for use in other parts of the application
 module.exports = User;

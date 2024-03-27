@@ -3,30 +3,31 @@
 import React, { useState, useEffect } from 'react';
 import AdminNavbar from './AdminNavbar';
 import useAdmin from './Admin/useAdmin';
+import './AdminPromotions.css'; // Import CSS file for styling
 
 const AdminPromotions = () => {
   const [promotions, setPromotions] = useState([]);
-  const {state}=useAdmin()
+  const { state } = useAdmin();
   const [formData, setFormData] = useState({
     id: null,
     code: '',
     discountPercentage: 0,
-    isActive: false
+    isActive: false,
   });
   const [formData1, setFormData1] = useState({
     id: null,
     code: '',
     discountPercentage: 0,
-    isActive: false
+    isActive: false,
   });
   const [error, setError] = useState(null);
-  
+
   const fetchPromotions = async () => {
     try {
-      const response = await fetch('/admin/promotions',{
-        headers:{
-          authorization:`Bearer ${state.adminuser.token}`
-        }
+      const response = await fetch('/admin/promotions', {
+        headers: {
+          authorization: `Bearer ${state.adminuser.token}`,
+        },
       });
       const data = await response.json();
       setPromotions(data);
@@ -42,9 +43,9 @@ const AdminPromotions = () => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          authorization:`Bearer ${state.adminuser.token}`
+          authorization: `Bearer ${state.adminuser.token}`,
         },
-        body: JSON.stringify(formData1)
+        body: JSON.stringify(formData1),
       });
       const data = await response.json();
       if (response.ok) {
@@ -62,12 +63,12 @@ const AdminPromotions = () => {
     try {
       const response = await fetch(`/admin/promotions/${promotionId}`, {
         method: 'DELETE',
-        headers:{
-          authorization:`Bearer ${state.adminuser.token}`
-        }
+        headers: {
+          authorization: `Bearer ${state.adminuser.token}`,
+        },
       });
       if (response.ok) {
-        setPromotions(promotions.filter(promotion => promotion.id !== promotionId));
+        setPromotions(promotions.filter((promotion) => promotion.id !== promotionId));
       } else {
         const data = await response.json();
         setError(data.message);
@@ -83,9 +84,9 @@ const AdminPromotions = () => {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',
-          authorization:`Bearer ${state.adminuser.token}`
+          authorization: `Bearer ${state.adminuser.token}`,
         },
-        body: JSON.stringify(formData)
+        body: JSON.stringify(formData),
       });
       if (response.ok) {
         fetchPromotions();
@@ -110,23 +111,20 @@ const AdminPromotions = () => {
   return (
     <div>
       <AdminNavbar />
-      <div>Admin Promotions</div>
-      <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-        <div style={{ width: '30%' }}>
-          {/* Left Section - Display Promotions */}
+      <div className="admin-promotions-container">
+        <div className="admin-promotions-left">
           <h2>Promotions</h2>
           <ul>
             {promotions.map((promotion) => (
               <li key={promotion.id} onClick={() => handlePromotionClick(promotion)}>
                 {promotion.code} - {promotion.discountPercentage}% {promotion.isActive ? 'Active' : 'Inactive'}
-                <button onClick={() => deletePromotion(promotion.id)}>Delete</button>
+                <button id ="delete" onClick={() => deletePromotion(promotion.id)}>Delete</button>
               </li>
             ))}
           </ul>
         </div>
 
-        <div style={{ width: '30%' }}>
-          {/* Right Section - Update Promotion */}
+        <div className="admin-promotions-right">
           <div>
             <input
               type="text"
@@ -141,20 +139,19 @@ const AdminPromotions = () => {
               onChange={(e) => setFormData({ ...formData, discountPercentage: e.target.value })}
             />
             <label>
+              
+              Active &nbsp;
               <input
                 type="checkbox"
                 checked={formData.isActive}
                 onChange={(e) => setFormData({ ...formData, isActive: e.target.checked })}
               />
-              Active
             </label>
             <button onClick={updatePromotion}>Update Promotion</button>
           </div>
         </div>
 
-
-        <div style={{ width: '30%' }}>
-          {/* Middle Section - Create Promotion */}
+        <div className="admin-promotions-middle">
           <div>
             <input
               type="text"
@@ -169,18 +166,18 @@ const AdminPromotions = () => {
               onChange={(e) => setFormData1({ ...formData1, discountPercentage: e.target.value })}
             />
             <label>
+             
+              Active &nbsp;
               <input
                 type="checkbox"
                 checked={formData1.isActive}
                 onChange={(e) => setFormData1({ ...formData1, isActive: e.target.checked })}
               />
-              Active
             </label>
             <button onClick={createPromotion}>Create Promotion</button>
             {error && <div>{error}</div>}
           </div>
         </div>
-        
       </div>
     </div>
   );

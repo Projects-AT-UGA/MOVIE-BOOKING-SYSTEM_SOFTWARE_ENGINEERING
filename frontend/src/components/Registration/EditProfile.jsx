@@ -111,11 +111,15 @@ export const EditProfile = () => {
   };
   
   return (
+    <div>
+       <Navbar3></Navbar3>
+    
     <div className="edit-profile-container1">
-      <Navbar3></Navbar3>
-      <h1 className="edit1-title">Edit Profile</h1>
+     
+      
       
       <form className="edit1-profile-form">
+      <h1 className="edit1-title">Edit Profile</h1>
       <div>email: {state.login.email}</div>
       <br/>
         <div className="edit1-form-group">
@@ -244,6 +248,7 @@ export const EditProfile = () => {
             Change Password
           </button>
         </form>
+      </div>
       </div>
       <CardContainer></CardContainer>
 

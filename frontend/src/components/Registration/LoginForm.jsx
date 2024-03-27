@@ -16,9 +16,9 @@ const LoginForm = () => {
       id: 1,
       name: "username",
       type: "text",
-      placeholder: "Username",
+      placeholder: "Email id",
       errorMessage: "Please enter a valid username",
-      label: "Username",
+      label: "Email id",
       required: true,
     },
     {

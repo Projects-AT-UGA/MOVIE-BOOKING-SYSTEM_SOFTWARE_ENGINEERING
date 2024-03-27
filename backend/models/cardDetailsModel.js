@@ -40,17 +40,17 @@ const CardDetail = sequelize.define('CardDetail', {
 });
 
 // Sync the model with the database
-// async function syncModel() {
-//   try {
-//     await CardDetail.sync({ alter: true });
-//     console.log("CardDetail model synchronized successfully.");
-//   } catch (error) {
-//     console.error("Error synchronizing CardDetail model:", error);
-//   }
-// }
+async function syncModel() {
+  try {
+    await CardDetail.sync({ alter: true });
+    console.log("CardDetail model synchronized successfully.");
+  } catch (error) {
+    console.error("Error synchronizing CardDetail model:", error);
+  }
+}
 
-// Call the syncModel function to synchronize the model with the database
-// syncModel();
+
+syncModel();
 
 // Export the CardDetail model for use in other parts of the application
 module.exports = CardDetail;

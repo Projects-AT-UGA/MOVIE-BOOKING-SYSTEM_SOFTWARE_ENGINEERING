@@ -1,0 +1,60 @@
+.movieLeft,
+.movieMiddle,
+.movieRight {
+  width: 30%;
+  margin-right: 10px;
+  padding: 20px;
+  border: 2px solid #ccc; /* Updated border thickness */
+  border-radius: 8px; /* Updated border radius */
+  background-color: #333;
+  color: #fff;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Updated box shadow */
+  margin-bottom: 20px;
+}
+
+.movieLeft ul {
+  list-style: none;
+  padding: 0;
+}
+
+.movieLeft li {
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.movieLeft li:hover {
+  color: #010000;
+}
+
+.movieMiddle input,
+.movieRight input {
+  width: calc(100% - 20px); /* Adjusted input width to account for padding */
+  margin-bottom: 10px;
+  padding: 10px; /* Increased padding for input fields */
+  border: 2px solid #ccc; /* Updated border thickness */
+  border-radius: 5px;
+  background-color: #fff;
+  color: #333;
+  box-shadow: inset 0px 2px 4px rgba(0, 0, 0, 0.1); /* Updated box shadow for input fields */
+}
+
+.movieMiddle button,
+.movieRight button {
+  width: 100%;
+  padding: 12px; /* Increased padding for buttons */
+  border: none;
+  border-radius: 5px;
+  background-color: #ff0000;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.movieMiddle button:hover,
+.movieRight button:hover {
+  background-color: #cc0000;
+}
+.movieLeft button{
+    margin-left: 20px;
+    background-color: #e50914;
+}

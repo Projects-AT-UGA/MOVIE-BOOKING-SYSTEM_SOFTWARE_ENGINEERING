@@ -1,0 +1,164 @@
+.admin-user-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+  }
+  
+  .admin-user-title {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #fff;
+    margin-bottom: 20px;
+  }
+  
+  .admin-form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  
+  .admin-input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #333;
+    color: #fff;
+  }
+  
+  .admin-checkbox-label {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    color: #fff;
+    margin-bottom: 10px;
+  }
+  
+  .admin-checkbox {
+    margin-right: 10px;
+  }
+  
+  .admin-error {
+    color: red;
+  }
+  
+  .admin-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #e50914; /* Netflix red */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .admin-button:hover {
+    background-color: #ff0000; /* Darker red on hover */
+  }
+  
+  .userLeft,
+  .userMiddle,
+  .userRight {
+    width: 100%;
+  }
+  
+  .userLeft ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .userLeft li {
+    cursor: pointer;
+    padding: 10px;
+    margin-bottom: 5px;
+    background-color: #333;
+    color: #fff;
+    border-radius: 5px;
+  }
+  
+  .userLeft li:hover {
+    background-color: #555;
+  }
+  .userLeft button{
+    margin-left: 20px;
+    background-color: #e50914;
+  }
+  
+  #promotion-label,
+  #suspended-label {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #333;
+    color: #fff;
+  }
+  
+  #promotion-label input,
+  #suspended-label input {
+  position: relative;
+  left: 80px;
+  
+  }
+  
+
+  .userMiddle,
+  .userRight {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background-color: #333;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  }
+  
+  .userMiddle input,
+  .userRight input,
+  .userMiddle label,
+  .userRight label {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #333;
+    color: #fff;
+  }
+  
+  .userMiddle label,
+  .userRight label {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    color: #fff;
+    margin-bottom: 10px;
+  }
+  
+  .userMiddle button,
+  .userRight button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #e50914; /* Netflix red */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .userMiddle button:hover,
+  .userRight button:hover {
+    background-color: #ff0000; /* Darker red on hover */
+  }
+  

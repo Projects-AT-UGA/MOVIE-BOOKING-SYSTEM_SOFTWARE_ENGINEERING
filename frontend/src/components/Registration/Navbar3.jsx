@@ -3,7 +3,7 @@ import {useNavigate} from 'react-router-dom'
 const Navbar3 = () => {
     const navigate=useNavigate()
   return (
-    <div onClick={()=>{navigate("/")}} style={{cursor:"pointer",fontSize:"2rem"}}>Movie</div>
+    <div onClick={()=>{navigate("/")}} style={{cursor:"pointer",marginTop:'15px',fontSize:"2.8rem",color:'white', textAlign:'center'}}>Home Page</div>
   )
 }
 

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './CardContainer.css';
 import useUser from '../../User/useUser';
-
+import './CardContainer.css';
 const CardContainer = () => {
   const { state } = useUser();
   const [cards, setCards] = useState([]);
@@ -214,7 +214,7 @@ const CardContainer = () => {
   
       <div>
         <h2>Add New Card</h2>
-        <form onSubmit={handleAddSubmit}>
+        <form id='card-form' onSubmit={handleAddSubmit}>
           <input
             type="text"
             name="cardNumber"
@@ -263,7 +263,7 @@ const CardContainer = () => {
             placeholder="Billing Address"
             required
           />
-          <label>
+          <label id="default">
             <input
               type="checkbox"
               name="isDefault"
@@ -281,7 +281,7 @@ const CardContainer = () => {
 
       <div>
         <h2>Update Card</h2>
-        <form onSubmit={handleUpdateSubmit}>
+        <form id="update-card" onSubmit={handleUpdateSubmit}>
           <input
             type="text"
             name="cardNumber"
@@ -330,7 +330,7 @@ const CardContainer = () => {
             placeholder="Billing Address"
             required
           />
-          <label>
+          <label id="default-2">
             <input
               type="checkbox"
               name="isDefault"
