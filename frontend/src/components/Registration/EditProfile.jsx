@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './EditProfile.css';
 import useUser from '../../User/useUser';
 import useEditUser from '../../User/useEditUser';
-
+import CardContainer from './CardContainer';
 import Navbar3 from './Navbar3'
 export const EditProfile = () => {
   // Update initial state based on the provided JSON data
@@ -245,7 +245,7 @@ export const EditProfile = () => {
           </button>
         </form>
       </div>
-
+      <CardContainer></CardContainer>
 
     </div>
   );

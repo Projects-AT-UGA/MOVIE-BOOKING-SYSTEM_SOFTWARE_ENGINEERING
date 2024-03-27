@@ -10,7 +10,8 @@ const CardDetail = sequelize.define('CardDetail', {
   },
   cardNumber: {
     type: DataTypes.STRING,
-    allowNull: false
+    allowNull: false,
+    unique: true
   },
   cardHolderName: {
     type: DataTypes.STRING,
@@ -21,6 +22,14 @@ const CardDetail = sequelize.define('CardDetail', {
     allowNull: false
   },
   cvv: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
+  cardType: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
+  billingAddress: {
     type: DataTypes.STRING,
     allowNull: false
   },

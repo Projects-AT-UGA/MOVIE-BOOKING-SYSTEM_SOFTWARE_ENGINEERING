@@ -17,16 +17,19 @@ app.use(cors());
 // Routes
 
 app.use("/superuser",superuserRouter)
+app.use('/users',userRouter);
+
 app.use("/admin",protectAllAdmin);
 app.use("/admin",adminRouter);
 
 
-app.use('/users',userRouter);
+
+
 app.use("/user",protectEachUser)
 app.use('/user',editRouter);
 
-// app.use("/card",protectEachUser)
-// app.use("/card",cardRouter);
+app.use("/card",protectEachUser)
+app.use("/card",cardRouter);
 
 app.use('/api', movieRoutes);
 
