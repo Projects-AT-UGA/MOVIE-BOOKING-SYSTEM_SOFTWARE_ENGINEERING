@@ -15,7 +15,7 @@ const cors=require("cors")
 app.use(express.json());
 app.use(cors());
 // Routes
-// app.use("/superuser",superuserRouter)
+
 app.use("/superuser",superuserRouter)
 app.use("/admin",protectAllAdmin);
 app.use("/admin",adminRouter);

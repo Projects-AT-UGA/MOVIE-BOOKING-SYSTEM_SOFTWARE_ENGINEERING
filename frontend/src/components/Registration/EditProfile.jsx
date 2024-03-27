@@ -10,12 +10,19 @@ export const EditProfile = () => {
   const {state}=useUser()
   const [error,setError]=useState("")
   const {error:saveerror,isloading,edituser,success}=useEditUser()
+  const [passworderror,setPasswordError]=useState();
+  const [passwordisloading,setPasswordIsLoading]=useState(false)
+  const [passwordData, setPasswordData] = useState({
+    password: '',
+    newpassword: '',
+    confirmnewpassword: '', // Added field for confirming new password
+  });
   useEffect(()=>{
     const fetcheditprofiledate=async()=>{
       setError("")
 
       try{
-        if(state.login.token){
+        if(state){
           const response=await fetch("/user",{
             headers:{
               authorization:`Bearer ${state.login.token}`
@@ -51,13 +58,58 @@ export const EditProfile = () => {
     const newValue = type === 'checkbox' ? checked : value;
     setFormData({ ...formData, [name]: newValue });
   };
-
+  const handlePasswordChange = (e) => {
+    const { name, value } = e.target;
+    setPasswordData({ ...passwordData, [name]: value });
+  };
   const handleSubmit = (e) => {
     e.preventDefault();
     edituser(formData)
 
   };
-
+  const handlePasswordSubmit = (e) => {
+    e.preventDefault();
+    if (state) {
+      if (passwordData.newpassword !== passwordData.confirmnewpassword) {
+        setPasswordError("Passwords do not match");
+        return;
+      }
+      editUserPassword(passwordData, state.login.token);
+    }
+  };
+  
+  const editUserPassword = async (passwordData, token) => {
+    setPasswordIsLoading(true)
+    try {
+      setPasswordError(null)
+      
+      const response = await fetch('/user/edituserpassword', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify({...passwordData, email: state.login.email})
+      });
+  
+      const data = await response.json();
+  
+      if (!response.ok) {
+        setPasswordError(data.message || 'Failed to change password');
+      }
+      else{
+        setPasswordError(data.message );
+      }
+      // Password updated successfully
+     
+      
+    } catch (error) {
+      setPasswordError('Error changing password:', error.message);
+      
+    }
+    setPasswordIsLoading(false)
+  };
+  
   return (
     <div className="edit-profile-container1">
       <Navbar3></Navbar3>
@@ -146,6 +198,55 @@ export const EditProfile = () => {
         {success ? <div>data update successfully</div> : <></>}
         <button type="submit" className="edit1-submit-btn" onClick={handleSubmit} disabled={isloading}>Save Changes</button>
       </form>
+
+
+      <div className="edit1-password-container">
+        <h2>Change Password</h2>
+        <form className="edit1-password-form" onSubmit={handlePasswordSubmit}>
+          <div className="edit1-form-group">
+            <label htmlFor="current-password">Current Password:</label>
+            <input
+              type="password"
+              id="current-password"
+              name="password"
+              value={passwordData.password}
+              onChange={handlePasswordChange}
+              className="edit1-form-control"
+              required
+            />
+          </div>
+          <div className="edit1-form-group">
+              <label htmlFor="new-password">New Password:</label>
+              <input
+                type="password"
+                id="new-password"
+                name="newpassword"
+                value={passwordData.newpassword}
+                onChange={handlePasswordChange}
+                className="edit1-form-control"
+                required
+              />
+          </div>
+          <div className="edit1-form-group">
+            <label htmlFor="confirm-new-password">Confirm New Password:</label>
+            <input
+              type="password"
+              id="confirm-new-password"
+              name="confirmnewpassword"
+              value={passwordData.confirmnewpassword}
+              onChange={handlePasswordChange}
+              className="edit1-form-control"
+              required
+            />
+          </div>
+          {passworderror ? <div>{passworderror}</div> : <></>}
+          <button type="submit" className="edit1-submit-btn" disabled={passwordisloading}>
+            Change Password
+          </button>
+        </form>
+      </div>
+
+
     </div>
   );
 };
