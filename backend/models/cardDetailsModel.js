@@ -1,41 +1,90 @@
 const { Sequelize, DataTypes } = require('sequelize');
+const CryptoJS = require('crypto-js');
 const sequelize = require('../config/database'); // Import the Sequelize instance
 const User = require('./userModel');
+
+// Load environment variables from .env file
+require('dotenv').config();
 
 // Define the CardDetail model
 const CardDetail = sequelize.define('CardDetail', {
   userId: {
-    type: DataTypes.INTEGER, // Assuming userId refers to the ID of the user associated with the card details
+    type: DataTypes.INTEGER,
     allowNull: false
   },
   cardNumber: {
     type: DataTypes.STRING,
     allowNull: false,
-    unique: true
+    unique: true,
+    get() {
+      const encryptedValue = this.getDataValue('cardNumber');
+      const bytes = CryptoJS.AES.decrypt(encryptedValue, process.env.SECRET_KEY);
+      return bytes.toString(CryptoJS.enc.Utf8);
+    },
+    set(value) {
+      const encryptedValue = CryptoJS.AES.encrypt(value, process.env.SECRET_KEY).toString();
+      this.setDataValue('cardNumber', encryptedValue);
+    }
   },
   cardHolderName: {
     type: DataTypes.STRING,
-    allowNull: false
+    allowNull: false,
+    get() {
+      const encryptedValue = this.getDataValue('cardHolderName');
+      const bytes = CryptoJS.AES.decrypt(encryptedValue, process.env.SECRET_KEY);
+      return bytes.toString(CryptoJS.enc.Utf8);
+    },
+    set(value) {
+      const encryptedValue = CryptoJS.AES.encrypt(value, process.env.SECRET_KEY).toString();
+      this.setDataValue('cardHolderName', encryptedValue);
+    }
   },
   expirationDate: {
     type: DataTypes.DATE,
-    allowNull: false
+    allowNull: false,
   },
   cvv: {
     type: DataTypes.STRING,
-    allowNull: false
+    allowNull: false,
+    get() {
+      const encryptedValue = this.getDataValue('cvv');
+      const bytes = CryptoJS.AES.decrypt(encryptedValue, process.env.SECRET_KEY);
+      return bytes.toString(CryptoJS.enc.Utf8);
+    },
+    set(value) {
+      const encryptedValue = CryptoJS.AES.encrypt(value, process.env.SECRET_KEY).toString();
+      this.setDataValue('cvv', encryptedValue);
+    }
   },
   cardType: {
     type: DataTypes.STRING,
-    allowNull: false
+    allowNull: false,
+    get() {
+      const encryptedValue = this.getDataValue('cardType');
+      const bytes = CryptoJS.AES.decrypt(encryptedValue, process.env.SECRET_KEY);
+      return bytes.toString(CryptoJS.enc.Utf8);
+    },
+    set(value) {
+      const encryptedValue = CryptoJS.AES.encrypt(value, process.env.SECRET_KEY).toString();
+      this.setDataValue('cardType', encryptedValue);
+    }
   },
   billingAddress: {
     type: DataTypes.STRING,
-    allowNull: false
+    allowNull: false,
+    get() {
+      const encryptedValue = this.getDataValue('billingAddress');
+      const bytes = CryptoJS.AES.decrypt(encryptedValue, process.env.SECRET_KEY);
+      return bytes.toString(CryptoJS.enc.Utf8);
+    },
+    set(value) {
+      const encryptedValue = CryptoJS.AES.encrypt(value, process.env.SECRET_KEY).toString();
+      this.setDataValue('billingAddress', encryptedValue);
+    }
   },
   isDefault: {
     type: DataTypes.BOOLEAN,
-    defaultValue: false // Default value is false
+    defaultValue: false
   }
 });
 
@@ -48,7 +97,6 @@ const CardDetail = sequelize.define('CardDetail', {
 //     console.error("Error synchronizing CardDetail model:", error);
 //   }
 // }
-
 
 // syncModel();
 

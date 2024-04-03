@@ -25,7 +25,7 @@ const App = () => {
     cvv:'',
     cardType: '',
     billingAddress:'',
-    isDefault:'',
+    isDefault:false,
  
     promoCode: '',
     subscribe: false,
