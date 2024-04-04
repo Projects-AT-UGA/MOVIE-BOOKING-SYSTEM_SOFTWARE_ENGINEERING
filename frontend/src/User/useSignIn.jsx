@@ -36,10 +36,10 @@ const useSignIn = () => {
           console.log(adderror)
         }
       };
+      
     const signUp=async(otp)=>{
         setError(null)
         setIsLoading(true)
-        
         const response=await fetch("/users/signup",{
             method:"POST",
             headers: {

@@ -18,7 +18,6 @@ const App = () => {
     address: '',
     country: '',
     phone: '',
-
     cardNumber: '',
     cardHolderName:'',
     expirationDate: '',
@@ -26,7 +25,6 @@ const App = () => {
     cardType: '',
     billingAddress:'',
     isDefault:false,
- 
     promoCode: '',
     subscribe: false,
     needCardDetails: false,

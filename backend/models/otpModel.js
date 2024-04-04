@@ -15,14 +15,14 @@ const Otp = sequelize.define('Otp', {
 });
 
 // // Sync the model with the database
-async function syncModel() {
-  try {
-    await sequelize.sync({ alter: true });
-    console.log("User model synchronized successfully.");
-  } catch (error) {
-    console.error("Error synchronizing user model:", error);
-  }
-}
+// async function syncModel() {
+//   try {
+//     await sequelize.sync({ alter: true });
+//     console.log("User model synchronized successfully.");
+//   } catch (error) {
+//     console.error("Error synchronizing user model:", error);
+//   }
+// }
 // Define the relationship between User and Otp
 
 // User.hasOne(Otp, { foreignKey: 'userId' });

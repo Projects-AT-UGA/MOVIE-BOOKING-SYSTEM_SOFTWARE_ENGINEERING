@@ -40,6 +40,10 @@ const User = sequelize.define('User', {
   issuspended:{
     type:DataTypes.BOOLEAN,
     defaultValue:false
+  },
+  isVerified:{
+    type:DataTypes.BOOLEAN,
+    defaultValue:false
   }
 });
 User.hasMany(CardDetail, { foreignKey: 'userId' });
