@@ -1,6 +1,6 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/database');
-
+const ShowDetail=require("./ShowDetailsModel")
 const Movie = sequelize.define('Movie', {
     title: DataTypes.STRING,
     ratings: DataTypes.STRING,
@@ -18,6 +18,9 @@ const Movie = sequelize.define('Movie', {
     visibility: DataTypes.STRING,
     certificate: DataTypes.STRING
 });
+
+ShowDetail.belongsTo(Movie);
+Movie.hasMany(ShowDetail, { onDelete: 'CASCADE', onUpdate: 'CASCADE' });
 
 
 // const moviesData =[

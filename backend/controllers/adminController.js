@@ -4,6 +4,7 @@ const bcrypt = require('bcrypt');
 const validator = require('validator');
 const Promotions=require("../models/promotionsModel")
 const Movie = require('../models/movieModel'); 
+const ShowDetail = require("../models/ShowDetailsModel");
 
 // Get all users
 const getusers = async (req, res) => {
@@ -271,6 +272,73 @@ const updatepromotions = async (req, res) => {
 };
 
 
+const getShowDetails = async (req, res) => {
+  try {
+    const showDetails = await ShowDetail.findAll({ include: Movie });
+    res.status(200).json(showDetails);
+  } catch (error) {
+    console.log(error)
+    res.status(500).json({ error: "Error getting show details" });
+  }
+};
+
+const postShowDetail = async (req, res) => {
+  try {
+    const { MovieId, screenid, showDateTime } = req.body;
+
+    // Validate fields if needed
+    // Create a new show detail associated with the movie
+    
+    const newShowDetail = await ShowDetail.create({
+      MovieId: MovieId,
+      screenid: screenid,
+      showDateTime: new Date(showDateTime)
+    });
+
+    // Respond with the newly created show detail
+    res.status(200).json(newShowDetail);
+  } catch (error) {
+    console.log(error)
+    res.status(500).json({ message: "Internal server error" });
+  }
+};
+
+const updateShowDetail = async (req, res) => {
+  const showDetailId = req.params.id;
+  const { screenid, showDateTime } = req.body;
+  try {
+    let showDetail = await ShowDetail.findByPk(showDetailId);
+    if (!showDetail) {
+      return res.status(404).json({ message: "Show detail not found" });
+    }
+    // Update only screenid and showDateTime
+    showDetail.screenid = screenid;
+    showDetail.showDateTime = showDateTime;
+    await showDetail.save();
+    res.status(200).json(showDetail);
+  } catch (error) {
+    res.status(400).json({ message: "Error updating show detail" });
+  }
+};
+
+// Delete a show detail by ID
+const deleteShowDetail = async (req, res) => {
+  const showDetailId = req.params.id;
+  try {
+    const showDetail = await ShowDetail.findByPk(showDetailId);
+    if (!showDetail) {
+      return res.status(404).json({ message: "Show detail not found" });
+    }
+    await showDetail.destroy();
+    res.status(200).json({ message: "Show detail deleted successfully" });
+  } catch (error) {
+    res.status(500).json({ message: "Error deleting show detail" });
+  }
+};
 
 
-module.exports = { getusers, postusers, deleteusers, updateusers,getmovies, postmovies, deletemovies, updatemovies ,getpromotions, postpromotions, deletepromotions, updatepromotions };
+
+module.exports = { getusers, postusers, deleteusers, updateusers,
+  getmovies, postmovies, deletemovies, updatemovies ,
+  getpromotions, postpromotions, deletepromotions, updatepromotions,
+  getShowDetails,postShowDetail,deleteShowDetail,updateShowDetail};
