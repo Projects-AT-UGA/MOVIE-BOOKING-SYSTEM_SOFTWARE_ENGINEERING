@@ -34,6 +34,16 @@ const ShowDetail = sequelize.define('ShowDetail', {
         type: DataTypes.INTEGER,
         allowNull: false
       },
+      
+}, {
+    // Define unique constraint for the combination of showDateTime and screenid
+    indexes: [
+        {
+            unique: true,
+            fields: ['showDateTime', 'screenid'],
+            name: 'unique_showdatetime_screenid'
+        }
+    ]
 });
 
 // const sync = async () => {

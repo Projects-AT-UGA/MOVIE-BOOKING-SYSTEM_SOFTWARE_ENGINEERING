@@ -9,7 +9,6 @@ const getCardDetails = async (req, res) => {
     const cardDetails = await CardDetail.findAll({ where: { userId: req.user.id } });
     res.status(200).json(cardDetails);
   } catch (error) {
-   
     res.status(500).json({ message: "Internal server error" });
   }
 };
