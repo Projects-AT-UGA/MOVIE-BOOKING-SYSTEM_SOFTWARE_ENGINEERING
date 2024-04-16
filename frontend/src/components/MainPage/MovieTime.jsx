@@ -3,9 +3,9 @@ import { useParams, useNavigate } from 'react-router-dom';
 import './MovieTime.css';
 
 export const MovieTime = ({ movies }) => {
-  const { title } = useParams(); // Access route parameters
+  const { title,id } = useParams(); // Access route parameters
   const navigate = useNavigate();
-
+console.log(id)
   // Find the movie by its title
   const movie = movies && movies.find(movie => movie.title === title);
 

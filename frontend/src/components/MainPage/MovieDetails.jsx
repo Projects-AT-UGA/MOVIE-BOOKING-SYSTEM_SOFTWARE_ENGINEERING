@@ -62,7 +62,7 @@ const MovieDetails = ({ movies }) => {
             <div className="star-rating">{renderStars(movie.ratings)}</div>
           </div>
           <p>Synopsis: {movie.synopsis}</p>
-          <button className="book-tickets" onClick={() => navigate('/movietime/' + title)}>Book Tickets</button>
+          <button className="book-tickets" onClick={() => navigate('/movietime/' + title+"/"+movie.id)}>Book Tickets</button>
           <button className="play-trailer" onClick={handlePlayTrailer}>Play Trailer</button>
         </div>
       </div>

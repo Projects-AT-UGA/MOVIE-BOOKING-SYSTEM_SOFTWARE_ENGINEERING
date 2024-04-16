@@ -52,7 +52,7 @@ function App() {
 
         <Route exact path="/movie/:title" element={<MovieDetails movies={movies}></MovieDetails>} />
         <Route exact path="/seatselection" element={<SeatSelection></SeatSelection>}></Route>
-        <Route exact path="/movietime/:title" element={<MovieTime movies={movies}></MovieTime>}></Route>
+        <Route exact path="/movietime/:title/:id" element={<MovieTime movies={movies}></MovieTime>}></Route>
         
         <Route exact path="/confirmation" element={<Confirmation></Confirmation>}></Route>
         <Route exact path="/paymentinfo" element={<PaymentInfo></PaymentInfo>}></Route>
