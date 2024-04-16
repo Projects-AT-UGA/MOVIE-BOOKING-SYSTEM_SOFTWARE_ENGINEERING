@@ -8,6 +8,7 @@ const cardRouter=require("./routes/cardRoutes")
 const superuserRouter=require("./routes/superuserRoutes")
 const protectEachUser=require("./MiddleWare/ProtectingEachUser")
 const protectAllAdmin=require("./MiddleWare/ProtectingAdmin")
+const bookingRouter=require("./routes/bookingRoutes")
 require("dotenv").config()
 const cors=require("cors")
 
@@ -30,6 +31,9 @@ app.use('/user',editRouter);
 
 app.use("/card",protectEachUser)
 app.use("/card",cardRouter);
+
+app.use("/booking",bookingRouter)
+
 
 app.use('/api', movieRoutes);
 
