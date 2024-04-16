@@ -306,6 +306,11 @@ const postShowDetail = async (req, res) => {
 const updateShowDetail = async (req, res) => {
   const showDetailId = req.params.id;
   const { screenid, showDateTime } = req.body;
+  console.log("[=============================================")
+  console.log(screenid,showDateTime,req.params.id)
+  console.log(req.body)
+  console.log("[=============================================")
+
   try {
     let showDetail = await ShowDetail.findByPk(showDetailId);
     if (!showDetail) {
