@@ -97,6 +97,7 @@ const AdminShowDetails = () => {
   const createShowDetail = async () => {
     try {
       if (state) {
+        console.log(`${formData.showDate}T${formData.showTime}`)
         const response = await fetch('/admin/showdetails', {
           method: 'POST',
           headers: {

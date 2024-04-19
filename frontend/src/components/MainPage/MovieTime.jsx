@@ -16,7 +16,39 @@ export const MovieTime = ({ movies }) => {
   const [selectedDate, setSelectedDate] = useState(''); // State to store selected date
   const [selectedTime, setSelectedTime] = useState(''); // State to store selected time
   const [selectedScreen, setSelectedScreen] = useState(''); // State to store selected screen
-  
+  function convertToISO(timestamp) {
+    // Splitting the timestamp into its components
+    const parts = timestamp.split(/[ :\/]+/);
+
+    // Extracting date components
+    const month = parseInt(parts[3]);
+    const day = parseInt(parts[4]);
+    const year = parseInt(parts[5]);
+
+    // Extracting time components
+    let hour = parseInt(parts[0]);
+    const minute = parseInt(parts[1]);
+    // console.log(parts)
+    // Adjusting hour for PM time format
+    if (parts[2].toUpperCase() === "PM" && hour !== 12) {
+        hour += 12;
+    }
+
+    // Formatting the date string in ISO 8601 format
+    const isoDateString = `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}T${String(hour).padStart(2, '0')}:${String(minute).padStart(2, '0')}:00.000Z`;
+    
+    return isoDateString;
+}
+
+  const setTheBooking=()=>{
+    console.log("===========================")
+    console.log(showDetails)
+    console.log(selectedTime,selectedDate)
+    const isoTimestamp = convertToISO(selectedTime+" "+selectedDate);
+    console.log(isoTimestamp);
+    
+
+  }
 
   useEffect(() => {
     const fetchMovieShowDetails = async () => {
@@ -39,7 +71,6 @@ export const MovieTime = ({ movies }) => {
   }, [id]);
 
   const handleDateChange = (e) => {
-    console.log(new Date(e.target.value))
     setSelectedDate(e.target.value);
     setSelectedScreen(''); // Reset selected screen when date changes
     setSelectedTime(''); // Reset selected time when date changes
@@ -124,7 +155,7 @@ export const MovieTime = ({ movies }) => {
 
                    
                     
-                    <button className="proceed-button" disabled={!selectedDate || !selectedScreen || !selectedTime} onClick={() => { navigate("/seatselection") }}>
+                    <button className="proceed-button"  disabled={!selectedDate || !selectedScreen || !selectedTime} onClick={() => { navigate("/seatselection") ,setTheBooking()}}>
                       Proceed to Seat Selection
                     </button>
                 </div>
