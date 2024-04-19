@@ -1,6 +1,7 @@
 const { Sequelize, DataTypes } = require('sequelize');
 const sequelize = require('../config/database'); // Import the Sequelize instance
 const CardDetail = require('./cardDetailsModel');
+const Booking=require("./bookingModel")
 // Define the User model
 const User = sequelize.define('User', {
   country: {
@@ -48,6 +49,9 @@ const User = sequelize.define('User', {
 });
 User.hasMany(CardDetail, { foreignKey: 'userId' });
 CardDetail.belongsTo(User, { foreignKey: 'userId', constraints: false }); // Each card detail belongs to one user
+
+User.hasMany(Booking, { foreignKey: 'userId' });
+Booking.belongsTo(User, { foreignKey: 'userId', constraints: false }); // Each card detail belongs to one user
 
 // Sync the model with the database
 // async function syncModel() {

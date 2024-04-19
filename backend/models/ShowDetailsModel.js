@@ -1,6 +1,6 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/database');
-
+const Booking=require("./bookingModel")
 
 const validTimes = ['08:00:00', '12:00:00', '16:00:00', '20:00:00'];
 
@@ -45,6 +45,10 @@ const ShowDetail = sequelize.define('ShowDetail', {
         }
     ]
 });
+
+
+ShowDetail.hasMany(Booking, { foreignKey: 'showId' });
+Booking.belongsTo(ShowDetail, { foreignKey: 'showId', constraints: false }); // Each card detail belongs to one user
 
 // const sync = async () => {
 //     try {
