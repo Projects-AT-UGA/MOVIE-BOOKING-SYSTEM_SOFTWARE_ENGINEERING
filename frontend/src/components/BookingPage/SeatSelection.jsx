@@ -15,7 +15,7 @@ export function SeatSelection() {
         const seatLabels = [];
         for (let i = 0; i < rows; i++) {
             for (let j = 1; j <= columns; j++) {
-                const seatLabel = letters[i] + j;
+                const seatLabel =  j;
                 seatLabels.push(seatLabel);
             }
         }
@@ -36,7 +36,7 @@ export function SeatSelection() {
     };
 
     const isSeatBooked = (seatLabel) => {
-        const bookedSeats = ['B13', 'D2', 'E20', 'H5', 'J18'];
+        const bookedSeats = ['13', '2', '20', '5', '18'];
         return bookedSeats.includes(seatLabel);
     };
 

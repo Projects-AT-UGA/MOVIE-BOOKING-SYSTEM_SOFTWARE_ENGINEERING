@@ -88,7 +88,7 @@ const CardDetail = sequelize.define('CardDetail', {
   }
 });
 
-// Sync the model with the database
+// // Sync the model with the database
 // async function syncModel() {
 //   try {
 //     await CardDetail.sync({ alter: true });

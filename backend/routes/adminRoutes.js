@@ -1,34 +1,27 @@
-const express=require("express")
-const adminRouter=express.Router()
-const { getusers, postusers, deleteusers, updateusers,
-     getmovies, postmovies, deletemovies, updatemovies, 
-     getpromotions, postpromotions, deletepromotions, updatepromotions,
-     getShowDetails,postShowDetail,deleteShowDetail,updateShowDetail
-    } = require("../controllers/adminController");
+const express = require("express");
+const adminRouter = express.Router();
+const FacadeInterface = require("../controllers/adminController");
 
+const facade = new FacadeInterface();
 
+adminRouter.get("/", facade.getusers);
+adminRouter.post("/", facade.postusers);
+adminRouter.delete("/:id", facade.deleteusers);
+adminRouter.patch("/:id", facade.updateusers);
 
-adminRouter.get("/",getusers)
-adminRouter.post("/",postusers)
-adminRouter.delete("/:id",deleteusers)
-adminRouter.patch("/:id",updateusers)
+adminRouter.get("/movies", facade.getmovies);
+adminRouter.post("/movies", facade.postmovies);
+adminRouter.delete("/movies/:id", facade.deletemovies);
+adminRouter.patch("/movies/:id", facade.updatemovies);
 
+adminRouter.get("/promotions", facade.getpromotions);
+adminRouter.post("/promotions", facade.postpromotions);
+adminRouter.delete("/promotions/:id", facade.deletepromotions);
+adminRouter.patch("/promotions/:id", facade.updatepromotions);
 
-adminRouter.get("/movies",getmovies)
-adminRouter.post("/movies",postmovies)
-adminRouter.delete("/movies/:id",deletemovies)
-adminRouter.patch("/movies/:id",updatemovies)
+adminRouter.get("/showdetails", facade.getShowDetails);
+adminRouter.post("/showdetails", facade.postShowDetail);
+adminRouter.delete("/showdetails/:id", facade.deleteShowDetail);
+adminRouter.patch("/showdetails/:id", facade.updateShowDetail);
 
-
-adminRouter.get("/promotions",getpromotions)
-adminRouter.post("/promotions",postpromotions)
-adminRouter.delete("/promotions/:id",deletepromotions)
-adminRouter.patch("/promotions/:id",updatepromotions)
-
-
-adminRouter.get("/showdetails", getShowDetails);
-adminRouter.post("/showdetails", postShowDetail);
-adminRouter.delete("/showdetails/:id", deleteShowDetail);
-adminRouter.patch("/showdetails/:id", updateShowDetail);
-
-module.exports=adminRouter
+module.exports = adminRouter;

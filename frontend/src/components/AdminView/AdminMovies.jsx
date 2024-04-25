@@ -23,7 +23,7 @@ const AdminMovies = () => {
     producer: '',
     duration: '',
     visibility: '',
-    certificate: ''
+    certificate: '',
   }); 
   const [formData1, setFormData1] = useState({
     id: null,
@@ -41,7 +41,7 @@ const AdminMovies = () => {
     producer: '',
     duration: '',
     visibility: '',
-    certificate: ''
+    certificate: '',
   });
 
   // Fetch all movies
@@ -251,6 +251,8 @@ const AdminMovies = () => {
       value={formData.certificate}
       onChange={(e) => setFormData({ ...formData, certificate: e.target.value })}
     />
+    
+    
     {updateError ? <div>{updateError}</div> : <></>}
     <button onClick={updateMovie}>Update Movie</button>
   </div>
@@ -343,6 +345,7 @@ const AdminMovies = () => {
       value={formData1.certificate}
       onChange={(e) => setFormData1({ ...formData1, certificate: e.target.value })}
     />
+    
     {createError ? <div>{createError}</div> : <></>}
     <button onClick={createMovie}>Create Movie</button>
   </div>

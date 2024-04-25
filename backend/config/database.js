@@ -1,8 +1,9 @@
 const { Sequelize } = require('sequelize');
 
-const sequelize = new Sequelize('MainMovie', 'postgres', 'Sql@10071999', {
+const sequelize = new Sequelize('Movie_Booking', 'postgres', 'postgres', {
   host: 'localhost',
-  dialect: 'postgres'
+  dialect: 'postgres',
+  port: 5439
 });
 
 module.exports = sequelize;
