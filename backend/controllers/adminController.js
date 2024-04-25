@@ -8,29 +8,29 @@ const ShowDetail = require("../models/ShowDetailsModel");
 const nodemailer = require('nodemailer');
 // Define the Facade interface
 class FacadeInterface {
-    async getusers(req, res) {}
-    async postusers(req, res) {}
-    async deleteusers(req, res) {}
-    async updateusers(req, res) {}
-    async getmovies(req, res) {}
-    async postmovies(req, res) {}
-    async deletemovies(req, res) {}
-    async updatemovies(req, res) {}
-    async getpromotions(req, res) {}
-    async postpromotions(req, res) {}
-    async deletepromotions(req, res) {}
-    async updatepromotions(req, res) {}
-    async getShowDetails(req, res) {}
-    async postShowDetail(req, res) {}
-    async deleteShowDetail(req, res) {}
-    async updateShowDetail(req, res) {}
+    getusers(req, res) {}
+    postusers(req, res) {}
+    deleteusers(req, res) {}
+    updateusers(req, res) {}
+    getmovies(req, res) {}
+    postmovies(req, res) {}
+    deletemovies(req, res) {}
+    updatemovies(req, res) {}
+    getpromotions(req, res) {}
+    postpromotions(req, res) {}
+    deletepromotions(req, res) {}
+    updatepromotions(req, res) {}
+    getShowDetails(req, res) {}
+    postShowDetail(req, res) {}
+    deleteShowDetail(req, res) {}
+    updateShowDetail(req, res) {}
   }
   
   // Implement the Facade interface in separate classes
-  class Users extends FacadeInterface {
+class Users extends FacadeInterface {
     getusers = async (req, res) => {
         try {
-          
+          console.log("===========")
           const users = await User.findAll();
           
           res.status(200).json(users);
@@ -152,6 +152,7 @@ class FacadeInterface {
   class Promo extends FacadeInterface {
     getpromotions = async (req, res) => {
         try {
+          console.log("harshith");
           const promotions = await Promotions.findAll();
           res.status(200).json(promotions);
         } catch (error) {
@@ -387,4 +388,4 @@ class FacadeInterface {
 }
   
   // Export functions directly
-  module.exports = FacadeInterface;
+  module.exports = {Users,Movies,Promo,ShowTime};
