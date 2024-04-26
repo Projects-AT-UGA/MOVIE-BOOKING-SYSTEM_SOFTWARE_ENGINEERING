@@ -1,46 +1,61 @@
-import React from 'react';
-import { NavLink,Link } from 'react-router-dom'; // Import NavLink instead of Link
+import React, { useState } from 'react';
+import { NavLink } from 'react-router-dom';
 import './GenreMovie.css';
 
-
-
 export const GenreMovies = ({ movies, genre, searchQuery }) => {
-  
-  // Filter movies based on genre and search query
-  const filteredMovies = movies.filter((movie) =>{
+  const [filter, setFilter] = useState('Now Playing');
 
-  return (movie.genre.includes(genre) &&
-  movie.title && typeof movie.title === 'string' &&
-  movie.title.toLowerCase().includes(searchQuery.toLowerCase())) && movie.visibility.toLowerCase()==="Now Playing".toLowerCase()
-}
-);
+  // Filter movies based on genre, search query, and filter option
+  const filteredMovies = movies.filter((movie) => {
+    // Check if the movie satisfies the conditions for inclusion
+    const matchesGenre = movie.genre.includes(genre);
+    const matchesSearchQuery =
+      movie.title &&
+      typeof movie.title === 'string' &&
+      movie.title.toLowerCase().includes(searchQuery.toLowerCase());
+    const matchesFilter =
+      movie.visibility.toLowerCase() === filter.toLowerCase();
+
+    // Return true only if all conditions are met
+    return matchesGenre && matchesSearchQuery && matchesFilter;
+  });
+
+  // Deduplicate movies based on title
+  const uniqueMovies = Array.from(new Set(filteredMovies.map((movie) => movie.title)))
+    .map((title) => filteredMovies.find((movie) => movie.title === title));
+
   return (
-    
-        <div>
-  <h1 className="movie-booking-home-title">Now Playing</h1>
-  <div className="movie-container1">
-    {filteredMovies.map((movie, key) => (
-      <div key={key}>
-        <NavLink to={`/movie/${movie.title}`}>
-              <div key={key} className="movie-box1">
-                
-                
-                <img className="movie-image1" src={movie.trailer_picture} alt={movie.title} />
-                <div className="movie-title1">{movie.title}</div>
-                <p>
-                  Watch Trailer: <a className="trailer-link1" href={movie.trailer_video}>Link</a>
-                </p>
-                <p className="movie-rating1">Ratings: {movie.ratings}</p>
-                <p className="movie-genre1">Genre: {movie.genre}</p>
-              </div>
-              </NavLink>
+    <div>
+      <div className="filter-container">
+        <button
+          className={`filter-button ${filter === 'Now Playing' ? 'active' : ''}`}
+          onClick={() => setFilter('Now Playing')}
+        >
+          Now Playing
+        </button>
+        <button
+          className={`filter-button ${filter === 'Coming Soon' ? 'active' : ''}`}
+          onClick={() => setFilter('Coming Soon')}
+        >
+          Coming Soon
+        </button>
       </div>
-     
-    ))}
-  </div>
-</div>
-
-    
-
+      <h1 className="movie-booking-home-title">{filter}</h1>
+      <div className="movie-container1">
+        {uniqueMovies.map((movie, index) => (
+          <NavLink key={index} to={`/movie/${movie.title}`}>
+            <div className="movie-box1">
+              <img className="movie-image1" src={movie.trailer_picture} alt={movie.title} />
+              <div className="movie-title1">{movie.title}</div>
+              <p>
+                Watch Trailer: <a className="trailer-link1" href={movie.trailer_video}>Link</a>
+              </p>
+              <p className="movie-rating1">Ratings: {movie.ratings}</p>
+              <p className="movie-genre1">Genre: {movie.genre}</p>
+            </div>
+          </NavLink>
+        ))}
+      </div>
+    </div>
   );
 };

@@ -3,7 +3,8 @@ import './Home.css';
 import { GenreMovies } from './GenreMovies';
 import { Navbar } from './Navbar';
 import { Navbar1 } from './Navbar1';
-import {ComingSoon} from './ComingSoon'
+import {ComingSoon} from './ComingSoon';
+import logo from "./logo.png";
 export const Home = ({movies}) => {
 
   const [searchQuery, setSearchQuery] = useState('');
@@ -15,6 +16,15 @@ export const Home = ({movies}) => {
 
   return (
     <div className='home-container'>
+        <div className="logo-and-search">
+        <img 
+          src={logo}
+          alt="Big Screen Baazar Logo"
+          id="logo"
+          onClick={() => { navigate("/") }}
+          style={{ cursor: 'pointer' }} 
+        />
+      </div>
       <Navbar handleSearch={handleSearch} searchQuery={searchQuery} ></Navbar>
       <Navbar1 genre={genre} setSelectedGenre={setSelectedGenre}></Navbar1>
       <div className="genre-movies-container">
@@ -28,8 +38,8 @@ export const Home = ({movies}) => {
         <GenreMovies movies={movies} genre="Comedy" searchQuery={searchQuery} />
         <GenreMovies movies={movies} genre="Thriller" searchQuery={searchQuery} />
         */}
-        
       </div>
-    </div>
+      </div>
+    
   );
 };

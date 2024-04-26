@@ -20,25 +20,9 @@ export const ComingSoon = ({ movies, genre, searchQuery }) => {
   return (
     
 <div>
-  <h1 className="movie-booking-home-title">Coming Soon</h1>
-  <div className="movie-container">
-    {filteredMovies.map((movie, key) => (
-      
-      <div key={key} className="movie-box">
-        
-        {/* <p className="movie-description">{movie.description}</p> */}
-        <img className="movie-image3" src={movie.trailer_picture} alt={movie.title} />
-        <h2 className="movie-title">{movie.title}</h2>
-        <p>
-          Watch Trailer: <a className="trailer-link" href={movie.trailer_video}>Link</a>
-        </p>
-        
-        {/* <p className="movie-rating">Ratings: {movie.ratings}</p> */}
-        <p className="movie-genre">Genre: {movie.genre}</p>
-      </div>
-     
-    ))}
-  </div>
+
+  
+
 </div>
 
     

@@ -3,12 +3,7 @@
   align-items: center;
   justify-content: center;
   height: 100vh;
-  background: linear-gradient(
-      rgba(255, 255, 255, 0.7),
-      rgba(255, 255, 255, 0.3)
-    ),
-    url("https://img.freepik.com/free-vector/seamless-pattern-with-cinema-elements_225004-1154.jpg?w=1380&t=st=1708372952~exp=1708373552~hmac=a1859f4f10aba1f17f8697f146296b7b8f3bbd0ebd6f99f37e722e1bc990d60e");
-  background-size: cover;
+  background: url("background_image.png");
   background-position: center;
 }
 

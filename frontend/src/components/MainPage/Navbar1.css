@@ -1,26 +1,31 @@
 .navbar1-container{
     display: flex;
 }
-#navbar1-b1{
 
-padding:1rem;
-margin: 1rem;
-border:1px solid grey;
-
-}
-#navbar1-b2{
-   
-    padding:1rem;
-    margin: 1rem;
-    border:1px solid grey;
-    
-   
-}
 #navbar1-b1, #navbar1-b2, #navbar1-b3,#navbar1-b4{
-    width: 6%;
-    font-size: 1.4rem;
-    border-radius: 1.5rem;
+    padding: 10px 20px;
+  margin: 0 10px;
+  background-color: #000; /* Black background */
+  color: #fff; /* White text color */
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  width:80px;
+  height:40px;
+  margin-top: 10px;
+  border: 0.2px solid white;
 }
+
+#navbar1-b1,#navbar1-b2,#navbar1-b3,#navbar1-b4{
+    background-color: #ff0000; /* Red background for active button */
+    color: #fff; /* White text color */
+  }
+  
+  #navbar1-b1:hover,  #navbar1-b2:hover,  #navbar1-b3:hover,  #navbar1-b4:hover{
+    background-color: #333; /* Darker black on hover */
+  }
 #navbar1-b3{
  
 padding:1rem;

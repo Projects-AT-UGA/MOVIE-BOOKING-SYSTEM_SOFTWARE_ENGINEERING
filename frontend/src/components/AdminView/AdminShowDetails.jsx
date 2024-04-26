@@ -176,11 +176,11 @@ const AdminShowDetails = () => {
           <div>
             <h2>Create New Show Detail</h2>
             {/* Form for creating new show detail */}
-            <select
+            <select id="select-movie"
               value={formData.MovieId}
               onChange={(e) => setFormData({ ...formData, MovieId: e.target.value })}
             >
-              <option value="">Select Movie</option>
+              <option id="select-movie" value="">Select Movie</option>
               {movies.map((movie) => (
                 <option key={movie.id} value={movie.id}>{movie.title}</option>
               ))}
@@ -198,7 +198,7 @@ const AdminShowDetails = () => {
               value={formData.showDate}
               onChange={(e) => setFormData({ ...formData, showDate: e.target.value })}
             />
-            <select
+            <select id="select-time"
               value={formData.showTime}
               onChange={(e) => setFormData({ ...formData, showTime: e.target.value })}
             >
@@ -211,9 +211,10 @@ const AdminShowDetails = () => {
             <button onClick={createShowDetail}>Create Show Detail</button>
           </div>
           {selectedShowDetail && (
+            <div id="update-show-details">
             <div>
               <h2>Update Show Detail</h2>
-              <select
+              <select id="update-movie-title"
                 value={formData1.MovieId}
                 onChange={(e) => setFormData1({ ...formData1, MovieId: e.target.value })}
                 disabled={true}
@@ -235,7 +236,7 @@ const AdminShowDetails = () => {
                 value={formData1.showDate}
                 onChange={(e) => setFormData1({ ...formData1, showDate: e.target.value })}
               />
-              <select
+              <select id="update-time-details"
                 value={formData1.showTime}
                 onChange={(e) => setFormData1({ ...formData1, showTime: e.target.value })}
               >
@@ -246,6 +247,7 @@ const AdminShowDetails = () => {
               </select>
               {updateError && <div className='error-message'>{updateError}</div>}
               <button onClick={updateShowDetail}>Update Show Detail</button>
+            </div>
             </div>
           )}
         </div>

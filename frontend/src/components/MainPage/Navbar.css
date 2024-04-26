@@ -4,8 +4,11 @@
     justify-content: center;
     margin: 1rem;
     padding-top:20px;
+    margin-left: 120px; 
+    margin-right: 20px; 
     width: auto;
     border-radius:20px;
+    margin-top: -10px;
 
 }
 .user_info{
@@ -20,7 +23,7 @@
     box-shadow: 0 0 7px rgba(0, 0, 0, 0.3);
     border-radius: 10px;
     height: 40px;
-    width:130rem;
+    width:120rem;
     padding:1rem;
     font-size: 1.2rem;
     
@@ -54,3 +57,4 @@ border:1px solid grey;
 .navbar-b1:active,.navbar-b2:hover{
     background-color:#eb2b2b; ;
 }
+

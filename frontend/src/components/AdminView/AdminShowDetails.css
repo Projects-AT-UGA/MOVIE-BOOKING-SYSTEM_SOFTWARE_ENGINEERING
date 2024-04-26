@@ -54,6 +54,7 @@
     width: 30%;
 }
 
+
 .show-details-right input,
 .show-details-right label,
 .show-details-middle input,
@@ -65,6 +66,7 @@
 
 .show-details-right input[type='text'],
 .show-details-right input[type='number'],
+.show-details-right input[type='date'] ,
 .show-details-middle input[type='text'],
 .show-details-middle input[type='number'] {
     width: calc(100% - 20px);
@@ -72,7 +74,92 @@
     border: 2px solid #ccc;
     border-radius: 5px;
 }
+.show-details-right select {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    background-color: #000; /* Black background */
+    font-size: 16px;
+    appearance: none; /* Remove default arrow */
+}
 
+.show-details-right select option {
+    background-color: #000; /* Black background */
+    color: #fff;
+}
+#update-time-details{
+    color:#fff;
+}
+#select-movie{
+  color:#fff;
+}
+#update-movie-title{
+    color:#fff;
+}
+#update-movie-title option{
+    color:#fff;
+}
+#select-time{
+    color:#fff;
+}
+#update-show-details div select option{
+color:#fff;
+}
+.show-details-right select option {
+    color:#fff;
+}
+/* Shared styling for input fields */
+.show-details-right input {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    background-color: #000; /* Black background */
+    color: #fff; /* White text color */
+    font-size: 16px;
+    outline: none;
+}
+
+.show-details-right input::placeholder {
+    color: #fff; /* Light gray placeholder */
+}
+
+
+
+/* Buttons */
+.show-details-right button {
+    width: 100%;
+    padding: 12px;
+    background-color: #ff0000; /* Red button */
+    color: #fff; /* White text color */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.show-details-right button:hover {
+    background-color: #cc0000; /* Darker red on hover */
+}
+
+/* Error Message */
+.error-message {
+    color: #ff0000; /* Red error message */
+}
+
+
+.show-details-right{
+    width: 70%; /* Adjusted input width to account for padding */
+  margin-bottom: 10px;
+  padding: 10px; /* Increased padding for input fields */
+  border: 2px solid #ccc; /* Updated border thickness */
+  border-radius: 5px;
+  
+  color: #333;
+  box-shadow: inset 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
 .show-details-right button,
 .show-details-middle button {
     width: 100%;
