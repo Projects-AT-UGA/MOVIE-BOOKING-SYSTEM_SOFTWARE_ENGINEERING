@@ -1,30 +1,75 @@
 const express = require("express");
 const adminRouter = express.Router();
-const {Users,Movies,Promo,ShowTime}= require("../controllers/adminController");
+const Facade = require("../controllers/adminController");
 
-facade=new Users();
-console.log(facade.getusers);
-adminRouter.get("/", facade.getusers);
-adminRouter.post("/", facade.postusers);
-adminRouter.delete("/:id", facade.deleteusers);
-adminRouter.patch("/:id", facade.updateusers);
+const facade = new Facade();
 
-facade=new Movies();
-adminRouter.get("/movies", facade.getmovies);
-adminRouter.post("/movies", facade.postmovies);
-adminRouter.delete("/movies/:id", facade.deletemovies);
-adminRouter.patch("/movies/:id", facade.updatemovies);
+// Users routes
+adminRouter.get("/", async (req, res) => {
+  await facade.getUsers(req, res);
+});
 
-facade=new Promo();
-adminRouter.get("/promotions", facade.getpromotions);
-adminRouter.post("/promotions", facade.postpromotions);
-adminRouter.delete("/promotions/:id", facade.deletepromotions);
-adminRouter.patch("/promotions/:id", facade.updatepromotions);
+adminRouter.post("/", async (req, res) => {
+  await facade.createUser(req, res);
+});
 
-facade=new ShowTime();
-adminRouter.get("/showdetails", facade.getShowDetails);
-adminRouter.post("/showdetails", facade.postShowDetail);
-adminRouter.delete("/showdetails/:id", facade.deleteShowDetail);
-adminRouter.patch("/showdetails/:id", facade.updateShowDetail);
+adminRouter.delete("/:id", async (req, res) => {
+  await facade.deleteUser(req, res);
+});
+
+adminRouter.patch("/:id", async (req, res) => {
+  await facade.updateUser(req, res);
+});
+
+// Promotions routes
+adminRouter.get("/promotions", async (req, res) => {
+  await facade.getPromotions(req, res);
+});
+
+adminRouter.post("/promotions", async (req, res) => {
+  await facade.createPromotion(req, res);
+});
+
+adminRouter.delete("/promotions/:id", async (req, res) => {
+  await facade.deletePromotion(req, res);
+});
+
+adminRouter.patch("/promotions/:id", async (req, res) => {
+  await facade.updatePromotion(req, res);
+});
+
+// Movies routes
+adminRouter.get("/movies", async (req, res) => {
+  await facade.getMovies(req, res);
+});
+
+adminRouter.post("/movies", async (req, res) => {
+  await facade.createMovie(req, res);
+});
+
+adminRouter.delete("/movies/:id", async (req, res) => {
+  await facade.deleteMovie(req, res);
+});
+
+adminRouter.patch("/movies/:id", async (req, res) => {
+  await facade.updateMovie(req, res);
+});
+
+// Show details routes
+adminRouter.get("/showdetails", async (req, res) => {
+  await facade.getShowDetails(req, res);
+});
+
+adminRouter.post("/showdetails", async (req, res) => {
+  await facade.createShowDetail(req, res);
+});
+
+adminRouter.delete("/showdetails/:id", async (req, res) => {
+  await facade.deleteShowDetail(req, res);
+});
+
+adminRouter.patch("/showdetails/:id", async (req, res) => {
+  await facade.updateShowDetail(req, res);
+});
 
 module.exports = adminRouter;

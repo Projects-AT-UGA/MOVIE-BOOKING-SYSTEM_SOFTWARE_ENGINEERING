@@ -7,8 +7,7 @@ import './AdminShowDetails.css';
 const AdminShowDetails = () => {
   const [showDetails, setShowDetails] = useState([]);
   const [createError, setCreateError] = useState(null);
-  
-  const [updateError,setUpdateError]=useState(null);
+  const [updateError, setUpdateError] = useState(null);
   const { state } = useAdmin();
   const [movies, setMovies] = useState([]);
   const [formData, setFormData] = useState({
@@ -23,7 +22,6 @@ const AdminShowDetails = () => {
     showDate: '',
     showTime: '08:00:00'
   });
-
   const [selectedShowDetail, setSelectedShowDetail] = useState(null);
 
   // Fetch all movies
@@ -73,6 +71,7 @@ const AdminShowDetails = () => {
   useEffect(() => {
     fetchShowDetails(); // Fetch show details on component mount
   }, []);
+
   // Delete a show detail
   const deleteShowDetail = async (showDetailId) => {
     try {
@@ -93,11 +92,11 @@ const AdminShowDetails = () => {
       console.error('Error deleting show detail:', error);
     }
   };
+
   // Create a new show detail
   const createShowDetail = async () => {
     try {
       if (state) {
-        console.log(`${formData.showDate}T${formData.showTime}`)
         const response = await fetch('/admin/showdetails', {
           method: 'POST',
           headers: {
@@ -127,7 +126,6 @@ const AdminShowDetails = () => {
   const updateShowDetail = async () => {
     try {
       if (state && selectedShowDetail) {
-        
         const response = await fetch(`/admin/showdetails/${selectedShowDetail.id}`, {
           method: 'PATCH',
           headers: {
@@ -158,23 +156,23 @@ const AdminShowDetails = () => {
       <AdminNavbar />
       <div>Admin Show Details</div>
 
-      <div style={{ display: 'flex' }}>
+      <div className='admin-show-details-container'>
         {/* Display show details */}
-        <div className='showDetailsLeft' style={{ width: '30%', marginRight: '10px' }}>
+        <div className='show-details-left'>
           <ul>
             {showDetails.map((showDetail) => (
               <li key={showDetail.id} onClick={() => {
                 setSelectedShowDetail(showDetail);
                 setFormData1({...showDetail,showDate: new Date(showDetail.showDateTime).toISOString().substr(0, 10),showTime: '08:00:00'}); // Populate formData1 with the selected show detail
               }}>
-              Movie: {showDetail.Movie.title}- Screen ID: {showDetail.screenid} - Show Date Time: {showDetail.showDateTime}
-              <button onClick={() => deleteShowDetail(showDetail.id)}>Delete</button>
+                Movie: {showDetail.Movie.title} - Screen ID: {showDetail.screenid} - Show Date Time: {showDetail.showDateTime}
+                <button onClick={() => deleteShowDetail(showDetail.id)}>Delete</button>
               </li>
             ))}
           </ul>
         </div>
         {/* Create or update show detail form */}
-        <div className='showDetailsRight' style={{ width: '30%' }}>
+        <div className='show-details-right'>
           <div>
             <h2>Create New Show Detail</h2>
             {/* Form for creating new show detail */}
@@ -209,9 +207,8 @@ const AdminShowDetails = () => {
               <option value="16:00:00">16:00:00</option>
               <option value="20:00:00">20:00:00</option>
             </select>
-            {createError && <div>{createError}</div>}
+            {createError && <div className='error-message'>{createError}</div>}
             <button onClick={createShowDetail}>Create Show Detail</button>
-            
           </div>
           {selectedShowDetail && (
             <div>
@@ -224,7 +221,7 @@ const AdminShowDetails = () => {
                 <option value="">Select Movie</option>
                 {movies.map((movie) => (
                   <option key={movie.id} value={movie.id}>{movie.title}</option>
-                ))} 
+                ))}
               </select>
               <input
                 type="text"
@@ -247,8 +244,7 @@ const AdminShowDetails = () => {
                 <option value="16:00:00">16:00:00</option>
                 <option value="20:00:00">20:00:00</option>
               </select>
-              
-              {updateError && <div>{updateError}</div>}
+              {updateError && <div className='error-message'>{updateError}</div>}
               <button onClick={updateShowDetail}>Update Show Detail</button>
             </div>
           )}

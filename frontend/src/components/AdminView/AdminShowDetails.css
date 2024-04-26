@@ -1,0 +1,110 @@
+/* AdminShowDetails.css */
+
+/* Admin Show Details Container */
+.admin-show-details-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    margin-top: 5%;
+}
+  
+/* Left Section - Display Show Details */
+.show-details-left {
+    width: 30%;
+}
+
+.show-details-left h2 {
+    color: #fff;
+}
+
+.show-details-left ul {
+    list-style: none;
+    padding: 0;
+}
+
+.show-details-left li {
+    cursor: pointer;
+    margin-bottom: 10px;
+    color: #fff;
+    transition: color 0.3s ease;
+}
+
+.show-details-left li:hover {
+    color: #ff0000;
+}
+
+.show-details-left button {
+    background-color: #ff0000;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.show-details-left button:hover {
+    background-color: #cc0000;
+}
+
+/* Right Section - Update Show Detail */
+.show-details-right,
+.show-details-middle {
+    width: 30%;
+}
+
+.show-details-right input,
+.show-details-right label,
+.show-details-middle input,
+.show-details-middle label {
+    display: block;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.show-details-right input[type='text'],
+.show-details-right input[type='number'],
+.show-details-middle input[type='text'],
+.show-details-middle input[type='number'] {
+    width: calc(100% - 20px);
+    padding: 10px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+}
+
+.show-details-right button,
+.show-details-middle button {
+    width: 100%;
+    padding: 12px;
+    background-color: #ff0000;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.show-details-right button:hover,
+.show-details-middle button:hover {
+    background-color: #cc0000;
+}
+
+/* Error Message */
+.errorMessage {
+    color: #ff0000;
+}
+
+/* Dropdown Select */
+.show-details-left select,
+.show-details-middle select {
+    width: calc(100% - 20px);
+    padding: 10px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    color: #333;
+    font-size: 16px;
+}
+

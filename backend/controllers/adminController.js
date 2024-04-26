@@ -7,30 +7,85 @@ const Movie = require('../models/movieModel');
 const ShowDetail = require("../models/ShowDetailsModel");
 const nodemailer = require('nodemailer');
 // Define the Facade interface
-class FacadeInterface {
-    getusers(req, res) {}
-    postusers(req, res) {}
-    deleteusers(req, res) {}
-    updateusers(req, res) {}
-    getmovies(req, res) {}
-    postmovies(req, res) {}
-    deletemovies(req, res) {}
-    updatemovies(req, res) {}
-    getpromotions(req, res) {}
-    postpromotions(req, res) {}
-    deletepromotions(req, res) {}
-    updatepromotions(req, res) {}
-    getShowDetails(req, res) {}
-    postShowDetail(req, res) {}
-    deleteShowDetail(req, res) {}
-    updateShowDetail(req, res) {}
+// Define the Facade class
+class Facade {
+  constructor() {
+    this.users = new Users();
+    this.movies = new Movies();
+    this.promotions = new Promo();
+    this.showTime = new ShowTime();
   }
+
+  // Common interface methods
+  async getUsers(req, res) {
+    return await this.users.getusers(req, res);
+  }
+
+  async createUser(req, res) {
+    return await this.users.postusers(req, res);
+  }
+
+  async deleteUser(req, res) {
+    return await this.users.deleteusers(req, res);
+  }
+
+  async updateUser(req, res) {
+    return await this.users.updateusers(req, res);
+  }
+
+  async getPromotions(req, res) {
+    return await this.promotions.getpromotions(req, res);
+  }
+
+  async createPromotion(req, res) {
+    return await this.promotions.postpromotions(req, res);
+  }
+
+  async deletePromotion(req, res) {
+    return await this.promotions.deletepromotions(req, res);
+  }
+
+  async updatePromotion(req, res) {
+    return await this.promotions.updatepromotions(req, res);
+  }
+
+  async getMovies(req, res) {
+    return await this.movies.getmovies(req, res);
+  }
+
+  async createMovie(req, res) {
+    return await this.movies.postmovies(req, res);
+  }
+
+  async deleteMovie(req, res) {
+    return await this.movies.deletemovies(req, res);
+  }
+
+  async updateMovie(req, res) {
+    return await this.movies.updatemovies(req, res);
+  }
+
+  async getShowDetails(req, res) {
+    return await this.showTime.getShowDetails(req, res);
+  }
+
+  async createShowDetail(req, res) {
+    return await this.showTime.postShowDetail(req, res);
+  }
+
+  async deleteShowDetail(req, res) {
+    return await this.showTime.deleteShowDetail(req, res);
+  }
+
+  async updateShowDetail(req, res) {
+    return await this.showTime.updateShowDetail(req, res);
+  }
+}
   
   // Implement the Facade interface in separate classes
-class Users extends FacadeInterface {
+class Users{
     getusers = async (req, res) => {
         try {
-          console.log("===========")
           const users = await User.findAll();
           
           res.status(200).json(users);
@@ -149,7 +204,7 @@ class Users extends FacadeInterface {
       
   }
   
-  class Promo extends FacadeInterface {
+  class Promo{
     getpromotions = async (req, res) => {
         try {
           console.log("harshith");
@@ -250,7 +305,7 @@ class Users extends FacadeInterface {
       
   }
   
-  class Movies extends FacadeInterface {
+  class Movies{
      getmovies = async (req, res) => {
         try {
           const movies = await Movie.findAll();
@@ -322,7 +377,7 @@ class Users extends FacadeInterface {
         }
       };      
 }
-  class ShowTime extends FacadeInterface {
+  class ShowTime{
     getShowDetails = async (req, res) => {
         try {
           const showDetails = await ShowDetail.findAll({ include: Movie });
@@ -388,4 +443,4 @@ class Users extends FacadeInterface {
 }
   
   // Export functions directly
-  module.exports = {Users,Movies,Promo,ShowTime};
+  module.exports = Facade;
