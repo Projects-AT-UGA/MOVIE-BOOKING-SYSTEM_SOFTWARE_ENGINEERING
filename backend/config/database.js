@@ -3,10 +3,9 @@ const { Sequelize } = require('sequelize');
 class Database {
   constructor() {
     if (!Database.instance) {
-      this.sequelize = new Sequelize('Movie_Booking', 'postgres', 'postgres', {
+      this.sequelize = new Sequelize('MainMovie', 'postgres', 'Sql@10071999', {
         host: 'localhost',
         dialect: 'postgres',
-        port: 5439
       });
       Database.instance = this;
     }
