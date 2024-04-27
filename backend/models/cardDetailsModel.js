@@ -2,7 +2,7 @@ const { Sequelize, DataTypes } = require('sequelize');
 const CryptoJS = require('crypto-js');
 const sequelize = require('../config/database'); // Import the Sequelize instance
 const User = require('./userModel');
-
+const Booking=require("./bookingModel")
 // Load environment variables from .env file
 require('dotenv').config();
 
@@ -87,6 +87,11 @@ const CardDetail = sequelize.define('CardDetail', {
     defaultValue: false
   }
 });
+
+CardDetail.hasMany(Booking, { foreignKey: 'cardId' });
+Booking.belongsTo(CardDetail, { foreignKey: 'cardId', constraints: false }); // Each card detail belongs to one user
+
+
 
 // // Sync the model with the database
 // async function syncModel() {

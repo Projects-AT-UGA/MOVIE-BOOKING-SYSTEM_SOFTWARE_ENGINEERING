@@ -11,6 +11,10 @@ const Ticket = sequelize.define('Ticket', {
         type: DataTypes.INTEGER,
         allowNull: false,
     },
+    showId:{
+        type: DataTypes.INTEGER,
+        allowNull: false,
+    },
     seatNumber: {
         type: DataTypes.INTEGER,
         allowNull: false,
@@ -41,6 +45,24 @@ const Ticket = sequelize.define('Ticket', {
             }
         }
     },
+}, {
+    // Define unique constraint for the combination of seatNumber and bookingId
+    indexes: [
+        {
+            unique: true,
+            fields: ['seatNumber', 'showId'],
+            name: 'unqiue_seat'
+        }
+    ]
 });
 
+// async function syncTickets() {
+//     try {
+//         await Ticket.sync({ force: true });
+//         console.log('Ticket model synchronized successfully.');
+//     } catch (error) {
+//         console.error('Error synchronizing Ticket model:', error);
+//     }
+// }
+// syncTickets()
 module.exports = Ticket;

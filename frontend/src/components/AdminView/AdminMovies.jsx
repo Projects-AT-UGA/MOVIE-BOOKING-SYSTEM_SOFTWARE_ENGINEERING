@@ -35,12 +35,12 @@ const AdminMovies = () => {
     playing_now: false,
     trailer_picture: '',
     release_date: '',
-    genre: '',
+    genre: 'Drama',
     trailer_video: '',
     director: '',
     producer: '',
     duration: '',
-    visibility: '',
+    visibility: 'Now Playing',
     certificate: '',
   });
 
@@ -65,13 +65,14 @@ const AdminMovies = () => {
   const createMovie = async () => {
     try {
       if(state){
+        console.log(formData1)
       const response = await fetch('/admin/movies', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           authorization:`Bearer ${state.adminuser.token}`
         },
-        body: JSON.stringify(formData)
+        body: JSON.stringify(formData1)
       });
       const data = await response.json();
       console.log('New movie created:', data);
@@ -93,6 +94,7 @@ const AdminMovies = () => {
   const deleteMovie = async (movieId) => {
     try {
       if(state){
+       
       const response = await fetch(`/admin/movies/${movieId}`, {
         method: 'DELETE',
         headers:{
@@ -209,12 +211,16 @@ const AdminMovies = () => {
       value={formData.release_date}
       onChange={(e) => setFormData({ ...formData, release_date: e.target.value })}
     />
-    <input
-      type="text"
-      placeholder="Genre"
+    <select
       value={formData.genre}
       onChange={(e) => setFormData({ ...formData, genre: e.target.value })}
-    />
+      id='genre-movie'
+    >
+      <option value="Drama">Drama</option>
+      <option value="Action">Action</option>
+      <option value="Crime">Crime</option>
+    </select>
+
     <input
       type="text"
       placeholder="Trailer Video"
@@ -239,12 +245,15 @@ const AdminMovies = () => {
       value={formData.duration}
       onChange={(e) => setFormData({ ...formData, duration: e.target.value })}
     />
-    <input
-      type="text"
-      placeholder="Visibility"
+    <select
       value={formData.visibility}
       onChange={(e) => setFormData({ ...formData, visibility: e.target.value })}
-    />
+      id="drop-down-movie"
+    >
+      <option value="Now Playing">Now Playing</option>
+      <option value="Coming Soon">Coming Soon</option>
+    </select>
+
     <input
       type="text"
       placeholder="Certificate"
@@ -303,12 +312,16 @@ const AdminMovies = () => {
       value={formData1.release_date}
       onChange={(e) => setFormData1({ ...formData1, release_date: e.target.value })}
     />
-    <input
-      type="text"
-      placeholder="Genre"
+    <select
       value={formData1.genre}
       onChange={(e) => setFormData1({ ...formData1, genre: e.target.value })}
-    />
+      id="genre-movie"
+    >
+      <option value="Drama">Drama</option>
+      <option value="Action">Action</option>
+      <option value="Crime">Crime</option>
+    </select>
+
     <input
       type="text"
       placeholder="Trailer Video"
@@ -333,12 +346,15 @@ const AdminMovies = () => {
       value={formData1.duration}
       onChange={(e) => setFormData1({ ...formData1, duration: e.target.value })}
     />
-    <input
-      type="text"
-      placeholder="Visibility"
+    <select
       value={formData1.visibility}
       onChange={(e) => setFormData1({ ...formData1, visibility: e.target.value })}
-    />
+    id="drop-down-movie"
+    >
+      <option value="Now Playing">Now Playing</option>
+      <option value="Coming Soon">Coming Soon</option>
+    </select>
+
     <input
       type="text"
       placeholder="Certificate"

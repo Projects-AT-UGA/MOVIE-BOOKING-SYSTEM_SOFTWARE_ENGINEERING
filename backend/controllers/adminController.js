@@ -320,7 +320,7 @@ class Users{
           const { title, ratings, cast, synopsis, rating, playing_now, trailer_picture, release_date, genre, trailer_video, director, producer, duration, visibility, certificate } = req.body;
             
           // Validate fields (if needed)
-      
+          console.log(req.body)
           // Create a new movie
           const newMovie = await Movie.create({
             title: title,

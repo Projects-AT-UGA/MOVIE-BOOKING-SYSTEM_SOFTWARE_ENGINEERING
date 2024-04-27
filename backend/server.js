@@ -9,6 +9,7 @@ const superuserRouter=require("./routes/superuserRoutes")
 const protectEachUser=require("./MiddleWare/ProtectingEachUser")
 const protectAllAdmin=require("./MiddleWare/ProtectingAdmin")
 const bookingRouter=require("./routes/bookingRoutes")
+const paymentRouter=require("./routes/paymentRoutes")
 require("dotenv").config()
 const cors=require("cors")
 
@@ -32,7 +33,12 @@ app.use('/user',editRouter);
 app.use("/card",protectEachUser)
 app.use("/card",cardRouter);
 
+app.use("/payment",protectEachUser)
+app.use("/payment",paymentRouter)
+
+
 app.use("/booking",bookingRouter)
+
 
 
 app.use('/api', movieRoutes);

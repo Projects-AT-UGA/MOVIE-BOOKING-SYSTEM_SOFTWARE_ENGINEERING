@@ -6,7 +6,6 @@ const getShowDetailsForMovie = async (req, res) => {
         const movieId = req.params.id; 
         const showDetails = await ShowDetail.findAll({
             where: { MovieId: movieId }, 
-          
         });
       res.status(200).json(showDetails);
     } catch (error) {
@@ -14,5 +13,6 @@ const getShowDetailsForMovie = async (req, res) => {
       res.status(500).json({ error: "Error getting show details" });
     }
 };
-  
+
+
 module.exports={getShowDetailsForMovie}

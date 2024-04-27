@@ -63,3 +63,13 @@
     background-color: #e50914;
 }
 
+#drop-down-movie{
+  color:black;
+  padding:0.3rem;
+  margin-bottom: 1rem;
+}
+#genre-movie{
+  color:black;
+  padding:0.3rem;
+  margin-bottom: 1rem;
+}

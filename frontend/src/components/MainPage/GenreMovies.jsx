@@ -23,7 +23,6 @@ export const GenreMovies = ({ movies, genre, searchQuery }) => {
   // Deduplicate movies based on title
   const uniqueMovies = Array.from(new Set(filteredMovies.map((movie) => movie.title)))
     .map((title) => filteredMovies.find((movie) => movie.title === title));
-
   return (
     <div>
       <div className="filter-container">
@@ -42,7 +41,7 @@ export const GenreMovies = ({ movies, genre, searchQuery }) => {
       </div>
       <h1 className="movie-booking-home-title">{filter}</h1>
       <div className="movie-container1">
-        {uniqueMovies.map((movie, index) => (
+        {uniqueMovies.length!==0 ? uniqueMovies.map((movie, index) => (
           <NavLink key={index} to={`/movie/${movie.title}`}>
             <div className="movie-box1">
               <img className="movie-image1" src={movie.trailer_picture} alt={movie.title} />
@@ -53,8 +52,8 @@ export const GenreMovies = ({ movies, genre, searchQuery }) => {
               <p className="movie-rating1">Ratings: {movie.ratings}</p>
               <p className="movie-genre1">Genre: {movie.genre}</p>
             </div>
-          </NavLink>
-        ))}
+          </NavLink> 
+        )): <div style={{color:"white"}}>No Movies to watch</div>}
       </div>
     </div>
   );
