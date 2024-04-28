@@ -2,16 +2,24 @@ import React, { useState, useEffect } from 'react';
 import {useNavigate} from 'react-router-dom'
 import './SeatSelection.css'; 
 import FormInput from '../Registration/FormInput';
+import useBooking from '../../booking/useBooking';
+import useTickets from '../../booking/useTickets';
 
 export function SeatSelection() {
-    const [selectedSeats, setSelectedSeats] = useState([]);
+    const [selectedSeats,setSelectedSeats]=useState([])
     const [ticketPrice] = useState(15);
     const [totalPrice, setTotalPrice] = useState(0);
     const [seatDetails, setSeatDetails] = useState({});
     const [paymentOption, setPaymentOption] = useState('');
     const navigate=useNavigate();
+    const {state}=useBooking()
+    const [bookedSeats,setBookedSeats,error,isloading,getTickets]=useTickets()
+    useEffect(()=>{
+        getTickets()
+    },[state])
+
+    
     const getAvailableSeats = (rows, columns) => {
-        const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
         const seatLabels = [];
         for (let i = 0; i < rows; i++) {
             for (let j = 1; j <= columns; j++) {
@@ -36,7 +44,6 @@ export function SeatSelection() {
     };
 
     const isSeatBooked = (seatLabel) => {
-        const bookedSeats = ['13', '2', '20', '5', '18'];
         return bookedSeats.includes(seatLabel);
     };
 
@@ -66,26 +73,14 @@ export function SeatSelection() {
         ));
     };
 
-    // const renderDropdown = () => {
-    //     return (
-    //         <select
-    //             value={paymentOption}
-    //             onChange={(e) => setPaymentOption(e.target.value)}
-    //         >
-    //             <option value="">Select Payment Option</option>
-    //             <option value="credit">Credit Card</option>
-    //             <option value="debit">Debit Card</option>
-    //             <option value="paypal">PayPal</option>
-    //         </select>
-    //     );
-    // };
+   
 
     return (
         <div className="container2">
             <h2 className="seats">Seat Selection</h2>
             <div className="screen">Screen This Way</div>
             <div className="seat-container">
-                {getAvailableSeats(10, 13).map(seatLabel => (
+                {getAvailableSeats(1,50).map(seatLabel => (
                     <div 
                         key={seatLabel}
                         className={`seat ${selectedSeats.includes(seatLabel) ? 'selected' : ''} ${isSeatBooked(seatLabel) ? 'booked' : ''}`}
@@ -101,6 +96,7 @@ export function SeatSelection() {
                     </div>
                 ))}
             </div>
+            {error ? <div>{error}</div> : <></>}
             <ul className="showcase">
                 <li>
                     <div className="seat available"></div>

@@ -1,6 +1,12 @@
 const Booking=require("../models/bookingModel")
 const Ticket=require("../models/TicketModel")
 const CardDetail=require("../models/cardDetailsModel")
+
+
+
+
+
+
 const postPayment = async (req, res) => {
     try {
         // Extract userId from the authenticated user

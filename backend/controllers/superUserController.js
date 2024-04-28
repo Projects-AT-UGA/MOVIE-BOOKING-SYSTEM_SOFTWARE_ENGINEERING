@@ -5,7 +5,7 @@ const validator = require('validator');
 
 const createToken = (id, email) => {
     const payload = { user: { id, email } };
-    const token = jwt.sign(payload, process.env.AUTH_KEY, { expiresIn: '1d' });
+    const token = jwt.sign(payload, process.env.AUTH_KEY, { expiresIn: '5d' });
     return token;
 };
 

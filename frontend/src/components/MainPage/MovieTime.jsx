@@ -1,11 +1,13 @@
 import React, { useState,useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import './MovieTime.css';
+import useBooking from '../../booking/useBooking';
 
 export const MovieTime = ({ movies }) => {
+  const {state,dispatch}=useBooking()
   const { title,id } = useParams(); // Access route parameters
   const navigate = useNavigate();
-
+  
   // Find the movie by its title
   const movie = movies && movies.find(movie => movie.title === title);
   const [showDetails, setShowDetails] = useState([]);
@@ -16,37 +18,31 @@ export const MovieTime = ({ movies }) => {
   const [selectedDate, setSelectedDate] = useState(''); // State to store selected date
   const [selectedTime, setSelectedTime] = useState(''); // State to store selected time
   const [selectedScreen, setSelectedScreen] = useState(''); // State to store selected screen
-  function convertToISO(timestamp) {
-    // Splitting the timestamp into its components
-    const parts = timestamp.split(/[ :\/]+/);
-
-    // Extracting date components
-    const month = parseInt(parts[3]);
-    const day = parseInt(parts[4]);
-    const year = parseInt(parts[5]);
-
-    // Extracting time components
-    let hour = parseInt(parts[0]);
-    const minute = parseInt(parts[1]);
-    // console.log(parts)
-    // Adjusting hour for PM time format
-    if (parts[2].toUpperCase() === "PM" && hour !== 12) {
-        hour += 12;
-    }
-
-    // Formatting the date string in ISO 8601 format
-    const isoDateString = `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}T${String(hour).padStart(2, '0')}:${String(minute).padStart(2, '0')}:00.000Z`;
-    
-    return isoDateString;
-}
+  
 
   const setTheBooking=()=>{
-    console.log("===========================")
-    console.log(showDetails)
-    console.log(selectedTime,selectedDate)
-    const isoTimestamp = convertToISO(selectedTime+" "+selectedDate);
-    console.log(isoTimestamp);
     
+    
+    // Assuming selectedTime and selectedDate are in the format '12:00 PM' and '12/12/2023' respectively
+    let [hour, minute, meridian] = selectedTime.split(' ')[0].split(':');
+    const [month, day, year] = selectedDate.split('/');
+
+    // Convert meridian to 24-hour format if needed
+    meridian=selectedTime.split(' ')[1]
+    const hour24 = (meridian === 'PM' && hour !== '12') ? parseInt(hour, 10) + 12 : parseInt(hour, 10);
+
+    // Construct the date object
+    const date = new Date(year, month - 1, day, hour24, minute);
+
+    // Format the date in the desired format
+    const formattedDate = date.toString();
+
+    showDetails.map((detail)=>{
+      if(date.getTime()===new Date(detail.showDateTime).getTime() && parseInt(detail.screenid)===parseInt(selectedScreen)){
+        dispatch({type:"SET_CURRENT_MOVIE",payload:detail})
+        navigate("/seatselection")
+      }
+    })
 
   }
 
@@ -58,7 +54,6 @@ export const MovieTime = ({ movies }) => {
           const data = await response.json();
           setShowDetails(data);
           
-          // console.log(data)
         } else {
           console.error('Failed to fetch movie show details:', response.statusText);
         }
@@ -155,7 +150,7 @@ export const MovieTime = ({ movies }) => {
 
                    
                     
-                    <button className="proceed-button"  disabled={!selectedDate || !selectedScreen || !selectedTime} onClick={() => { navigate("/seatselection") ,setTheBooking()}}>
+                    <button className="proceed-button"  disabled={!selectedDate || !selectedScreen || !selectedTime} onClick={() => { setTheBooking()}}>
                       Proceed to Seat Selection
                     </button>
                 </div>

@@ -1,6 +1,6 @@
 const ShowDetail = require("../models/ShowDetailsModel");
 const Movie=require("../models/movieModel");
-
+const Ticket=require("../models/TicketModel")
 const getShowDetailsForMovie = async (req, res) => {
     try {
         const movieId = req.params.id; 
@@ -14,5 +14,24 @@ const getShowDetailsForMovie = async (req, res) => {
     }
 };
 
+const getTicketSeatNumbers = async (req, res) => {
+  try {
+      const fetchedTickets = await Ticket.findAll({
+          where: {
+              showId: req.params.id
+          }
+      });
 
-module.exports={getShowDetailsForMovie}
+      // Extract seat numbers from fetched tickets
+      const seatNumbers = fetchedTickets.map(ticket => ticket.seatNumber);
+
+      // Return the seat numbers
+      res.status(200).json(seatNumbers);
+  } catch (error) {
+      console.error("Error fetching tickets:", error);
+      res.status(500).json({ error: "Internal server error" });
+  }
+}
+
+
+module.exports={getShowDetailsForMovie,getTicketSeatNumbers}

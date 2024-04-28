@@ -17,7 +17,7 @@ const createToken = (id, email) => {
 
   // Generate JWT token with payload, secret key, and options (optional)
   const token = jwt.sign(payload, process.env.AUTH_KEY, {
-    expiresIn: '1d' // Example: Token expires in 1 hour
+    expiresIn: '5d' // Example: Token expires in 1 hour
   });
 
   return token;
