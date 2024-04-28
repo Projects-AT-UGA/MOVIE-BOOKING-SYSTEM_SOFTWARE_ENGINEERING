@@ -2,13 +2,18 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import "./OrderSummary.css";
 import PaymentInfo from './PaymentInfo';
-
+import useBooking from '../../booking/useBooking.jsx'
 export const OrderSummary = () => {
     const [tickets, setTickets] = useState([
         { id: 1, name: "Ticket A", price: 9.00, quantity: 1 },
         { id: 2, name: "Ticket B", price: 6.00, quantity: 1 },
         { id: 3, name: "Ticket C", price: 6.00, quantity: 1 }
     ]);
+    const {state,dispatch}=useBooking()
+    useEffect(()=>{
+        console.log(state)
+    },[state])
+
     const [fees] = useState(3.00);
     const [total, setTotal] = useState(0);
     const [showPayment, setShowPayment] = useState(false);

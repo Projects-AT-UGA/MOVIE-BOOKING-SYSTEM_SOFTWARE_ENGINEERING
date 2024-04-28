@@ -28,10 +28,12 @@ import AdminPromotions from './components/AdminView/AdminPromotions'
 import AdminLogin from './components/AdminView/AdminLogin'
 import useAdmin from './components/AdminView/Admin/useAdmin';
 import AdminShowDetails from './components/AdminView/AdminShowDetails'
+import useBooking from './booking/useBooking';
 function App() {
   const [movies,setMovies]=useState([]);
   const {state}=useUser()
   const {state:adminuser}=useAdmin()
+  const {state:bookingstate}=useBooking()
   useEffect(() => {
     axios.get('/api/movies/').then(response => {setMovies(response.data);}).catch(error => {console.error('Error:', error);});
   }, []);
@@ -51,12 +53,12 @@ function App() {
         {/* <Route exact path='/selecttime' element={<TimeSelection></TimeSelection>}></Route> */}
 
         <Route exact path="/movie/:title" element={<MovieDetails movies={movies}></MovieDetails>} />
-        <Route exact path="/seatselection" element={<SeatSelection></SeatSelection>}></Route>
+        <Route exact path="/seatselection/:title" element={bookingstate.currentMovie ?<SeatSelection></SeatSelection> : <Navigate to="/"></Navigate>}></Route>
         <Route exact path="/movietime/:title/:id" element={<MovieTime movies={movies}></MovieTime>}></Route>
         
         <Route exact path="/confirmation" element={<Confirmation></Confirmation>}></Route>
         <Route exact path="/paymentinfo" element={<PaymentInfo></PaymentInfo>}></Route>
-        <Route exact path="/ordersummary" element={<OrderSummary></OrderSummary>}></Route>
+        <Route exact path="/ordersummary" element={(bookingstate.currentMovie && bookingstate.currentTickets) ? <OrderSummary></OrderSummary> : <Navigate to="/"></Navigate>}></Route>
 
 
 

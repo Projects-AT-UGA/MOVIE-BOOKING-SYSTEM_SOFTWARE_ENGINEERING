@@ -23,11 +23,9 @@ const useTickets = () => {
     catch(error){
         setError("server is not working")
     }
-
     setIsLoading(false)
   }
-  return [bookedSeats,setBookedSeats,error,isloading,getTickets]
-
+  return [bookedSeats,error,setError,isloading,getTickets]
 }
 
 export default useTickets

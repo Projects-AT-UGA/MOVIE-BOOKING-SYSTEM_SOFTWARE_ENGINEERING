@@ -4,7 +4,11 @@ import useUser from "../User/useUser";
 const bookinReducer=(state,action)=>{
 switch(action.type){
 case "SET_CURRENT_MOVIE":
+    localStorage.setItem("selectedmovie",JSON.stringify({...state,currentMovie:action.payload}))
     return {...state,currentMovie:action.payload}
+case "SET_CURRENT_TICKETS":
+    localStorage.setItem("selectedmovie",JSON.stringify({...state,currentTickets:action.payload}))
+    return {...state,currentTickets:action.payload}
 case "RESET":
     return {}
 default:
@@ -20,6 +24,10 @@ const BookingContextProvider=({children})=>{
     const [state,dispatch]=useReducer(bookinReducer,{})
     const {state:userstate,dispatch:usedispatch}=useUser();
     
+    
+
+    
+
     useEffect(()=>{
         dispatch({type:"RESET"})
     },[userstate])

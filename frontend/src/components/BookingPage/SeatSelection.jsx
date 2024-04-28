@@ -1,24 +1,56 @@
 import React, { useState, useEffect } from 'react';
-import {useNavigate} from 'react-router-dom'
+import {useNavigate, useParams} from 'react-router-dom'
 import './SeatSelection.css'; 
 import FormInput from '../Registration/FormInput';
 import useBooking from '../../booking/useBooking';
 import useTickets from '../../booking/useTickets';
 
 export function SeatSelection() {
+    const [outputArray,setOutputArray]=useState([])
     const [selectedSeats,setSelectedSeats]=useState([])
     const [ticketPrice] = useState(15);
     const [totalPrice, setTotalPrice] = useState(0);
     const [seatDetails, setSeatDetails] = useState({});
     const [paymentOption, setPaymentOption] = useState('');
     const navigate=useNavigate();
-    const {state}=useBooking()
-    const [bookedSeats,setBookedSeats,error,isloading,getTickets]=useTickets()
+    const {state,dispatch}=useBooking()
+    const {title}=useParams()
+    const [bookedSeats,error,setError,isloading,getTickets]=useTickets()
     useEffect(()=>{
         getTickets()
     },[state])
-
+    function calculateTotalPrice(inputArray) {
+        // Define ticket prices
+        const ticketPrices = {
+            'Adult': 50.00,
+            'Child': 20.00,
+            'Senior': 30.00
+        };
     
+        // Initialize total price
+        let totalPrice = 0;
+    
+        // Iterate over the input array
+        inputArray.forEach(ticket => {
+            // Check if the ticket type exists in ticketPrices
+            if (ticket.type in ticketPrices) {
+                // Add the price of the ticket type to the total price
+                totalPrice += ticketPrices[ticket.type];
+            }
+        });
+    
+        return totalPrice;
+    }
+    
+    const handleProceedToPayment=()=>{
+      
+        if(outputArray.length==0){
+            setError("please select tickets")
+            return;
+        }
+        dispatch({type:"SET_CURRENT_TICKETS",payload:outputArray})
+        navigate("/ordersummary");
+    }
     const getAvailableSeats = (rows, columns) => {
         const seatLabels = [];
         for (let i = 0; i < rows; i++) {
@@ -39,7 +71,7 @@ export function SeatSelection() {
             setSeatDetails(updatedSeatDetails);
         } else {
             setSelectedSeats([...selectedSeats, seatLabel]);
-            setSeatDetails({ ...seatDetails, [seatLabel]: 'adult' }); // Default to adult
+            setSeatDetails({ ...seatDetails, [seatLabel]: 'Adult' }); // Default to adult
         }
     };
 
@@ -48,12 +80,15 @@ export function SeatSelection() {
     };
 
     useEffect(() => {
-        setTotalPrice(selectedSeats.length * ticketPrice);
-    }, [selectedSeats, ticketPrice]);
+        const temp = Object.entries(seatDetails).map(([seatNumber, type]) => ({
+            seatNumber: parseInt(seatNumber),
+            type
+          }));   
+          setOutputArray(temp)
+        setTotalPrice(calculateTotalPrice(temp));
+    }, [seatDetails]);
 
-    const handleProceedToPayment = () => {
-        console.log("Proceed to checkout with payment option:", paymentOption);
-    };
+    
 
     const renderSelectedTickets = () => {
         return selectedSeats.map(seat => (
@@ -65,19 +100,31 @@ export function SeatSelection() {
                         setSeatDetails({ ...seatDetails, [seat]: e.target.value });
                     }}
                     className='op'>
-                    <option value="adult" >Adult</option>
-                    <option value="child" >Child</option>
-                    <option value="senior" >Senior Citizen</option>
+                    <option value="Adult" >Adult 50$</option>
+                    <option value="Child" >Child 20$ </option>
+                    <option value="Senior" >Senior 30$</option>
                 </select>
             </div>
         ));
     };
-
+    const options = {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+        hour: 'numeric',
+        minute: 'numeric',
+        second: 'numeric',
+        timeZoneName: 'short'
+      };
    
 
     return (
         <div className="container2">
             <h2 className="seats">Seat Selection</h2>
+            <h3>{ title ?  `${title} Booking` : "No Booking"}</h3>
+            <h3>{state.currentMovie ? `Booking Date: ${new Date(state.currentMovie.showDateTime).toLocaleString('en-US', options)}` : "no time" }</h3>
+            <h3>{state.currentMovie ? `Screen ${state.currentMovie.screenid} ` : "no screen id" }</h3>
             <div className="screen">Screen This Way</div>
             <div className="seat-container">
                 {getAvailableSeats(1,50).map(seatLabel => (
@@ -121,7 +168,7 @@ export function SeatSelection() {
                 </div>
             )}
            
-            <button className="proceed-btn" onClick={()=>{navigate("/ordersummary")}}>Proceed to Payment</button>
+            <button className="proceed-btn" onClick={()=>{handleProceedToPayment()}}>Proceed to Payment</button>
             
         </div>
     );

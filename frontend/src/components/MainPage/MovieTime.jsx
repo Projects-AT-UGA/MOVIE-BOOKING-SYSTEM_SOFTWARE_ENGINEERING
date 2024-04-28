@@ -40,7 +40,7 @@ export const MovieTime = ({ movies }) => {
     showDetails.map((detail)=>{
       if(date.getTime()===new Date(detail.showDateTime).getTime() && parseInt(detail.screenid)===parseInt(selectedScreen)){
         dispatch({type:"SET_CURRENT_MOVIE",payload:detail})
-        navigate("/seatselection")
+        navigate("/seatselection/"+`${title}`)
       }
     })
 
