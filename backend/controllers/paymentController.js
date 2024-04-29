@@ -1,8 +1,9 @@
 const Booking=require("../models/bookingModel")
 const Ticket=require("../models/TicketModel")
 const CardDetail=require("../models/cardDetailsModel")
-
+const ShowDetail=require("../models/ShowDetailsModel")
 const Promotions=require("../models/promotionsModel")
+const Movie=require("../models/movieModel")
 const nodemailer = require('nodemailer');
 
 const postpromotions = async (req, res) => {
@@ -160,14 +161,23 @@ const postPayment = async (req, res) => {
             });
         }));
         const userEmail = req.user.email;
-        
+        const showDetails = await ShowDetail.findOne({
+            where: {
+                id: req.body.showId
+            },
+            include: [Movie] // Assuming your Show model includes a relationship with Movie model
+        });
         let emailContent = "Booking Confirmation\n\n";
         emailContent += "Thank you for your booking! Here are the details:\n\n";
         emailContent += `Booking ID: ${booking.id}\n`;
+        emailContent += `Movie: ${showDetails.Movie.title}\n`;
+
+        emailContent += `Show Time: ${showDetails.showDateTime}\n`; // Assuming your Show model has a time attribute
+        emailContent += `screen : ${showDetails.screenid}\n`;
         emailContent += `Total: $${booking.total.toFixed(2)}\n`;
         emailContent += "Tickets:\n";
         req.body.tickets.forEach(ticket => {
-            emailContent += `ticket type ${ticket.type}--------ticket number ${ticket.seatNumber}\n`;
+            emailContent += `Type:${ticket.type}-------------: seat number ${ticket.seatNumber}\n`;
         });
 
         emailContent += "\nEnjoy your Movie!";
