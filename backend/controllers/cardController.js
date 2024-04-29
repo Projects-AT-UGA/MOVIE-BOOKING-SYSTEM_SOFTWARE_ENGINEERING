@@ -24,9 +24,14 @@ const postCardDetails = async (req, res) => {
     // If no card is set as default for the user, set the new card as default
     const userDefaultCard = await CardDetail.findOne({ where: { userId: req.user.id, isDefault: true } });
     const newCardDetail = await CardDetail.create({ ...req.body, userId: req.user.id });
+    
+    
+
     if (!userDefaultCard) {
       await newCardDetail.update({ isDefault: true });
     } else {
+      userDefaultCard.isDefault=false;
+      userDefaultCard.save()
       // Set the new card as default and unset other default cards
       await CardDetail.update({ isDefault: false }, { where: { userId: req.user.id, id: { [Op.not]: newCardDetail.id } } });
     }
@@ -46,7 +51,7 @@ const updateCardDetails = async (req, res) => {
     if (updated === 0) {
       return res.status(404).json({ message: "Card detail not found or you don't have permission to update it" });
     }
-
+    
     // If isDefault is set to true, set it as the default card and unset other default cards
     if (req.body.isDefault) {
       await CardDetail.update({ isDefault: false }, { where: { userId: req.user.id, id: { [Op.not]: cardId } } });

@@ -49,7 +49,7 @@ export function SeatSelection() {
             return;
         }
         dispatch({type:"SET_CURRENT_TICKETS",payload:outputArray})
-        navigate("/ordersummary");
+        navigate("/ordersummary/"+`${title}`);
     }
     const getAvailableSeats = (rows, columns) => {
         const seatLabels = [];

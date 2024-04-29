@@ -9,6 +9,9 @@ case "SET_CURRENT_MOVIE":
 case "SET_CURRENT_TICKETS":
     localStorage.setItem("selectedmovie",JSON.stringify({...state,currentTickets:action.payload}))
     return {...state,currentTickets:action.payload}
+case "SET_CURRENT_CARD":
+    localStorage.setItem("selectedmovie",JSON.stringify({...state,currentTickets:action.payload}))
+    return  {...state,currentCard:action.payload}
 case "RESET":
     return {}
 default:
@@ -23,13 +26,11 @@ export const BookingContext=createContext();
 const BookingContextProvider=({children})=>{
     const [state,dispatch]=useReducer(bookinReducer,{})
     const {state:userstate,dispatch:usedispatch}=useUser();
-    
-    
-
-    
 
     useEffect(()=>{
-        dispatch({type:"RESET"})
+        if(!userstate.login.email){
+            dispatch({type:"RESET"})
+        }
     },[userstate])
 
     return <BookingContext.Provider value={{state,dispatch}}>

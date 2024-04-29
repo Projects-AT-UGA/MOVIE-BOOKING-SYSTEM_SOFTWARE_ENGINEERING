@@ -13,7 +13,8 @@ export default defineConfig({
       "/admin/movies":"http://localhost:8000/",
       "/superuser/login":"http://localhost:8000/",
       "/card":"http://localhost:8000/",
-      "/booking":"http://localhost:8000/"
+      "/booking":"http://localhost:8000/",
+      "/payment":"http://localhost:8000/"
     }
   }
 })

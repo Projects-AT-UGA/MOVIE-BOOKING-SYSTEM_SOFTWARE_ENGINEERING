@@ -59,7 +59,7 @@ function App() {
         <Route exact path="/confirmation" element={<Confirmation></Confirmation>}></Route>
         <Route exact path="/paymentinfo" element={<PaymentInfo></PaymentInfo>}></Route>
         {/* <Route exact path="/ordersummary" element={(bookingstate.currentMovie && bookingstate.currentTickets) ? <OrderSummary></OrderSummary> : <Navigate to="/"></Navigate>}></Route> */}
-        <Route exact path="/ordersummary" element={ <OrderSummary></OrderSummary> }></Route>
+        <Route exact path="/ordersummary/:title" element={ <OrderSummary></OrderSummary> }></Route>
 
 
 

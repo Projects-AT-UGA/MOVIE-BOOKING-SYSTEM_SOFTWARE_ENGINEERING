@@ -2,10 +2,39 @@ const Booking=require("../models/bookingModel")
 const Ticket=require("../models/TicketModel")
 const CardDetail=require("../models/cardDetailsModel")
 
+const Promotions=require("../models/promotionsModel")
 
+const postpromotions = async (req, res) => {
+    try {
+      // Extract promotion code from request body
+      const { code } = req.body;
+  
+      // Find the promotion in the database
+      const promotion = await Promotions.findOne({
+        where: {
+          code: code
+        }
+      });
+      
 
-
-
+      // Check if promotion exists
+      if (!promotion) {
+        return res.status(404).json({ message: "Promotion not found" });
+      }
+  
+      // Check if promotion is active
+      if (!promotion.isActive) {
+        return res.status(400).json({ message: "Promotion is not active" });
+      }
+      const Promo = promotion.discountPercentage;
+      // If promotion is active, return success response
+      return res.status(200).json({ message: "Promotion is active",Promo: Promo });
+    } catch (error) {
+      console.error("Error checking promotion:", error);
+      return res.status(500).json({ message: "Internal server error" });
+    }
+  };
+  
 
 const postPayment = async (req, res) => {
     try {
@@ -13,7 +42,15 @@ const postPayment = async (req, res) => {
         const userId = req.user.id;
 
         // Check if cardId belongs to userId
-        const { cardId } = req.body;
+        const { cardId,Promo } = req.body;
+        if(!cardId){
+            res.status(500).json({ message: "please eneter a card" });
+            return;
+        }
+        if(req.body.tickets && req.body.tickets.length===0){
+            res.status(500).json({ message: "please select tickets" });
+            return;
+        }
         const cardDetail = await CardDetail.findOne({
             where: {
                 id: cardId,
@@ -48,12 +85,32 @@ const postPayment = async (req, res) => {
         }
 
         // Sample logic to create a booking
-        const booking = await Booking.create({
-            userId: userId,
-            showId: req.body.showId,
-            cardId: cardId,
-            total: total
-        });
+        let booking,promotion;
+        if(Promo){
+            promotion  = await Promotions.findOne({
+                where: {
+                  code: Promo
+                }
+              });
+        }
+        
+
+        if(promotion && promotion.discountPercentage){
+            booking = await Booking.create({
+                userId: userId,
+                showId: req.body.showId,
+                cardId: cardId,
+                total: total-(total*promotion.discountPercentage/100)
+            });
+        }
+        else{
+            booking = await Booking.create({
+                userId: userId,
+                showId: req.body.showId,
+                cardId: cardId,
+                total: total
+            });
+        }
 
         // Sample logic to create tickets for the booking
         const tickets = await Promise.all(ticketsData.map(async (ticketData) => {
@@ -86,9 +143,9 @@ const postPayment = async (req, res) => {
     } catch (error) {
         // Handle errors
         console.error("Error processing payment:", error);
-        res.status(500).json({ error: "Internal server error" });
+        res.status(500).json({ message: "check the inputs" });
     }
 }
 
 
-module.exports = { postPayment };
+module.exports = { postPayment,postpromotions };
