@@ -73,7 +73,7 @@ export const OrderSummary = () => {
                         <input type="radio" name="payment" onClick={() => { setShowPayment(true); setUseExistingCard(false); }} />Add new card 
                     </label> &nbsp;&nbsp;&nbsp;&nbsp;
                     <label>
-                        <input type="radio" name="payment" onClick={() => { setShowPayment(false); setUseExistingCard(true); }} />Use Existing Credit card
+                        <input type="radio" name="payment" onClick={() => { setShowPayment(false); setUseExistingCard(true); }} defaultChecked/>Use Existing Credit card
                     </label>
                 </div>
                 

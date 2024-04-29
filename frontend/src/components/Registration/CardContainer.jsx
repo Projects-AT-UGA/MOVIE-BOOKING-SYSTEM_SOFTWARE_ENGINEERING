@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import './CardContainer.css';
 import useUser from '../../User/useUser';
 import './CardContainer.css';
 const CardContainer = () => {
@@ -247,14 +246,19 @@ const CardContainer = () => {
             placeholder="CVV"
             required
           />
-          <input
-            type="text"
+          <select
             name="cardType"
             value={formData1.cardType}
             onChange={handleChange1}
-            placeholder="Card Type"
             required
-          />
+          >
+            <option value="">Select Card Type</option>
+            <option value="Visa">Visa</option>
+            <option value="Mastercard">Mastercard</option>
+            <option value="Discover">Discover</option>
+            <option value="American Express">American Express</option>
+          </select>
+
           <input
             type="text"
             name="billingAddress"
@@ -314,14 +318,19 @@ const CardContainer = () => {
             placeholder="CVV"
             required
           />
-          <input
-            type="text"
-            name="cardType"
-            value={formData.cardType}
-            onChange={handleChange}
-            placeholder="Card Type"
-            required
-          />
+          <select
+          name="cardType"
+          value={formData.cardType}
+          onChange={handleChange}
+          required
+        >
+          <option value="">Select Card Type</option>
+          <option value="Visa">Visa</option>
+          <option value="Mastercard">Mastercard</option>
+          <option value="Discover">Discover</option>
+          <option value="American Express">American Express</option>
+        </select>
+
           <input
             type="text"
             name="billingAddress"
