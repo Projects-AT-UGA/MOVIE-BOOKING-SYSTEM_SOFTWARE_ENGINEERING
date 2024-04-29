@@ -3,6 +3,7 @@ const Ticket=require("../models/TicketModel")
 const CardDetail=require("../models/cardDetailsModel")
 
 const Promotions=require("../models/promotionsModel")
+const nodemailer = require('nodemailer');
 
 const postpromotions = async (req, res) => {
     try {
@@ -35,6 +36,27 @@ const postpromotions = async (req, res) => {
     }
   };
   
+  const sendEmail = async (to, subject, text) => {
+    // Create a transporter object using SMTP transport
+    let transporter = nodemailer.createTransport({
+        service: 'Gmail',
+        auth: {
+            user: 'harshith.ylbf52@gmail.com',
+            pass: 'cbij pteq kmqf qhrv'
+        }
+    });
+
+    // Define email options
+    let mailOptions = {
+        from: 'harshith.ylbf52@gmail.com',
+        to: to,
+        subject: subject,
+        text: text
+    };
+
+    // Send mail with defined transport object
+    await transporter.sendMail(mailOptions);
+};
 
 const postPayment = async (req, res) => {
     try {
@@ -137,7 +159,21 @@ const postPayment = async (req, res) => {
                 showId:req.body.showId
             });
         }));
+        const userEmail = req.user.email;
         
+        let emailContent = "Booking Confirmation\n\n";
+        emailContent += "Thank you for your booking! Here are the details:\n\n";
+        emailContent += `Booking ID: ${booking.id}\n`;
+        emailContent += `Total: $${booking.total.toFixed(2)}\n`;
+        emailContent += "Tickets:\n";
+        req.body.tickets.forEach(ticket => {
+            emailContent += `ticket type ${ticket.type}--------ticket number ${ticket.seatNumber}\n`;
+        });
+
+        emailContent += "\nEnjoy your Movie!";
+
+        await sendEmail(userEmail, 'Booking Confirmation',  emailContent);
+
         // Payment processing completed successfully, send response
         res.status(200).json({ message: "Payment successful", booking: booking, tickets: tickets });
     } catch (error) {
