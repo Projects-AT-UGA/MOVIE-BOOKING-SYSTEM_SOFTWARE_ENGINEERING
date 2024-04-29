@@ -404,8 +404,14 @@ class Users{
           // Respond with the newly created show detail
           res.status(200).json(newShowDetail);
         } catch (error) {
-          console.log(error)
-          res.status(500).json({ message: "Internal server error" });
+          try{
+            if(error.message==="Validation error"){
+              res.status(500).json({ message: "already a show exists" });
+            }
+          }
+          catch(error){
+            res.status(500).json({ message: "please check the inputs" });
+          }
         }
       };
       

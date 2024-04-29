@@ -124,7 +124,7 @@ const AdminPromotions = () => {
           </ul>
         </div>
 
-        <div className="admin-promotions-right">
+        {/* <div className="admin-promotions-right">
           <div>
             <input
               type="text"
@@ -149,7 +149,7 @@ const AdminPromotions = () => {
             </label>
             <button onClick={updatePromotion}>Update Promotion</button>
           </div>
-        </div>
+        </div> */}
 
         <div className="admin-promotions-middle">
           <div>
