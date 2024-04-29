@@ -28,7 +28,10 @@ import AdminPromotions from './components/AdminView/AdminPromotions'
 import AdminLogin from './components/AdminView/AdminLogin'
 import useAdmin from './components/AdminView/Admin/useAdmin';
 import AdminShowDetails from './components/AdminView/AdminShowDetails'
+
 import useBooking from './booking/useBooking';
+import OrderHistory from './components/CheckoutPage/OrderHistory';
+
 function App() {
   const [movies,setMovies]=useState([]);
   const {state}=useUser()
@@ -60,7 +63,7 @@ function App() {
         <Route exact path="/paymentinfo" element={<PaymentInfo></PaymentInfo>}></Route>
         {/* <Route exact path="/ordersummary" element={(bookingstate.currentMovie && bookingstate.currentTickets) ? <OrderSummary></OrderSummary> : <Navigate to="/"></Navigate>}></Route> */}
         <Route exact path="/ordersummary/:title" element={ <OrderSummary></OrderSummary> }></Route>
-
+        <Route exact path="/orderhistory" element={ <OrderHistory></OrderHistory> }></Route>
 
 
         <Route exact path="/frontendadmin/login" element={!adminuser ? <AdminLogin></AdminLogin> : <Navigate  to="/frontendadmin"></Navigate>}></Route>

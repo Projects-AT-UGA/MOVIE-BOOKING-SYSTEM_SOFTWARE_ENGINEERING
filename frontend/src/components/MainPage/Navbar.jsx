@@ -24,9 +24,12 @@ export const Navbar = ({ handleSearch, searchQuery }) => {
        manage_accounts
        </span></button></NavLink> 
        <div className='user_info'><div>{state.login.email}</div><div style={{cursor:"pointer"}} onClick={logout}>logout</div>
+       <NavLink to="/orderhistory"> <button className='order-history-button'>order history</button></NavLink>
+
        </div>
        </>
        }
+      
     </div>
   );
 };

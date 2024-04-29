@@ -148,4 +148,23 @@ const postPayment = async (req, res) => {
 }
 
 
-module.exports = { postPayment,postpromotions };
+
+const getOrderHistory=async (req, res) => {
+    try {
+        // Extract user ID from request parameters
+        const userId = req.user.id;
+        // Query the database for bookings and associated tickets belonging to the user
+        const bookings = await Booking.findAll({
+            where: { userId: userId },
+            include: [{ model: Ticket }]
+        });
+
+        // Send the bookings and associated tickets as a response
+        res.status(200).json({ bookings });
+    } catch (error) {
+        console.error('Error fetching bookings:', error);
+        res.status(500).json({ error: 'problem with handling your request' });
+    }
+}
+
+module.exports = { postPayment,postpromotions,getOrderHistory };

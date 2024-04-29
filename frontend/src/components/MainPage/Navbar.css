@@ -58,3 +58,9 @@ border:1px solid grey;
     background-color:#eb2b2b; ;
 }
 
+.order-history-button{
+    color:white;
+    background-color: black;
+    box-sizing: border-box;
+    
+}
