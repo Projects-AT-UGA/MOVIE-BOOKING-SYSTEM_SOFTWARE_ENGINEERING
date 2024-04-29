@@ -156,7 +156,8 @@ const getOrderHistory=async (req, res) => {
         // Query the database for bookings and associated tickets belonging to the user
         const bookings = await Booking.findAll({
             where: { userId: userId },
-            include: [{ model: Ticket }]
+            include: [{ model: Ticket }, { model: CardDetail }]
+           
         });
 
         // Send the bookings and associated tickets as a response

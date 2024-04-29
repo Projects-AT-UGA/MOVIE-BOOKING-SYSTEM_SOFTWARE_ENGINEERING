@@ -32,6 +32,7 @@ const OrderHistory = () => {
             else{
                 setOrderHistory(orderhistory.message)
             }
+            console.log(orderhistory)
         }
         catch(error){
             setError("server is not working")
@@ -56,8 +57,14 @@ const OrderHistory = () => {
                                     </li>
                                 ))}
                             </ul>
+                            <p>Card Details</p>
+                            <ul>
+                                <li>{order.CardDetail.cardNumber}</li>
+                                <li >{order.CardDetail.cardType}</li>
+                            </ul>
                         </div>
                     ))}
+                    
                 </>
             }
             {error && <div>{error}</div>}

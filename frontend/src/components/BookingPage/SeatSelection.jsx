@@ -4,6 +4,7 @@ import './SeatSelection.css';
 import FormInput from '../Registration/FormInput';
 import useBooking from '../../booking/useBooking';
 import useTickets from '../../booking/useTickets';
+import useUser from '../../User/useUser';
 
 export function SeatSelection() {
     const [outputArray,setOutputArray]=useState([])
@@ -15,6 +16,7 @@ export function SeatSelection() {
     const navigate=useNavigate();
     const {state,dispatch}=useBooking()
     const {title}=useParams()
+    const {state:userstate}=useUser()
     const [bookedSeats,error,setError,isloading,getTickets]=useTickets()
     useEffect(()=>{
         getTickets()
@@ -43,7 +45,11 @@ export function SeatSelection() {
     }
     
     const handleProceedToPayment=()=>{
-      
+        if(!userstate.login.email){
+            alert("please login")
+            navigate("/login")
+            return;
+        }
         if(outputArray.length==0){
             setError("please select tickets")
             return;
