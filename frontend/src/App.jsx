@@ -31,7 +31,6 @@ import AdminShowDetails from './components/AdminView/AdminShowDetails'
 
 import useBooking from './booking/useBooking';
 import OrderHistory from './components/CheckoutPage/OrderHistory';
-
 function App() {
   const [movies,setMovies]=useState([]);
   const {state}=useUser()
@@ -73,6 +72,7 @@ function App() {
         
         <Route exact path="/frontendadmin/promotions" element={adminuser ? <AdminPromotions></AdminPromotions>:  <Navigate to="/frontendadmin/login"></Navigate>}></Route>
         <Route exact path="/frontendadmin/showdetails" element={adminuser ? <AdminShowDetails></AdminShowDetails>:  <Navigate to="/frontendadmin/login"></Navigate>}></Route>
+       
       </Routes>
     </div>
   );
