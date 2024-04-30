@@ -146,6 +146,7 @@ export const EditProfile = () => {
             className="edit1-form-control"
             placeholder="Date of Birth"
             required
+            max={new Date().toISOString().split('T')[0]} 
           />
         </div>
         <div className="edit1-form-group">

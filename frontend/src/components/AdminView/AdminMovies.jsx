@@ -210,6 +210,7 @@ const AdminMovies = () => {
       placeholder="Release Date"
       value={formData.release_date}
       onChange={(e) => setFormData({ ...formData, release_date: e.target.value })}
+      
     />
     <select
       value={formData.genre}

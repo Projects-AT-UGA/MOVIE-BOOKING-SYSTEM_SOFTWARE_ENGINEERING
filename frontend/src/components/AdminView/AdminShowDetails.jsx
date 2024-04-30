@@ -197,6 +197,8 @@ const AdminShowDetails = () => {
               placeholder="Show Date"
               value={formData.showDate}
               onChange={(e) => setFormData({ ...formData, showDate: e.target.value })}
+              className='date-input-show'
+              min={new Date().toISOString().split('T')[0]} 
             />
             <select id="select-time"
               value={formData.showTime}
@@ -235,6 +237,7 @@ const AdminShowDetails = () => {
                 placeholder="Show Date"
                 value={formData1.showDate}
                 onChange={(e) => setFormData1({ ...formData1, showDate: e.target.value })}
+                min={new Date().toISOString().split('T')[0]} 
               />
               <select id="update-time-details"
                 value={formData1.showTime}

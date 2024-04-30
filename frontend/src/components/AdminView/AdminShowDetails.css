@@ -59,7 +59,8 @@
 .show-details-right label,
 .show-details-middle input,
 .show-details-middle label {
-    display: block;
+    /* display: block; */
+
     margin-bottom: 10px;
     color: #333;
 }
