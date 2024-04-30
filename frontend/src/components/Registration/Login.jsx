@@ -214,8 +214,9 @@ const App = () => {
               name="subscribe"
               checked={formData.subscribe}
               onChange={handleChange}
+              id="chechbox-form-input"
             />
-            <label>Subscribe for Promotions</label>
+            <label id='chechbox-form-input-label'>Subscribe for Promotions</label>
           </div>
 
           <div className="checkbox-wrapper">
@@ -224,8 +225,10 @@ const App = () => {
               name="needCardDetails"
               checked={formData.needCardDetails}
               onChange={handleChange}
+              id="chechbox-form-input"
+              
             />
-            <label>Would you like to enter card details?</label>
+            <label id='chechbox-form-input-label'>Would you like to enter card details?</label>
           </div>
           <div>{mainError}</div>
           {formData.needCardDetails && (
@@ -244,7 +247,7 @@ const App = () => {
               />
               <FormInput
                 name="cardNumber"
-                type="text"
+                type="password"
                 placeholder="Card Number"
                 label="Card Number"
                 value={formData.cardNumber}
@@ -257,6 +260,7 @@ const App = () => {
                 label="Card Holder Name"
                 value={formData.cardHolderName}
                 onChange={handleChange}
+
               />
               <FormInput
                 name="expirationDate"
@@ -268,7 +272,7 @@ const App = () => {
               />
               <FormInput
                 name="cvv"
-                type="text"
+                type="password"
                 placeholder="CVV"
                 label="CVV"
                 value={formData.cvv}
@@ -289,8 +293,9 @@ const App = () => {
                     name="isDefault"
                     checked={formData.isDefault}
                     onChange={handleChange}
+                    id='chechbox-form-input'
                   />
-                  <label>Set as default card</label>
+                  <label id="chechbox-form-input-label">Set as default card</label>
             </div>
             </>
           )}

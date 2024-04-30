@@ -76,7 +76,7 @@
 
 
 .registration-container .checkbox-wrapper {
-  display: flex;
+  /* display: flex !important; */
   align-items: center;
   margin-top: 3px;
 }
@@ -130,4 +130,18 @@
 .registration-container .empty-space {
   height: 40px; 
 }
+.checkbox-wrapper{
+ margin: 0;
+ padding: 0;
 
+
+}
+#chechbox-form-input-label{
+  padding-left: 1rem;
+}
+#chechbox-form-input{
+  margin: auto;
+  width: 1.7rem;
+  height: 1.7rem;
+ 
+}

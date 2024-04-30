@@ -13,6 +13,7 @@ const FormInput = ({ name, type, placeholder, label, value, onChange, star, opti
           value={value}
           onChange={onChange}
           required
+          className='select-form-input'
         >
           <option value="" disabled>Select {label}</option>
           {options.map(option => (
