@@ -157,6 +157,7 @@ const AdminUser = () => {
            { users.map((user) => (
             <li key={user.id} onClick={() => handleUserSelect(user)}>
               {user.username} - {user.email}
+              
               <button onClick={() => deleteUser(user.id)}>Delete</button>
             </li>
           ))} 
@@ -172,42 +173,49 @@ const AdminUser = () => {
               placeholder="Country"
               value={formData.country}
               onChange={(e) => setFormData({ ...formData, country: e.target.value })}
+              disabled={true}
             />
             <input
               type="text"
               placeholder="Username"
               value={formData.username}
               onChange={(e) => setFormData({ ...formData, username: e.target.value })}
+              disabled={true}
             />
             <input
               type="email"
               placeholder="Email"
               value={formData.email}
               onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+              disabled={true}
             />
             <input
               type="date"
               placeholder="Date of Birth"
               value={formData.dob}
               onChange={(e) => setFormData({ ...formData, dob: e.target.value })}
+              disabled={true}
             />
             <input
               type="tel"
               placeholder="Phone Number"
               value={formData.phoneNumber}
               onChange={(e) => setFormData({ ...formData, phoneNumber: e.target.value })}
+              disabled={true}
             />
             <input
               type="password"
               placeholder="Password"
               value={formData.password}
               onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+              disabled={true}
             />
             <input
               type="text"
               placeholder="Address"
               value={formData.address}
               onChange={(e) => setFormData({ ...formData, address: e.target.value })}
+              disabled={true}
             />
             <label id="promotion-label">
              
@@ -216,6 +224,7 @@ const AdminUser = () => {
                 type="checkbox"
                 checked={formData.subscribeForPromotions}
                 onChange={(e) => setFormData({ ...formData, subscribeForPromotions: e.target.checked })}
+                disabled={true}
               />
             </label>
             <label id="suspended-label">
