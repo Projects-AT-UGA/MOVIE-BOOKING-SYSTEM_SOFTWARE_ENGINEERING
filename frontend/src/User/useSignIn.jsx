@@ -65,18 +65,18 @@ const useSignIn = () => {
             
             
            
-            addCard({cardNumber : state.signup.cardNumber,
-                cardHolderName : state.signup.cardHolderName,
-                expirationDate : state.signup.expirationDate,
-                cvv : state.signup.cvv,
-                cardType : state.signup.cardType,
-                billingAddress : state.signup.billingAddress,
-                isDefault : state.signup.isDefault},temp.token)
+            // addCard({cardNumber : state.signup.cardNumber,
+            //     cardHolderName : state.signup.cardHolderName,
+            //     expirationDate : state.signup.expirationDate,
+            //     cvv : state.signup.cvv,
+            //     cardType : state.signup.cardType,
+            //     billingAddress : state.signup.billingAddress,
+            //     isDefault : state.signup.isDefault},temp.token)
             dispatch({type:"LOGIN",payload:{signup:{},login:temp}})
             
             
             localStorage.setItem("user",JSON.stringify(temp))
-            navigate("/")
+            navigate("/registrationsuccessful")
         }
         else{
             setError(temp.message)

@@ -31,6 +31,7 @@ import AdminShowDetails from './components/AdminView/AdminShowDetails'
 
 import useBooking from './booking/useBooking';
 import OrderHistory from './components/CheckoutPage/OrderHistory';
+import RegistrationSuccess from './components/Registration/RegistrationSuccess';
 function App() {
   const [movies,setMovies]=useState([]);
   const {state}=useUser()
@@ -47,6 +48,7 @@ function App() {
         {/* <Route path="/register" element={<UserRegistrationForm />}></Route> */}
         <Route exact path="/register" element={ !state.login.email ? <Login></Login> : <Navigate to="/"></Navigate>}></Route>
         <Route exact path="/otp" element={<OTPPage></OTPPage>}></Route>
+        <Route exact path="/registrationsuccessful" element={<RegistrationSuccess></RegistrationSuccess>}></Route>
         <Route exact path="/editprofile" element={state.login.email ? <EditProfile></EditProfile>: <Navigate to="/"></Navigate>}></Route>
         <Route exact path="/login" element={ !state.login.email ?<LoginForm></LoginForm> : <Navigate to="/"></Navigate>}></Route>
         <Route exact path="/forgotpassword" element={<ForgotPassword></ForgotPassword>}></Route>

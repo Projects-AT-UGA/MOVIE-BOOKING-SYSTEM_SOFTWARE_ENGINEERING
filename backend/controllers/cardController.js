@@ -29,6 +29,7 @@ const postCardDetails = async (req, res) => {
 
     if (!userDefaultCard) {
       await newCardDetail.update({ isDefault: true });
+      
     } else {
       userDefaultCard.isDefault=false;
       userDefaultCard.save()

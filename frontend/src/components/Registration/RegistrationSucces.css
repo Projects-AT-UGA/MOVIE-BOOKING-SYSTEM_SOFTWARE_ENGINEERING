@@ -1,0 +1,10 @@
+.Reg-container{
+    color:white;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.Reg-container-h1{
+    color:white;
+}
