@@ -33,7 +33,7 @@ const postpromotions = async (req, res) => {
       return res.status(200).json({ message: "Promotion is active",Promo: Promo });
     } catch (error) {
       console.error("Error checking promotion:", error);
-      return res.status(500).json({ message: "Internal server error" });
+      return res.status(500).json({ message: "please check input fields" });
     }
   };
   

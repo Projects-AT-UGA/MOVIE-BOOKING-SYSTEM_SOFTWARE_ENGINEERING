@@ -68,7 +68,7 @@ const login = async (req,res) => {
         res.status(200).json( { email: superUser.email, token });
     } catch (error) {
         
-        res.status(400).json({message:"internal server error"})
+        res.status(400).json({message:"please check input fields"})
     }
 };
 

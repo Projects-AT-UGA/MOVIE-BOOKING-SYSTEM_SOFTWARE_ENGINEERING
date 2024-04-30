@@ -84,7 +84,7 @@ const useSignup = () => {
         }
         }
         catch(error){
-            setError("internal server error")
+            setError("please check input fields")
         }
         setIsLoading(false)
     }

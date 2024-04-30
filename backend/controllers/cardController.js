@@ -9,7 +9,7 @@ const getCardDetails = async (req, res) => {
     const cardDetails = await CardDetail.findAll({ where: { userId: req.user.id } });
     res.status(200).json(cardDetails);
   } catch (error) {
-    res.status(500).json({ message: "Internal server error" });
+    res.status(500).json({ message: "please check input fields" });
   }
 };
 
@@ -90,7 +90,7 @@ const deleteCardDetails = async (req, res) => {
     res.status(200).json({ message: "Card detail deleted successfully" });
   } catch (error) {
    
-    res.status(500).json({ message: "Internal server error" });
+    res.status(500).json({ message: "please check input fields" });
   }
 };
 

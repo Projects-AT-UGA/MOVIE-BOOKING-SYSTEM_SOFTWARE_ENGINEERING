@@ -29,7 +29,7 @@ const getTicketSeatNumbers = async (req, res) => {
       res.status(200).json(seatNumbers);
   } catch (error) {
       console.error("Error fetching tickets:", error);
-      res.status(500).json({ error: "Internal server error" });
+      res.status(500).json({ error: "please check input fields" });
   }
 }
 

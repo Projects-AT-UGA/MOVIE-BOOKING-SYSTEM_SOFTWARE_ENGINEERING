@@ -9,7 +9,7 @@ const getEditUser=async(req,res)=>{
         res.status(200).json({country,username,dob,phoneNumber,address,subscribeForPromotions})
     }
     catch(error){
-        res.status(400).json("Internal server error")
+        res.status(400).json("please check input fields")
     }
 }
 
@@ -48,7 +48,7 @@ const postEditUser = async (req, res) => {
         res.status(200).json({ message: "User updated successfully" });
     } catch (error) {
         // console.error("Error editing user:", error);
-        res.status(500).json({ message: "Internal server error" });
+        res.status(500).json({ message: "please check input fields" });
     }
 };
 
@@ -82,7 +82,7 @@ const EditUserPassword = async (req, res) => {
         res.status(200).json({ message: "Password updated successfully" });
     } catch (error) {
         console.error("Error updating password:", error);
-        res.status(500).json({ message: "Internal server error" });
+        res.status(500).json({ message: "please check input fields" });
     }
 };
 

@@ -162,7 +162,7 @@ class Users{
           res.status(200).json({ email: email });
         } catch (error) {
           
-          res.status(500).json({ message: "Internal server error" });
+          res.status(500).json({ message: "please check input fields" });
         }
     };
     
@@ -266,7 +266,7 @@ class Users{
             // Respond with the newly created promotion
             res.status(200).json(newPromotion);
         } catch (error) {
-            res.status(500).json({ message: "Internal server error" });
+            res.status(500).json({ message: "please check input fields" });
         }
     };
     
@@ -343,7 +343,7 @@ class Users{
           // Respond with the newly created movie
           res.status(200).json(newMovie);
         } catch (error) {
-          res.status(500).json({ message: "Internal server error" });
+          res.status(500).json({ message: "please check input fields" });
         }
     };
     

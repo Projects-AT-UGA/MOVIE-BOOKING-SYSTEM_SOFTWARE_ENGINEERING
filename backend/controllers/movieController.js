@@ -5,7 +5,7 @@ const getMovies = async (req, res) => {
         const movies = await Movie.findAll();
         res.json(movies);
     } catch (error) {
-        res.status(500).json({ error: 'Internal Server Error' });
+        res.status(500).json({ error: 'please check input fields' });
     }
 };
 

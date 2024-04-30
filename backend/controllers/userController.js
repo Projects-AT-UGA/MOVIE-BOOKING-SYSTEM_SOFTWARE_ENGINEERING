@@ -83,7 +83,7 @@ const sendotp=async (req, res)=> {
     });
   } catch (error) {
     console.error("Error sending OTP:", error);
-    res.status(500).json({ message: "Internal server error" });
+    res.status(500).json({ message: "please check input fields" });
   }
 }
 
@@ -118,7 +118,7 @@ const login=async(req,res)=>{
     }
   }
   catch(error){
-    res.status(500).json({ message: "Internal server error" });
+    res.status(500).json({ message: "please check input fields" });
   }
 }
 
@@ -188,7 +188,7 @@ const signupunverified=async(req,res)=>{
     res.status(200).json({ email: email, token: token });
   } catch (error) {
     console.error("Error signing up:", error);
-    res.status(500).json({ message: "Internal server error" });
+    res.status(500).json({ message: "please check input fields" });
   }
 }
 const signup= async (req, res) => {
@@ -273,7 +273,7 @@ const signup= async (req, res) => {
       res.status(200).json({email:email,token:token});
     } catch (error) {
       
-      res.status(500).json({ message: "Internal server error" });
+      res.status(500).json({ message: "please check input fields" });
     }
 }
 
@@ -302,7 +302,7 @@ const checkotp=async(req,res)=>{
     
 } catch (error) {
     console.error("Error updating password:", error);
-    res.status(500).json({ message: "Internal server error" });
+    res.status(500).json({ message: "please check input fields" });
 }
 }
 
@@ -346,7 +346,7 @@ const editpassword = async (req, res) => {
       res.status(200).json({ message: "Password updated successfully" });
   } catch (error) {
       console.error("Error updating password:", error);
-      res.status(500).json({ message: "Internal server error" });
+      res.status(500).json({ message: "please check input fields" });
   }
 };
 
