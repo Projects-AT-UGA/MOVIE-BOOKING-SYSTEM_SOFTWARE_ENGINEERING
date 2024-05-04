@@ -10,7 +10,7 @@ const AdminNavbar = () => {
   return (
     <div style={{display:"flex",justifyContent:"space-between"}}>
       
-      <Link id="Admin" to="/frontendadmin">Admin</Link>
+      <Link id="Admin" to="/frontendadmin"></Link>
       <div id="logout" onClick={logout} style={{cursor:"pointer"}}>Logout</div>
     </div>
   )

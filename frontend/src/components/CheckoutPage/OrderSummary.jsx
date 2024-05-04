@@ -110,7 +110,7 @@ export const OrderSummary = () => {
                         <button className="delete-btn" onClick={() => handleDeleteTicket(ticket.seatNumber)}>Delete</button>
                     </div>
                 ))}
-                <div>
+                <div id="promo-buttons">
                     <label>Promo:</label>
                     <input type="text" value={code} onChange={(e)=>{setCode(e.target.value)}}></input>
                     <button onClick={()=>{handlepromo()}} disabled={promoisloading}> apply promo</button>
@@ -122,7 +122,7 @@ export const OrderSummary = () => {
                 </div>
 
                 <button className="update-btn" onClick={() => { navigate("/seatselection/" + title) }}>Update Order</button>
-
+-
                 <div className="radio-buttons">
                     <label>
                         <input type="radio" name="payment" onClick={() => { setShowPayment(true); setUseExistingCard(false); }} />Add new card

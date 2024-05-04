@@ -43,7 +43,7 @@
     padding:1rem 2rem 2rem 2rem;
     width: 100px;
     margin: 1rem;
-    height:40px;
+    height:45px;
     font-size: 1.6rem;
     
    
@@ -60,7 +60,12 @@ border:1px solid grey;
 
 .order-history-button{
     color:white;
-    background-color: black;
+    background-color:#ff0000;
     box-sizing: border-box;
+    border-radius: 7px;
+    padding: 0.6rem;
     
+}
+.order-history-button:hover{
+    background-color: #333;
 }

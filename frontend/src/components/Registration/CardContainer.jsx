@@ -186,8 +186,8 @@ const CardContainer = () => {
   };
   return (
     <div className="card-container">
-      <h1>Cards</h1>
-      <div>
+      {/* <h1>Cards</h1> */}
+      <div id="existing-card">
         <h2>Existing Cards</h2>
         {isLoadingAdd ? (
           <div>Loading...</div>
@@ -214,14 +214,16 @@ const CardContainer = () => {
       <div>
         <h2>Add New Card</h2>
         <form id='card-form' onSubmit={handleAddSubmit}>
-          <input
-            type="text"
-            name="cardNumber"
-            value={formData1.cardNumber}
-            onChange={handleChange1}
-            placeholder="Card Number"
-            required
-          />
+        <input
+          type="number"
+          name="cardNumber"
+          value={formData1.cardNumber}
+          onChange={handleChange1}
+          placeholder="Card Number"
+          minLength={16} // Limit the input to 16 characters
+          required
+        />
+
           <input
             type="text"
             name="cardHolderName"
@@ -231,19 +233,21 @@ const CardContainer = () => {
             required
           />
           <input
-            type="text"
-            name="expirationDate"
-            value={formData1.expirationDate}
-            onChange={handleChange1}
-            placeholder="Expiration Date"
-            required
+          type="date" // Change type to "date"
+          name="expirationDate"
+          value={formData1.expirationDate}
+          onChange={handleChange1}
+          placeholder="Expiration Date"
+          required
           />
+
           <input
-            type="text"
+            type="password"
             name="cvv"
             value={formData1.cvv}
             onChange={handleChange1}
             placeholder="CVV"
+            minLength={3}
             required
           />
           <select
@@ -276,7 +280,7 @@ const CardContainer = () => {
             />
             Default
           </label>
-          {adderror ? <div>{adderror}</div> : <></>}
+          {adderror ? <div className="error-message">{adderror}</div> : <></>}
           <button type="submit" disabled={isLoadingAdd}>Add Card</button>
         </form>
       </div>
@@ -286,14 +290,16 @@ const CardContainer = () => {
       <div>
         <h2>Update Card</h2>
         <form id="update-card" onSubmit={handleUpdateSubmit}>
-          <input
-            type="text"
-            name="cardNumber"
-            value={formData.cardNumber}
-            onChange={handleChange}
-            placeholder="Card Number"
-            required
-          />
+        <input
+          type="number"
+          name="cardNumber"
+          value={formData.cardNumber}
+          onChange={handleChange}
+          placeholder="Card Number"
+          maxLength={16} // Limit the input to 16 characters
+          required
+        />
+
           <input
             type="text"
             name="cardHolderName"
@@ -303,27 +309,29 @@ const CardContainer = () => {
             required
           />
           <input
-            type="text"
-            name="expirationDate"
-            value={formData.expirationDate}
-            onChange={handleChange}
-            placeholder="Expiration Date"
-            required
+          type="text" // Change type to "date"
+          name="expirationDate"
+          value={formData.expirationDate}
+          onChange={handleChange}
+          placeholder="Expiration Date"
+          required
           />
+
           <input
-            type="text"
+            type="password"
             name="cvv"
             value={formData.cvv}
             onChange={handleChange}
             placeholder="CVV"
+            maxLength={3}
             required
           />
           <select
-          name="cardType"
-          value={formData.cardType}
-          onChange={handleChange}
-          required
-        >
+            name="cardType"
+            value={formData.cardType}
+            onChange={handleChange}
+            required
+          >
           <option value="">Select Card Type</option>
           <option value="Visa">Visa</option>
           <option value="Mastercard">Mastercard</option>
@@ -348,7 +356,7 @@ const CardContainer = () => {
             />
             Default
           </label>
-          {updateerror ? <div>{updateerror}</div> : <></>}
+          {updateerror ? <div className="error-message">{updateerror}</div> : <></>}
           <button type="submit" disabled={isLoadingUpdate}>Update Card</button>
         </form>
       </div>

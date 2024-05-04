@@ -152,7 +152,9 @@ const AdminMovies = () => {
   return (
     <div>
       <AdminNavbar />
-      <div>Admin Movies</div>
+      <div style={{ 'font-size': '30px',
+  'color':'#fff',
+  'padding-bottom': '20px'}}>Admin Movies</div>
 
       <div style={{ display: 'flex' }}>
         {/* Display movies */}

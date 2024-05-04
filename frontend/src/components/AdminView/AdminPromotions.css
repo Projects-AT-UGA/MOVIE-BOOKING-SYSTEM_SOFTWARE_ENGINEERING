@@ -92,13 +92,20 @@
   /* Middle Section - Create Promotion */
   .admin-promotions-middle {
     width: 30%;
+    margin-right: 30%;
   }
   
-  .admin-promotions-middle input,
+  .admin-promotions-middle input{
+    display: block;
+    margin-bottom: 10px;
+    color:#0a0a0a;
+  }
+  
+
   .admin-promotions-middle label {
     display: block;
     margin-bottom: 10px;
-    color: #333;
+    color:#ece8e8;
   }
   
   .admin-promotions-middle input[type='text'],
@@ -107,6 +114,7 @@
     padding: 10px;
     border: 2px solid #ccc;
     border-radius: 5px;
+
   }
   
   .admin-promotions-middle label input[type='checkbox'] {

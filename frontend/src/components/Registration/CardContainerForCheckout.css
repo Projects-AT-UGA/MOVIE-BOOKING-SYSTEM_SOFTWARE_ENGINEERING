@@ -1,4 +1,12 @@
 
 .card-item.selected{
-    background-color: green;
+    background-color: rgb(55, 51, 51);
+    padding: 20px;
+    margin:20px;
+}
+
+#existing-card{
+
+
+    margin-right: 200px;
 }

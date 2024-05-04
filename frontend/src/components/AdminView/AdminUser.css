@@ -5,6 +5,16 @@
     padding: 20px;
   }
   
+  #update-error{
+    color:#fff;
+    margin: 20px;
+  }
+
+#admin-user-heading{
+  font-size: 30px;
+  color:#fff;
+  padding-bottom: 20px;
+}
   .admin-user-title {
     font-size: 2rem;
     font-weight: 800;

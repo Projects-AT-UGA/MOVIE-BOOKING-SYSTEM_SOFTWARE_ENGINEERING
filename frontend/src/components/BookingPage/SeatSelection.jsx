@@ -144,10 +144,18 @@ export function SeatSelection() {
                         }}
                         id="seating-book"
                     >
-                        {seatLabel}
                         
+                        <span class="material-symbols-outlined">
+                        chair
+                        </span>
+                        <br/>
+                        <br/>
+                        {seatLabel}
                     </div>
                 ))}
+            </div>
+            <div className='screen_shape'>
+
             </div>
             {error ? <div>{error}</div> : <></>}
             <ul className="showcase">

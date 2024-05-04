@@ -126,7 +126,7 @@ const CardContainerForCheckout = ({showPayment}) => {
   
   return (
     <div className="card-container" style={{display:"flex"}}>
-      <div>
+      <div id="existing-card">
         <h2>Existing Cards</h2>
         {isLoadingAdd ? (
           <div>Loading...</div>
@@ -151,14 +151,16 @@ const CardContainerForCheckout = ({showPayment}) => {
         <div>
             <h2>Add New Card</h2>
         <form id='card-form' onSubmit={handleAddSubmit}>
-          <input
-            type="text"
-            name="cardNumber"
-            value={formData1.cardNumber}
-            onChange={handleChange1}
-            placeholder="Card Number"
-            required
-          />
+        <input
+          type="number"
+          name="cardNumber"
+          value={formData1.cardNumber}
+          onChange={handleChange1}
+          placeholder="Card Number"
+          maxLength={16} // Limit the input to 16 characters
+          required
+        />
+
           <input
             type="text"
             name="cardHolderName"
@@ -168,19 +170,21 @@ const CardContainerForCheckout = ({showPayment}) => {
             required
           />
           <input
-            type="text"
-            name="expirationDate"
-            value={formData1.expirationDate}
-            onChange={handleChange1}
-            placeholder="Expiration Date"
-            required
+          type="date" // Change type to "date"
+          name="expirationDate"
+          value={formData1.expirationDate}
+          onChange={handleChange1}
+          placeholder="Expiration Date"
+          required
           />
+
           <input
-            type="text"
+            type="password"
             name="cvv"
             value={formData1.cvv}
             onChange={handleChange1}
             placeholder="CVV"
+            maxLength={3}
             required
           />
           <select
@@ -213,7 +217,7 @@ const CardContainerForCheckout = ({showPayment}) => {
             />
             Default
           </label>
-          {adderror ? <div>{adderror}</div> : <></>}
+          {adderror ? <div className="error-messsage">{adderror}</div> : <></>}
           <button type="submit" disabled={isLoadingAdd}>Add Card</button>
         </form>
       </div>

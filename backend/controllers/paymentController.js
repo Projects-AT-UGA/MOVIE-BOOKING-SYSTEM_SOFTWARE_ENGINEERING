@@ -123,8 +123,7 @@ const postPayment = async (req, res) => {
                 userId: userId,
                 showId: req.body.showId,
                 cardId: cardId,
-                total: total-(total*promotion.discountPercentage/100)
-            });
+                total: Math.floor(total-(total*promotion.discountPercentage/100))            });
         }
         else{
             booking = await Booking.create({

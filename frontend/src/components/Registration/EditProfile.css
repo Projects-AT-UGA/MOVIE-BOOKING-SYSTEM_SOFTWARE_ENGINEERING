@@ -87,7 +87,12 @@
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
+  color:white;
   
+}
+
+.password-error{
+  color: #fff;
 }
 
 .edit1-password-container .edit1-form-control:focus {

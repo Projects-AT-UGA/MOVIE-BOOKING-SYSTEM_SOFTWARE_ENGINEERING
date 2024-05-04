@@ -23,18 +23,18 @@ const Otp = sequelize.define('Otp', {
 //     console.error("Error synchronizing user model:", error);
 //   }
 // }
-// Define the relationship between User and Otp
+// // //Define the relationship between User and Otp
 
 // User.hasOne(Otp, { foreignKey: 'userId' });
 // Otp.belongsTo(User);
 
-// // Ensure database synchronization
+// // // Ensure database synchronization
 // (async () => {
 //   await sequelize.sync({ alter: true });
 //   console.log("Database synchronized successfully.");
 // })();
 
 
-// // Call the syncModel function to synchronize the model with the database
+// // // Call the syncModel function to synchronize the model with the database
 // syncModel();
 module.exports=Otp

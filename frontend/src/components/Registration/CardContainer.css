@@ -7,8 +7,10 @@
    }
    
 .card-container{
-    margin: auto;
-    margin-top: 2rem;
+   width: 70%;
+    margin-top: 3.5rem;
+    margin-left: 30px;
+    margin-right: 40px;
 }
 .card-item{
     color:white;
@@ -24,6 +26,7 @@
     }
     #card-form{
         background-color: rgb(57, 54, 54);
+        height:160px;
     }
     #card-form input::placeholder
     {
@@ -31,6 +34,13 @@
     }
     #card-form input{
      background-color:rgb(59, 56, 56);
+     margin-top: 30px;
+     color:#fff;
+
+    }
+    #card-form select{
+        background-color:rgb(59, 56, 56);
+        color:white;
     }
     #update-card{
         background-color: rgb(57, 54, 54);
@@ -60,6 +70,7 @@
     }
     #card-form > input{
        color:white;
+       margin-top: 20px;
     }
     #update-card > input{
         color:white;
@@ -81,3 +92,8 @@
    .edit1-password-container .edit1-submit-btn:hover {
      background-color: #cc0000; /* Darker red on hover */
    }
+   /* Global CSS */
+.error-message {
+    color: white;
+  }
+  

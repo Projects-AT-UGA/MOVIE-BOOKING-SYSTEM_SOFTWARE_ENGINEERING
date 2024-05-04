@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink ,Link} from 'react-router-dom';
 import './GenreMovie.css';
 
 export const GenreMovies = ({ movies, genre, searchQuery }) => {
   const [filter, setFilter] = useState('Now Playing');
-
+  
   // Filter movies based on genre, search query, and filter option
   const filteredMovies = movies.filter((movie) => {
     // Check if the movie satisfies the conditions for inclusion
@@ -51,6 +51,9 @@ export const GenreMovies = ({ movies, genre, searchQuery }) => {
               </p>
               <p className="movie-rating1">Ratings: {movie.ratings}</p>
               <p className="movie-genre1">Genre: {movie.genre}</p>
+              
+              { movie.visibility.toLowerCase() === "Now Playing".toLowerCase()? <button id="movie-booking-info"> <Link to={`/movie/${movie.title}`}>Book Movie</Link> </button>  : <></>}
+           
             </div>
           </NavLink> 
         )): <div style={{color:"white"}}>No Movies to watch</div>}

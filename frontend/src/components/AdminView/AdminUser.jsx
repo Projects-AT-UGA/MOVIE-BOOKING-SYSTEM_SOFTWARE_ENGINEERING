@@ -122,7 +122,7 @@ const AdminUser = () => {
       });
       const data = await response.json();
       if(response.ok){
-        setUpdateError("User updated")
+        setUpdateError("User Information updated Successfully")
       }
       else{
         setUpdateError(data.message)
@@ -148,7 +148,7 @@ const AdminUser = () => {
   return (
     <div>
       <AdminNavbar />
-      <div>Admin User</div>
+      <div id="admin-user-heading">Admin User</div>
       <div style={{ display: 'flex' }}>
         <div className='userLeft' style={{ width: '30%', marginRight: '10px' }}>
           {/* Display users */}
@@ -236,6 +236,7 @@ const AdminUser = () => {
                 onChange={(e) => setFormData({ ...formData, issuspended: e.target.checked })}
               />
             </label>
+            {updateerror ? <div id="update-error">{updateerror}</div> : <></>}
             <button onClick={updateUser}>Update User</button>
           </div>
           
@@ -311,7 +312,7 @@ const AdminUser = () => {
               />
     
     </label>
-    {createerror ? <div>{createerror}</div> : <></>}
+    {createerror ? <div id="update-error">{createerror}</div> : <></>}
     <button onClick={createUser}>Create User</button>
   </div>
 </div>

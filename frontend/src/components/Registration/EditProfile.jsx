@@ -78,6 +78,7 @@ export const EditProfile = () => {
     }
   };
   
+  
   const editUserPassword = async (passwordData, token) => {
     setPasswordIsLoading(true)
     try {
@@ -200,7 +201,7 @@ export const EditProfile = () => {
         </div>
         <div>{error}</div>
         <div>{saveerror}</div>
-        {success ? <div>data update successfully</div> : <></>}
+        {success ? <div classname="error-message">data update successfully</div> : <></>}
         <button type="submit" className="edit1-submit-btn" onClick={handleSubmit} disabled={isloading}>Save Changes</button>
       </form>
 
@@ -244,7 +245,9 @@ export const EditProfile = () => {
               required
             />
           </div>
-          {passworderror ? <div>{passworderror}</div> : <></>}
+          {/* Inside the render method */}
+        {passworderror && <div className="password-error">{passworderror}</div>}
+
           <button type="submit" className="edit1-submit-btn" disabled={passwordisloading}>
             Change Password
           </button>

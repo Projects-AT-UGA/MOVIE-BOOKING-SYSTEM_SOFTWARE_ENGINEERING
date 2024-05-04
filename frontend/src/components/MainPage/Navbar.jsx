@@ -23,7 +23,7 @@ export const Navbar = ({ handleSearch, searchQuery }) => {
        <><NavLink to="/editprofile"><button className='navbar-b1'><span className="material-symbols-outlined">
        manage_accounts
        </span></button></NavLink> 
-       <div className='user_info'><div>{state.login.email}</div><div style={{cursor:"pointer"}} onClick={logout}>logout</div>
+       <div className='user_info'><div>{state.login.email}</div><button className='order-history-button' style={{cursor:"pointer"}} onClick={logout}>logout</button>
        <NavLink to="/orderhistory"> <button className='order-history-button'>order history</button></NavLink>
 
        </div>

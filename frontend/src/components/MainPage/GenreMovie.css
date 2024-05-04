@@ -16,6 +16,9 @@
   justify-content: space-around;
 }
 
+
+
+
 /* Movie box styling */
 .movie-box1 {
   width: 300px;
@@ -109,4 +112,20 @@
 
 .filter-button:hover {
   background-color: #333; /* Darker black on hover */
+}
+
+#movie-booking-info {
+  background-color: #ff0000;
+  color:#fff;
+ border-radius: 5px;
+ transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+#movie-booking-info:hover{
+  background-color: #2b2a2a; /* Darker black on hover */
+}
+
+#movie-booking-info a{
+text-decoration: none;
+color:#fff;
 }
